@@ -1,0 +1,187 @@
+.menu {
+    display: none;
+}
+
+.menu ul {
+    display: flex;
+}
+
+.menu a {
+    font-size: 1rem;
+    color: white;
+    padding: 12px;
+    display: block;
+    text-transform: uppercase;
+}
+
+.menu a:hover {
+    color: deepskyblue;
+}
+
+.sidemenu-toggler {
+    position: relative;
+    width: 40px;
+    padding: 6px;
+    top: -6px;
+    right: 0;
+}
+
+.sidemenu-toggler>span {
+    display: block;
+    background-color: var(--black);
+    height: 2px;
+}
+
+.sidemenu-toggler>span:nth-child(2) {
+    margin: 4px 0 4px auto;
+    width: 75%;
+    transition: 0.3s all;
+}
+
+.sidemenu-toggler>span:nth-child(3) {
+    margin-left: auto;
+    width: 50%;
+    transition: 0.6s all;
+}
+
+.sidemenu-toggler:hover>span:nth-child(2),
+.sidemenu-toggler:hover>span:nth-child(3) {
+    width: 100%;
+}
+
+.sidemenu {
+   position: absolute;
+    top: -20px;
+    right: -30px;
+    background: rgba(250, 250, 250, 0.611);
+    backdrop-filter: blur(34px);
+    box-shadow: 0 8px 32px 0 rgba(11, 11, 11, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 30%;
+    height: 100vh;
+    z-index: 999;
+    padding: 4rem;
+    color: var(--white);
+    transform: translate3d(100%, 0, 0);
+    transition: transform 0.5 ease-in-out;
+    overflow: hidden;
+    transition: 0.3s all;
+}
+
+.header2 .sidemenu {
+    box-shadow: 0 8px 32px 0 rgba(11, 11, 11, 0.37);
+}
+
+.sidemenu.active {
+    transform: translate3d(0, 0, 0);
+    transition: 0.3s all;
+    width: 350px;
+}
+
+.sidemenu .close {
+    height: 30px;
+    width: 30px;
+    display: block;
+    position: absolute;
+    right: 40px;
+    top: 24px;
+    transition: 0.3s all;
+}
+
+.sidemenu .close::before,
+.sidemenu .close::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 13px;
+    height: 28px;
+    width: 2px;
+    background: rgb(223, 106, 11);
+}
+
+.sidemenu .close::before {
+    transform: rotate(45deg);
+}
+
+.sidemenu .close.close::after {
+    transform: rotate(-45deg);
+}
+
+.sidemenu nav ul {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+}
+
+.sidemenu nav ul li {
+    padding: 5px 0px;
+    transform: translate3d(100%, 0, 0);
+    transition: transform 0.5 ease-in-out;
+    animation-delay: 1s;
+}
+
+.sidemenu.active nav ul li {
+    transform: translate3d(0px, 0, 0);
+    transition: 0.3s all;
+    animation-delay: 1s;
+}
+
+.sidemenu nav ul li a {
+    font-size: var(--fontsizeboton);
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.sidemenu nav a,
+.sidemenu nav a:hover {
+    text-decoration: none;
+    color: var(--white);
+}
+
+.sidemenu nav a::after {
+    content: '';
+    height: 2px;
+    width: 0%;
+    margin-top: 5px;
+    display: block;
+    background-color: var(--white);
+    transition: all .3s ease;
+}
+
+.sidemenu nav a:hover::after {
+    content: '';
+    height: 2px;
+    width: 100%;
+    margin-top: 5px;
+    display: block;
+    background-color: var(--white);
+}
+
+.sidemenu footer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+@media(max-width:768px) {
+    .sidemenu {
+        width: 40%;
+    }
+}
+
+@media(max-width:420px) {
+    .menu {
+        display: none;
+    }
+    .sidemenu {
+        width: 80%;
+    }
+    .header .sidemenu nav a {
+        font-size: 16px;
+        color: white;
+    }
+    .menu a {
+        font-size: 16px;
+    }
+}

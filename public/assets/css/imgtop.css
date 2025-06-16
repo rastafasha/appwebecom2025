@@ -1,0 +1,49 @@
+.imgppal {
+    height: 74vh;
+    width: 100%;
+    top: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    background-image: url('../img/Mask-group-about.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.imgppal .randomplace h1 {
+    font-size: 36px;
+    color: var(--white);
+}
+
+@media(max-width:1024px) {}
+
+@media(max-width:768px) {
+    .imgppal {
+        height: 70vh;
+        top: -40px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+@media(max-width:420px) {
+    .imgppal {
+        height: 80vh;
+        width: 100%;
+        top: 0px;
+        left: 0;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        background-image: url(../img/Mask-group-about.jpeg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .randomplace {
+        display: flex !important;
+        padding: 20px;
+        text-align: center;
+    }
+}

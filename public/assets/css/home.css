@@ -1,0 +1,467 @@
+.topdestinations {
+    height: auto;
+    padding: var(--padding-section);
+    background-color: var(--white);
+}
+
+.topdestinations .cardimagen {
+    background-image: url('https://svcbmf.net/acomodo/assets/img/img-buenaventura.jpg');
+}
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* grid-template-rows: repeat(5, 1fr); */
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    left: 0px;
+    position: relative;
+}
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+    height: 10px;
+}
+
+.div2 {
+    grid-area: 2 / 1 / 3 / 2;
+    height: 300px;
+}
+
+.div3 {
+    grid-area: 1 / 2 / 3 / 3;
+    height: 610px;
+}
+
+.div4 {
+    grid-area: 1 / 3 / 2 / 4;
+    height: 300px;
+}
+
+.div5 {
+    grid-area: 2 / 3 / 3 / 4;
+    height: 300px;
+}
+
+
+/* topproperties */
+
+.topproperties {
+    display: flex;
+    padding: var(--padding-section);
+    height: 85vh;
+}
+
+.topproperties h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 36px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.grillacard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grillacard .cardimagen {
+    width: 263px;
+    height: 239px;
+}
+
+.grillacard .cardimagen .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.grillacard .cardimagen .detalle {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.grillacard .cardimagen .detalle .basico h2 {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+.grillacard .cardimagen .detalle .basico p {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+}
+
+.topproperties .btn-orange {
+    position: relative;
+    left: calc(44%);
+    top: calc(30%);
+}
+
+.basico {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.rating {
+    background-color: var(--orangelight);
+    border-radius: 50px;
+    padding: 20px 10px;
+    width: 73px;
+    height: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.rating .fa {
+    color: var(--star);
+}
+
+
+/* bestwelcome */
+
+.bestwelcome {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.bestwelcome h1 {
+    text-align: center;
+    font-size: 36px;
+}
+
+.bestwelcome img {
+    display: block;
+    margin: auto;
+    width: 90%;
+}
+
+.bestwelcome .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+    align-items: center;
+    align-self: center;
+    justify-items: center;
+    position: relative;
+    left: 10%;
+    top: -40px;
+}
+
+.bestwelcome .footer p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0px 10px;
+    font-family: var(--font);
+}
+
+.bestwelcome .footer .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px 10px;
+    align-items: center;
+}
+
+
+/* acomodoexperiences */
+
+.acomodoexperiences {
+    height: auto;
+    padding: var(--padding-section);
+    background-color: var(--azul);
+}
+
+.acomodoexperiences h1 {
+    text-align: center;
+    color: var(--white);
+}
+
+.cuadrogrande {
+    display: flex;
+    width: 80%;
+    height: 350px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.cuadrogrande .texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 30px;
+}
+
+.cuadrogrande .texto h1 {
+    color: var(--black);
+}
+
+.cuadrogrande .texto h1::after {
+    content: '';
+    height: 2px;
+    width: 15px;
+    margin-top: 15px;
+    display: block;
+    background-color: var(--darkgray);
+}
+
+.cuadrogrande img {
+    display: flex;
+}
+
+.listacuadros {
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+
+.cuadross {
+    display: flex;
+    width: 160px;
+    height: 60px;
+    border-radius: 14px;
+    background-color: var(--white);
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.cuadross p {
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0;
+    padding: 0;
+    padding-left: 10px;
+}
+
+.cuadross img {
+    display: block;
+    width: 50px;
+    height: 50px;
+}
+
+.cuadross-black {
+    background-color: var(--black);
+}
+
+.cuadross-black p {
+    color: var(--white);
+}
+
+
+/* inside */
+
+.inside {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.inside h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cuadrosinside {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inside .cuadrosinside .cardimagen {
+    width: 143px;
+    height: 143px;
+    margin: auto;
+    margin-bottom: 80px;
+}
+
+.inside .cardimagen .detalle {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 150px;
+    width: 100%;
+}
+
+.inside .cuadrosinside .cardimagen .detalle h2 {
+    font-size: 17px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.fotofooter {
+    height: auto;
+}
+
+.fotofooter img {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+@media(max-width:1024px) {
+    .topproperties {
+        display: flex;
+        padding: 120px 0px;
+        height: auto;
+    }
+    .topproperties .cardimagen {
+        width: 213px;
+        height: 200px;
+    }
+    .inside .cardimagen {
+        width: 143px;
+        height: 143px;
+    }
+}
+
+@media(max-width:768px) {
+    .grilla {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        /* grid-template-rows: repeat(5, 1fr); */
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        left: -10%;
+        position: relative;
+    }
+    .grilla .div1 {
+        font-size: 33px;
+    }
+    .grilla .div3 {
+        grid-area: 1 / 2 / 3 / 3;
+        height: 410px;
+    }
+    .topdestinations .cardimagen {
+        width: calc(190px);
+    }
+    .topdestinations .cardimagen h1 {
+        font-size: 20px;
+    }
+    .topproperties .grillacard {
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        overflow-x: scroll;
+        height: 380px;
+    }
+    .listacuadros {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:420px) {
+    .grilla {
+        display: flex;
+        flex-direction: column;
+    }
+    .div1 {
+        height: auto;
+    }
+    .div3 {
+        height: 300px;
+    }
+    .cardimagen {
+        width: calc(100%);
+    }
+    .topproperties {
+        height: auto;
+    }
+    .topproperties .cardimagen {
+        width: 100%;
+        float: left;
+    }
+    .topproperties .btn-orange {
+        position: relative;
+        left: calc(33%);
+        top: calc(6%);
+    }
+    .topproperties .cardimagen .detalle {
+        display: flex;
+        flex-direction: row;
+        padding-top: 40px;
+        padding-bottom: 20px;
+        height: auto;
+        margin-top: 0px;
+        position: relative;
+        justify-content: space-between;
+        color: #fff;
+        left: 0;
+        bottom: 120px;
+        width: 100%;
+        padding-left: 20px;
+        border-radius: 0px 0px 24px 24px;
+        background: linear-gradient(to top, var(--black), var(--black), transparent);
+    }
+    .topproperties .cardimagen .detalle b {
+        color: #fff;
+    }
+    .topproperties .cardimagen .detalle .basico h2 {
+        color: white;
+    }
+    .bestwelcome .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+        align-self: center;
+        justify-items: center;
+        position: relative;
+        left: 0%;
+        top: 0px;
+    }
+    .cuadrogrande {
+        display: flex;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+    .listacuadros {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        margin: auto;
+        flex-wrap: wrap;
+    }
+    .cuadross {
+        display: flex;
+        margin-bottom: 15px;
+    }
+    .inside {
+        height: 100vh;
+    }
+    .cuadrosinside .cardimagen {
+        width: 152px;
+        height: 157px;
+        margin-bottom: 80px;
+    }
+}

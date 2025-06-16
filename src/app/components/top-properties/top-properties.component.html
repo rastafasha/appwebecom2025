@@ -1,0 +1,33 @@
+<section class="topproperties">
+        <div class="container">
+            <h1>Top Choise AcoModo Properties</h1>
+            <div class="grillacard"  >
+                <ng-container *ngFor="let producto of productos | slice:0:10; let i = index ">
+                    <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
+                        <div class="info">
+                            <div class="topfav">
+                                <i class="fa fa-heart-o"></i>
+                            </div>
+                        </div>
+                        <div class="detalle">
+                            <div class="basico">
+                                <h2>{{producto.titulo}}</h2>
+                                <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p>
+                                <p><b>{{producto.precio_ahora|currency}}</b></p>
+                            </div>
+                            <div class="rating">
+                                44.4 <i class="fa fa-star"></i>
+                            </div>
+                            <div class="adicional">
+                                <!-- <p>{{producto.stock}}</p> -->
+                            </div>
+    
+                        </div>
+                    </div>
+
+                </ng-container>
+                <!-- <button class="btn-orange">View More</button> -->
+            </div>
+            <!-- <div class="clear"></div> -->
+        </div>
+    </section>

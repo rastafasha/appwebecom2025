@@ -1,0 +1,631 @@
+.nosotros {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.nosotros h1,
+.nosotros p {
+    text-align: center;
+}
+
+.nosotros p {
+    display: flex;
+    margin: 0 auto;
+}
+
+
+/* nuestrorecorrido  */
+
+.nuestrorecorrido {
+    height: auto;
+    padding: var(--padding-section);
+    background-color: var(--orangelight);
+}
+
+.cuadrosrec {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    width: 100%;
+    gap: 10px;
+}
+
+.cuadrorecorrido {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--white);
+    padding: 20px;
+}
+
+.cuadrorecorrido h1 {
+    display: flex;
+    font-size: 40px;
+}
+
+.cuadrorecorrido p {
+    display: flex;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.cuadrorecorrido p.date {
+    display: flex;
+    font-size: 12px;
+    padding-top: 20px;
+    color: var(--date);
+}
+
+.cuadrorecorrido h1 .stars {
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--starlight);
+    margin-left: 5px;
+}
+
+
+/* maslugares */
+
+.maslugares {
+    height: auto;
+    padding: var(--padding-section);
+    text-align: center;
+}
+
+.maslugares .btn-orange {
+    margin: auto;
+}
+
+.maslugares p {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.imagenes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.imagenes img {
+    display: flex;
+    object-fit: contain;
+    width: 100%;
+}
+
+
+/* personal */
+
+.personal {
+    height: auto;
+    padding: var(--padding-section);
+    background: rgba(245, 245, 245, 0.5);
+}
+
+.fichas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.ficha {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.ficha img {
+    display: flex;
+    object-fit: contain;
+    margin-bottom: 20px;
+    border-radius: 125px;
+}
+
+.ficha h2 {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.ficha p {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.consultoresext {
+    display: flex;
+    width: 80%;
+    height: 450px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--white);
+    align-items: flex-end;
+}
+
+.consultores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.consultor {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.consultor img {
+    display: flex;
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 100px;
+}
+
+.consultor h2 {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.consultor p {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* nosespecializamos */
+
+.nosespecializamos {
+    height: 100vh;
+    padding: var(--padding-section);
+    background-image: url('../img/Group01.png');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nosespecializamos p {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.nosespecializamos img {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+
+/* mejorseleccion */
+
+.mejorseleccion {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.mejorseleccion img {
+    position: relative;
+    top: -75px;
+    width: 100%;
+}
+
+.mejorseleccion .inff {
+    padding: 20px;
+}
+
+.mejorseleccion h2 {
+    margin-bottom: 20px;
+}
+
+.mejorseleccion p {
+    margin-bottom: 20px;
+}
+
+
+/* acomodopropertibrown */
+
+.acomodopropertibrown {
+    height: auto;
+    min-height: 400px;
+    padding: var(--padding-section);
+    background-image: url('../img/fondo-brow.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.acomodopropertibrown p {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--white);
+    font-size: 20px;
+}
+
+.acomodopropertibrown img {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.acomodopropertibrown button {
+    display: flex;
+    margin: 0 auto;
+}
+
+
+/* acomododesing */
+
+.acomododesing {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.acomododesing p {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.acomododesing img {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    border-radius: var(--border-radius);
+}
+
+.galerry {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.galerry .controllers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 10px;
+    position: relative;
+    width: 100px;
+    transform: translate(490%, 10px);
+}
+
+.galerry .controllers span {
+    width: 40px;
+    height: 20px;
+    background-color: var(--bluelight);
+    border-radius: 14px;
+}
+
+.galerry .controllers span.active {
+    width: 60px;
+    background-color: var(--azul);
+}
+
+
+/* acomodservices */
+
+.acomodservices {
+    height: auto;
+    padding: 120px 0;
+    background-color: var(--azul);
+}
+
+.acomodservices img.logoserv {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    border-radius: var(--border-radius);
+}
+
+.acomodservices .cardservices {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.cardservice {
+    height: 300px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+    overflow: hidden;
+}
+
+.cardservice h1,
+.cardservice p {
+    position: relative;
+    z-index: 2;
+    width: 58%;
+}
+
+.cardservice h1 {
+    font-size: 32px;
+    color: var(--darkgray);
+}
+
+.cardservice p {
+    color: var(--darkblue);
+}
+
+.datos {
+    background: linear-gradient(to right, var(--white), var(--white), transparent);
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.datos h1::after {
+    content: '';
+    height: 2px;
+    width: 15px;
+    margin-top: 15px;
+    display: block;
+    background-color: var(--darkgray);
+}
+
+.cardservice:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-image: url('../img/img-bici.jpeg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
+.cardservice:nth-child(2) {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-image: url('../img/img-cocinera.jpeg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+}
+
+.cardservice:nth-child(3),
+.cardservice:nth-child(4),
+.cardservice:nth-child(5) {
+    width: 370px;
+}
+
+.cardservice:nth-child(3) {
+    background-image: url('../img/img-termo.jpeg');
+}
+
+.cardservice:nth-child(4) {
+    background-image: url('../img/img-papi.jpeg');
+}
+
+.cardservice:nth-child(5) {
+    width: 370px;
+    background-image: url('../img/img-surrfin.jpeg');
+}
+
+.cardservice:last-child {
+    grid-column: span 4;
+    grid-row: span 4;
+    height: 620px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: row;
+    background-image: url('../img/Group02.jpeg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
+.cardservice:last-child h1 {
+    width: 19%;
+}
+
+.cardservice:last-child .datos {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
+    background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+.cardservice:last-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media(max-width:768px) {
+    .cuadrorecorrido h1 {
+        display: flex;
+        font-size: 20px;
+    }
+    .fichas {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        margin-bottom: auto;
+    }
+    .ficha img {
+        display: flex;
+        width: 60%;
+    }
+    .ficha {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .consultoresext {
+        width: 100%;
+    }
+    .nosespecializamos {
+        height: auto;
+    }
+    .galerry {
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+    .acomodservices .cardservices {
+        display: grid;
+        grid-template-columns: repeat(2, 0fr);
+        grid-template-rows: repeat(3, 0fr);
+    }
+    .cardservice:nth-child(1),
+    .cardservice:nth-child(2),
+    .cardservice:nth-child(3),
+    .cardservice:nth-child(4),
+    .cardservice:nth-child(5) {
+        width: 347px;
+        height: 300px;
+        background-size: cover;
+    }
+    .cardservice:nth-child(1),
+    .cardservice:nth-child(2),
+    .cardservice:nth-child(3),
+    .cardservice:nth-child(4),
+    .cardservice:nth-child(5) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    .cardservice:last-child {
+        grid-column: span 1;
+        grid-row: span 1;
+        width: 347px;
+        height: 300px;
+        background-size: cover;
+    }
+    .cardservice:nth-child(3) .datos,
+    .cardservice:nth-child(4) .datos,
+    .cardservice:nth-child(5) .datos {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
+        background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+@media(max-width:420px) {
+    .cuadrosrec {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+    .imagenes {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+    }
+    .fichas {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        margin-bottom: 500px;
+    }
+    .ficha img {
+        display: flex;
+        width: 60%;
+    }
+    .ficha {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .consultoresext {
+        display: flex;
+        width: 100%;
+        padding: 0;
+    }
+    .consultores {
+        display: flex;
+        flex-direction: column;
+    }
+    .galerry {
+        overflow: hidden;
+        overflow-x: scroll;
+        margin-bottom: 0;
+    }
+    .acomodservices .cardservices {
+        display: flex;
+        flex-direction: column;
+    }
+    .cardservice:last-child {
+        height: 300px;
+        background-size: cover;
+    }
+    .cardservice:nth-child(1),
+    .cardservice:nth-child(2),
+    .cardservice:nth-child(3),
+    .cardservice:nth-child(4),
+    .cardservice:nth-child(5) {
+        width: 347px;
+        height: 300px;
+        height: 300px;
+        background-size: cover;
+    }
+    .cardservice:nth-child(4) .datos,
+    .cardservice:nth-child(5) .datos {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
+        background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}

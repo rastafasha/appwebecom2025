@@ -1,0 +1,93 @@
+.btn-azul {
+    background-color: var(--azul);
+    color: var(--white);
+    border-radius: var(--botonborder-radius);
+    font-size: var(--fontsizeboton);
+    padding: 10px 20px;
+    border: none;
+    font-family: var(--font);
+}
+
+.btn-orange {
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: var(--botonborder-radius);
+    font-size: var(--fontsizeboton);
+    padding: 10px 20px;
+    border: none;
+    font-family: var(--font);
+    display: flex;
+    justify-content: center;
+}
+
+.btn-white {
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: var(--botonborder-radius);
+    font-size: var(--fontsizeboton);
+    padding: 10px 20px;
+    border: none;
+    font-weight: 400;
+    font-family: var(--font);
+}
+
+.btn-gray {
+    background-color: var(--lighgray);
+    color: var(--black);
+    border-radius: var(--botonborder-radius);
+    font-size: var(--fontsizeboton);
+    padding: 10px 20px;
+    border: none;
+    display: block;
+    font-weight: 400;
+    font-family: var(--font);
+}
+
+.boton-black-ouline {
+    background-color: transparent;
+    color: var(--black);
+    border-radius: var(--botonborder-radius);
+    font-size: var(--fontsizeboton);
+    padding: 10px 20px;
+    border: 1px solid var(--black);
+    font-family: var(--font);
+}
+
+.btn-white-ouline {
+    background-color: transparent;
+    color: var(--white);
+    border-radius: var(--botonborder-radius);
+    font-size: var(--fontsizeboton);
+    padding: 10px 20px;
+    border: 1px solid var(--white);
+    font-family: var(--font);
+}
+
+.btn-icon {
+    background-color: var(--darkblue);
+    color: var(--white);
+    border-radius: 100px;
+    font-size: var(--fontsizeboton);
+    border: none;
+    display: block;
+    font-family: var(--font);
+    height: 50px;
+    width: 50px;
+}
+
+.btn-icongray {
+    background-color: var(--lighgray);
+    color: var(--black);
+    border-radius: var(--botonborder-radius);
+    font-size: var(--fontsizeboton);
+    padding: 10px 20px;
+    border: none;
+    display: flex;
+    font-weight: 400;
+    font-family: var(--font);
+}
+
+.btn-icongray i {
+    margin-right: 10px;
+    color: var(--black);
+}

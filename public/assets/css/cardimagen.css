@@ -1,0 +1,122 @@
+.cardimagen {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    float: left;
+    width: calc(355px);
+    /* height: 345px; */
+    padding: 0px;
+    border-radius: 20px;
+    background-image: url('../img/img-buenaventura.jpg');
+    background-size: cover;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+.cardimagen .info {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 5px;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    /* background: linear-gradient(to top, var(--black), var(--black), transparent); */
+}
+
+.cardimagen h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: center;
+    padding: 10px;
+}
+
+.cardimagen .topoftop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: end;
+    justify-content: center;
+}
+
+.topoftop {
+    background-color: var(--white);
+    border-radius: 50px;
+    padding: 20px 10px;
+    height: 50px;
+    width: 150px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.topfav {
+    background-color: var(--white);
+    border-radius: 50px;
+    height: 31px;
+    width: 31px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topoftop .fa {
+    color: var(--star);
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.cardimagen .topfav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: end;
+    justify-content: center;
+}
+
+.info ul {
+    display: inline-flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.info ul li {
+    font-size: 16px;
+    margin-right: 10px;
+    background-color: #f9f8f8 !important;
+    color: var(--azul);
+}
+
+@media(max-width:1024px) {
+    .cardimagen {
+        width: calc(300px)
+    }
+}
+
+@media(max-width:768px) {
+    .cuadrosinside {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .cuadrogrande {
+        display: flex;
+        width: 100%;
+        height: 460px;
+    }
+    .cardimagen {
+        width: calc(200px);
+        height: 200px;
+        margin-bottom: 0px;
+    }
+}
+
+@media(max-width:420px) {
+    .cardimagen {
+        width: 100%;
+    }
+}

@@ -1,0 +1,25 @@
+<section class="topdestinations">
+    <div class="container">
+        <div class="grilla">
+            <h1 class="div1">Top destinations <br> for your next vacations</h1>
+            <div class="cardimagen div2">
+                <div class="info">
+                    <h1>Buenaventura</h1>
+                    <div class="topoftop">
+                        <i class="fa fa-star"></i> Top of top
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngFor="let producto of productos | slice:0:3; let i = index " >
+                <div class="cardimagen" [ngClass]="'div' + (i + 3)" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
+                    <div class="info">
+                        <h1>{{ producto.titulo }}</h1>
+                        <div class="topoftop">
+                            <i class="fa fa-star"></i> Top of top
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</section>

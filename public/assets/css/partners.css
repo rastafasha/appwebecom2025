@@ -1,0 +1,654 @@
+.partners {
+    background-image: url('../img/partners/backgroundtop.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.partners .content {
+    display: grid;
+    grid-template-columns: 39% 30% 23% 5%;
+    grid-template-rows: 1;
+    gap: 10px;
+}
+
+.partners .social {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.partners .social img {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.textinicial {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.chica {
+    padding-top: 10px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff974f+0,ff974f+72,ff974f+72,183642+73,183642+100 */
+    background: rgb(255, 151, 79);
+    /* Old browsers */
+    background: -moz-linear-gradient(left, rgba(255, 151, 79, 1) 0%, rgba(255, 151, 79, 1) 72%, rgba(255, 151, 79, 1) 72%, rgba(24, 54, 66, 1) 73%, rgba(24, 54, 66, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(255, 151, 79, 1) 0%, rgba(255, 151, 79, 1) 72%, rgba(255, 151, 79, 1) 72%, rgba(24, 54, 66, 1) 73%, rgba(24, 54, 66, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(255, 151, 79, 1) 0%, rgba(255, 151, 79, 1) 72%, rgba(255, 151, 79, 1) 72%, rgba(24, 54, 66, 1) 73%, rgba(24, 54, 66, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ff974f', endColorstr='#183642', GradientType=1);
+    /* IE6-9 */
+}
+
+.chica {
+    display: block;
+    margin: auto;
+    position: relative;
+}
+
+.chica img.icono {
+    display: block;
+    z-index: 3;
+    top: 30px;
+    right: 10%;
+    float: right;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.chica img.foto {
+    width: 100%;
+    display: block;
+    margin: auto;
+    top: 0;
+    z-index: 1;
+    position: relative;
+}
+
+.datosss ul {
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+    padding-top: 80px;
+}
+
+.datosss ul li {
+    padding-bottom: 30px;
+}
+
+.datosss h1 {
+    display: flex;
+    font-size: 40px;
+}
+
+.datosss p {
+    display: flex;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.datosss h1 .stars {
+    font-size: 26px;
+    display: flex;
+    color: var(--starlight);
+    margin-left: 5px;
+}
+
+
+/* logosgris */
+
+.logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logos img {
+    display: flex;
+    margin-right: 5px;
+    filter: grayscale(100%);
+    object-fit: fill;
+    width: 150px;
+    height: auto;
+}
+
+
+/* aumenta */
+
+.aumenta {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.inffo {
+    padding: 20px;
+    padding-top: 100px;
+}
+
+.aumenta img {
+    display: block;
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+
+/* quehacemosporti */
+
+.quehacemosporti {
+    height: auto;
+    padding: var(--padding-section);
+    background: linear-gradient(to bottom, var(--starlight), var(--white), transparent);
+}
+
+.cuadroorange {
+    width: 100%;
+    height: 485px;
+    background-color: var(--orange);
+    border-radius: var(--border-radius);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cuadroorange p.intro {
+    color: var(--white);
+    display: flex;
+    text-align: center;
+    width: 270px;
+}
+
+.cuadrosgrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.cuadroicon {
+    background-color: var(--white);
+    color: var(--orange);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 230px;
+    width: 200px;
+    border-radius: var(--border-radius);
+    margin: 20px;
+    text-align: center;
+}
+
+.cuadroicon p {
+    color: var(--orange);
+}
+
+.cuadroicon img {
+    width: 85px;
+    height: 90px;
+    display: block;
+}
+
+
+/* quehacemosporti */
+
+.quehacemosportiint {
+    padding-top: 40px;
+    height: 330px;
+}
+
+.quehacemosportiint h1 {
+    text-align: center;
+}
+
+
+/* logoscolor */
+
+.logoscolor {
+    height: auto;
+    padding: var(--padding-section);
+    background: linear-gradient(180deg, #F5F5F5 0%, rgba(245, 245, 245, 0) 100%);
+}
+
+.cuadrowhit {
+    width: 100%;
+    height: 181px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.molde {
+    width: 180px;
+    height: 100px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.molde img {
+    width: 100%;
+    height: 90px;
+    object-fit: contain;
+    filter: grayscale(0%);
+}
+
+
+/* comunidad */
+
+.comunidad {
+    height: auto;
+    padding: var(--padding-section);
+    background-color: var(--orange);
+}
+
+.comunidad p.intro {
+    color: var(--white);
+    display: flex;
+    text-align: center;
+    width: 270px;
+    margin: auto;
+}
+
+.iconoinicial {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -90px;
+    flex-direction: column;
+}
+
+.iconoinicial h1 {
+    font-size: 32px;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+}
+
+.iconoinicial img {
+    box-shadow: 0px -3px 11px var(--orange);
+    border-radius: 100px;
+    width: 100px;
+    display: block;
+    margin: auto;
+}
+
+
+/* seguridad */
+
+.seguridad {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.seguridad img {
+    width: auto;
+    display: block;
+    margin: auto;
+}
+
+.seguridad .row div:nth-child(1),
+.seguridad .row div:nth-child(2) {
+    padding: 20px;
+}
+
+.seguridad .row div:nth-child(2) {
+    background-color: var(--orange);
+    border-radius: 0px 40px 40px 0px;
+}
+
+
+/* expertos */
+
+.expertos {
+    height: 410px;
+    padding: var(--padding-section);
+    background-color: #904727;
+    background-image: url('../img/partners/mansion.jpeg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+    color: var(--white);
+}
+
+.expertos h2 {
+    color: var(--white);
+}
+
+.expertos h2,
+.expertos button,
+.expertos p {
+    z-index: 9;
+    position: relative;
+}
+
+
+/* confiaron */
+
+.confiaron {
+    height: auto;
+    padding: var(--padding-section);
+}
+
+.confiaron .commennt2 {
+    border: 1px solid transparent;
+}
+
+
+/* getintouch */
+
+.getintouch {
+    height: auto;
+}
+
+.get {
+    width: 100%;
+    height: 229px;
+    background-image: url('../img/partners/getintouch.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.getinfo {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    transform: translate(0px, 50px);
+}
+
+.getinfo h1 {
+    color: var(--white);
+}
+
+.getinfo input,
+.getinfo textarea {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+}
+
+.grillagetform {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 0fr);
+    gap: 10px;
+    transform: translate(170px, 0px);
+    width: 90%;
+}
+
+.grillagetform:nth-child(3) {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+.grillagetform:nth-child(3) {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+@media(max-width:1024px) {
+    .quehacemosportiint {
+        height: auto;
+    }
+    .quehacemosportiint .cardimagen {
+        width: calc(160px);
+        height: 120px;
+        margin: 20px;
+        margin-bottom: 70px;
+    }
+    .cuadrosinside {
+        display: flex;
+    }
+    .quehacemosportiint .cuadrosinside .cardimagen .detalle {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: 140px;
+        width: 100%;
+    }
+    .molde img {
+        width: 80%;
+        height: 90px;
+        margin: auto;
+        object-fit: contain;
+        filter: grayscale(0%);
+    }
+}
+
+@media(max-width:768px) {
+    .partners {
+        height: 60vh;
+        width: 100%;
+        top: -40px;
+    }
+    .logos {
+        display: block;
+        justify-content: space-between;
+        column-count: 3;
+        margin: auto;
+    }
+    .logos img {
+        display: flex;
+        width: 70%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .inffo {
+        padding: 20px;
+        padding-top: 20px;
+    }
+    .cuadroorange {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    .cuadroicon {
+        margin: 10px;
+    }
+    .cuadross {
+        margin-bottom: 20px;
+    }
+    .cuadrowhit {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    .molde {
+        width: 130px;
+        height: 100px;
+    }
+    .quehacemosportiint {
+        height: auto;
+    }
+    .quehacemosportiint .cardimagen {
+        width: calc(150px);
+        height: 150px;
+        margin: auto;
+        margin-bottom: 60px;
+    }
+    .quehacemosportiint .cuadrosinside .cardimagen .detalle {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: 160px;
+        width: 100%;
+    }
+    .cuadroorange .cuadrosgrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .cuadrowhit .cuadrosgrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .cuadroicon {
+        height: 200px;
+        width: 150px;
+    }
+    .cuadroicon img {
+        width: 85px;
+        height: 60px;
+        display: block;
+    }
+    .seguridad .row div img:nth-child(1),
+    .seguridad .row div img:nth-child(2) {
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+    .seguridad .row div:nth-child(2) {
+        background-color: var(--orange);
+    }
+    .expertos {
+        height: 410px;
+        background-size: cover;
+        position: relative;
+    }
+    .expertos::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background-image: linear-gradient(120deg, #eaee44, #33d0ff); */
+        background-color: #904727f2;
+        opacity: .7;
+    }
+}
+
+@media(max-width:420px) {
+    .partners {
+        height: auto;
+        padding-top: 80px;
+    }
+    .partners .content {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1;
+        gap: 10px;
+    }
+    .logos {
+        display: block;
+        justify-content: space-between;
+        column-count: 2;
+        margin: auto;
+    }
+    .logos img {
+        display: flex;
+        margin-bottom: 10px;
+    }
+    .quehacemosporti .cuadroorange {
+        height: auto;
+        padding: 20px 0;
+    }
+    .quehacemosporti .cuadrosgrid {
+        flex-direction: column;
+    }
+    .quehacemosportiint {
+        height: auto;
+    }
+    .cuadrosinside {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .cuadrowhit {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    .molde {
+        width: 130px;
+        height: 100px;
+    }
+    .cuadrosgrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .cuadroicon {
+        height: 200px;
+        width: 150px;
+    }
+    .cuadroicon img {
+        width: 85px;
+        height: 60px;
+        display: block;
+    }
+    .seguridad .row div img:nth-child(1),
+    .seguridad .row div img:nth-child(2) {
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+    .seguridad .row div:nth-child(2) {
+        background-color: var(--orange);
+        border-radius: 0px 0px 40px 40px;
+    }
+    .expertos {
+        height: 410px;
+        background-size: cover;
+        position: relative;
+    }
+    .expertos::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background-image: linear-gradient(120deg, #eaee44, #33d0ff); */
+        background-color: #904727f2;
+        opacity: .7;
+    }
+    .getintouch {
+        background-color: #668c99;
+    }
+    .get {
+        width: 100%;
+        height: auto;
+        background-image: url(../img/partners/getintouch.png);
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-size: 130%;
+        padding: 40px 0px;
+    }
+    .getinfo {
+        transform: translate(0px, 0px);
+    }
+    .grillagetform {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 0fr);
+        gap: 10px;
+        transform: translate(0px, 0px);
+        width: 100%;
+    }
+    .grillagetform .form-group:nth-child(4) {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

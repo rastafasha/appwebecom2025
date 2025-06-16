@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('header.css');
+@import url('slider.css');
+@import url('menulateral.css');
+@import url('home.css');
+@import url('footer.css');
+@import url('botones.css');
+@import url('imgtop.css');
+@import url('about.css');
+@import url('individual.css');
+@import url('partners.css');
+@import url('comentarios.css');
+@import url('cardimagen.css');
+@import url('normalize.css');
+:root {
+    --azul: #51dcf8;
+    --bluelight: #d8f3f9;
+    --darkblue: #183642;
+    --black: #2F2F2F;
+    --darkgray: #585858;
+    --lighgray: #f5f5f5;
+    --white: #fff;
+    --star: #FF974F;
+    --starlight: #fdcba7;
+    --orange: #FF974F;
+    --orangelight: #fffaf6;
+    --date: rgb(134, 134, 134);
+    --font: 'Poppins', sans-serif;
+    --fontsizeboton: 14px;
+    --border-radius: 30px;
+    --botonborder-radius: 20px;
+    --padding-section: 60px 0px;
+}
+
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: var(--font);
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--black);
+    font-family: var(--font);
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--black);
+    font-family: var(--font);
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--black);
+    font-family: var(--font);
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--black);
+    font-family: var(--font);
+}
+
+.clear {
+    clear: both;
+    visibility: hidden;
+    margin: 0px;
+    padding: 0px;
+    height: 0;
+}
+
+b {
+    color: var(--black);
+}
+
+input,
+textarea {
+    font-family: var(--font);
+}
