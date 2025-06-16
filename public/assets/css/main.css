@@ -92,3 +92,7 @@ input,
 textarea {
     font-family: var(--font);
 }
+
+.border-radius{
+    border-radius: 14px;
+}

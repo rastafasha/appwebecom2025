@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Socket} from 'ngx-socket-io';
+// import {Socket} from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -12,36 +12,38 @@ export class WebSocketService {
 
   public socketStatus = false;
 
-  constructor(private socket: Socket) {
+  constructor(
+    // private socket: Socket
+  ) {
     this.checkStatus();
     this.listener();
   }
 
 
   checkStatus(){
-    this.socket.on('evento', () => {
-      console.log('Conectado al servidor');
-      this.socketStatus = true;
-    });
+    // this.socket.on('evento', () => {
+    //   console.log('Conectado al servidor');
+    //   this.socketStatus = true;
+    // });
 
-    this.socket.on('disconnect', () => {
-      console.log('Desconectado del servidor');
-      this.socketStatus = false;
-    });
+    // this.socket.on('disconnect', () => {
+    //   console.log('Desconectado del servidor');
+    //   this.socketStatus = false;
+    // });
 
   }
 
 
   listener = () => {
-    this.events.forEach(evenName => {
-      this.socket.on(evenName, data => this.cbEvent.emit({
-        name: evenName,
-        data
-      }));
-    });
+    // this.events.forEach(evenName => {
+    //   this.socket.on(evenName, data => this.cbEvent.emit({
+    //     name: evenName,
+    //     data
+    //   }));
+    // });
   };
 
-  joinRoom = (data) => {
-    this.socket.emit('join', data);
+  joinRoom = (data: any) => {
+    // this.socket.emit('join', data);
   }
 }

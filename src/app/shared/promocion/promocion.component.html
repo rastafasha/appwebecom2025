@@ -1,0 +1,36 @@
+<!-- <section class="container mt-4 mb-grid-gutter" *ngIf="promocion.estado"> -->
+<section class=" promocion" *ngIf="promocion" [style.background]="promocion.colorfondo">
+    <div class="container">
+        <div class="row p-2">
+            <div class="col-md-4">
+                <div class="px-4 pr-sm-0 pl-sm-5"><span class="badge badge-danger">{{promocion.etiqueta}}</span>
+                    <h3 class="mt-4 mb-1 text-body font-weight-light">{{promocion.first_title}}</h3>
+                    <h2 class="mb-1">{{promocion.producto_title}}</h2>
+                    <p class="h5 text-body font-weight-light">{{promocion.subtitulo}}</p>
+                    <div class="countdown py-2 h4 " data-countdown="07/01/2021 07:00:00 PM">
+                        <div class="cz-countdown-days">
+                            <span class="cz-countdown-value" id="count_dias"></span>
+                            <span class="cz-countdown-label text-muted">d</span>
+                        </div>
+                        <div class="cz-countdown-hours">
+                            <span class="cz-countdown-value" id="count_horas"></span>
+                            <span class="cz-countdown-label text-muted">h</span>
+                        </div>
+                        <div class="cz-countdown-minutes">
+                            <span class="cz-countdown-value" id="count_min"></span>
+                            <span class="cz-countdown-label text-muted">m</span>
+                        </div>
+                        <div class="cz-countdown-seconds">
+                            <span class="cz-countdown-value" id="count_seg"></span>
+                            <span class="cz-countdown-label text-muted">s</span>
+                        </div>
+                    </div>
+                    <a class="btn btn-success" [routerLink]="['/app/producto/',promocion.enlace]">Ver oferta<i class="czi-arrow-right font-size-ms ml-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img [src]="(promocion.img ?? '') | imagenPipe: 'promocions'" alt="promocion.producto_title" class="img-responsive">
+            </div>
+        </div>
+    </div>
+</section>

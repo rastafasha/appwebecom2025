@@ -6,11 +6,13 @@ import { ProductoService } from '../../services/product.service';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
+import { LoadingComponent } from '../../shared/loading/loading.component';
 
 @Component({
   selector: 'app-destacados',
   imports: [
-    CommonModule, RouterModule, ImagenPipe
+    CommonModule, RouterModule, ImagenPipe,
+    LoadingComponent,
   ],
   templateUrl: './destacados.component.html',
   styleUrl: './destacados.component.scss'
@@ -22,7 +24,7 @@ export class DestacadosComponent {
   error!: string;
 
   public producto : any = {};
-
+  isLoading:boolean= false;
   private http: HttpClient;
   ServerUrl = environment.baseUrl;
   imagenSerUrl = environment.mediaUrl;
@@ -42,9 +44,11 @@ export class DestacadosComponent {
 
   }
   loadProducts(){
+    this.isLoading = true;
     this.productoService.getProductosDestacados().subscribe(
       productos => {
         this.productos = productos;
+        this.isLoading = false;
         // console.log(this.productos);
       }
     )

@@ -58,6 +58,7 @@ export class FavoritoService {
       if(this.favorito[i].id == producto.id)
       return true;
     }
+    return false;
   }
 
   getFavorito(id:string){

@@ -10,6 +10,7 @@ import { ExperienceComponent } from '../../components/experience/experience.comp
 import { InsideComponent } from '../../components/inside/inside.component';
 import { CommentsComponent } from '../../components/comments/comments.component';
 import { FotofooterComponent } from '../../components/fotofooter/fotofooter.component';
+import { PromocionComponent } from '../../shared/promocion/promocion.component';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ import { FotofooterComponent } from '../../components/fotofooter/fotofooter.comp
     ExperienceComponent,
     InsideComponent,
     CommentsComponent,
-    FotofooterComponent
+    FotofooterComponent,
+    PromocionComponent
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

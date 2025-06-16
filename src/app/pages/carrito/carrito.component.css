@@ -1,0 +1,30 @@
+/* Estilo del select más grande */
+.custom-select-large {
+    display: inline-block;
+    width: 100%; /* Ajuste completo al contenedor */
+    padding: 0.75rem 2rem 0.75rem 1rem; /* Espaciado interno más amplio */
+    font-size: 1.5rem; /* Tamaño de fuente más grande */
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 20px 16px; /* Tamaño de la flecha */
+    border: 1px solid #ced4da;
+    border-radius: 0.35rem; /* Bordes redondeados más grandes */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+  
+/* Al pasar el mouse */
+.custom-select-large:hover {
+    border-color: #b3b8bd;
+}
+  
+/* Al recibir foco */
+.custom-select-large:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+  

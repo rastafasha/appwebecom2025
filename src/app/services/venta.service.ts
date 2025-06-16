@@ -142,7 +142,7 @@ export class VentaService {
     return this._http.get(this.url+'/ventas/cancelacion_venta/obtener_data/'+id,{headers:headers});
   }
 
-  evaluar_venta_user(user:Usuario,producto:any):Observable<any>{
+  evaluar_venta_user(user:string,producto:any):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
     return this._http.get(this.url+'/ventas/evaluar_venta/data/'+user+'/'+producto,{headers:headers});
   }
