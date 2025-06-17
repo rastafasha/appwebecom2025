@@ -23,7 +23,7 @@ import { FooterComponent } from '../../../shared/footer/footer.component';
     FooterComponent
   ],
   templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.css']
+  styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit {
 

@@ -54,6 +54,8 @@ export class ProductoComponent implements OnInit {
   option_selected:number = 1;
   solicitud_selected:any = null;
 
+  animationClass: string = '';
+
   // public socket = io(environment.soketServer);
 
   
@@ -349,9 +351,11 @@ export class ProductoComponent implements OnInit {
 
    optionSelected(value:number){
       this.option_selected = value;
-      if(this.option_selected === 1){
 
-        // this.ngOnInit();
+      // Trigger fade-in-left animation
+      this.animationClass = 'fade-in-left';
+
+      if(this.option_selected === 1){
         this.solicitud_selected = null;
       }
       if(this.option_selected === 2){
@@ -360,6 +364,11 @@ export class ProductoComponent implements OnInit {
       if(this.option_selected === 3){
         this.solicitud_selected = null;
       }
+
+      // Remove animation class after animation duration to allow re-trigger
+      setTimeout(() => {
+        this.animationClass = '';
+      }, 500); // match animation-duration in CSS
     }
 
   init_data(_id:string){

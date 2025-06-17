@@ -1,0 +1,107 @@
+.comments {
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .carousel {
+    position: relative;
+    overflow: hidden;
+
+    .carousel-inner {
+      /* display: flex; */
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      display: none;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+
+    .carousel-item.active {
+      display: block;
+    }
+
+    .comentario {
+      // background: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      // box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .commennt {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .userraking {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .userraking img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .stars i {
+      color: #f5c518;
+      margin-right: 2px;
+    }
+
+    .carousel-indicators {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .carousel-indicators span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 5px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .carousel-indicators span.active {
+      background-color: #333;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 0px 12px;
+      cursor: pointer;
+      border-radius: 50%;
+      user-select: none;
+    }
+
+    .carousel-control.prev {
+      left: 10px;
+    }
+
+    .carousel-control.next {
+      right: 10px;
+    }
+  }
+}

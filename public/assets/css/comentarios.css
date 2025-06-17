@@ -5,6 +5,7 @@
     padding: 40px 0px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .comments h1 {
@@ -13,17 +14,18 @@
 }
 
 .comentario {
-    width: 300px;
-    height: 300px;
+    /* width: 300px;
+    height: 300px; */
     margin: 10px;
 }
 
 .commennt {
     display: flex;
-    width: 300px;
-    height: 200px;
-    border: 1px solid var(--black);
+    /* width: 300px;
+    height: 200px; */
+    /* border: 1px solid var(--black); */
     border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     padding: 30px;
     margin-bottom: 20px;
 }
@@ -34,7 +36,7 @@
     display: flex;
     align-items: baseline;
     flex-direction: row;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .commennt p {

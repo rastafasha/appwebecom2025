@@ -28,7 +28,7 @@
 	font-size: 2em;
 	transform: translate(-50%,-50%);
 }
-.cart-button .fa-box {
+.cart-button .fa-gift {
 	position: absolute;
 	z-index: 3;
 	top: -20%;
@@ -55,7 +55,7 @@
 .cart-button.clicked .fa-shopping-cart {
 	animation: cart 1.5s ease-in-out forwards;
 }
-.cart-button.clicked .fa-box {
+.cart-button.clicked .fa-gift {
 	animation: box 1.5s ease-in-out forwards;
 }
 .cart-button.clicked span.add-to-cart {
@@ -103,13 +103,4 @@
 	100% {
 		opacity: 1;
 	}
-}
-
-.youtube-link {
-	position: fixed;
-	left: 20px;
-	bottom: 20px;
-	color: #000;
-	text-decoration: none;
-	font-size: 12px;
 }
