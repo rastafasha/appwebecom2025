@@ -25,6 +25,7 @@ import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { NewproductsComponent } from '../../../components/newproducts/newproducts.component';
 
 declare var jQuery:any;
 declare var $:any;
@@ -39,7 +40,8 @@ declare var $:any;
     FooterComponent,
     FormsModule,
     ReactiveFormsModule,
-    LoadingComponent
+    LoadingComponent,
+    NewproductsComponent
   ],
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.css']
@@ -48,6 +50,9 @@ export class ProductoComponent implements OnInit {
 
   producto: any = [];
   categories!: Categoria[];
+
+  option_selected:number = 1;
+  solicitud_selected:any = null;
 
   // public socket = io(environment.soketServer);
 
@@ -285,17 +290,7 @@ export class ProductoComponent implements OnInit {
     );
   }
 
-  listar_newest(){
-    this.productoService.listar_newest().subscribe(
-      response =>{
-        this.news_productos = response.data;
-        console.log(this.news_productos);
-      },
-      error=>{
-
-      }
-    );
-  }
+ 
 
 
   ngOnInit(): void {
@@ -333,13 +328,27 @@ export class ProductoComponent implements OnInit {
     //   }
     // );
 
-    this.listar_newest();
+    // this.listar_newest();
 
     if(!this.identity){
       this.router.navigateByUrl('/login');
     }
 
   }
+
+   optionSelected(value:number){
+      this.option_selected = value;
+      if(this.option_selected === 1){
+
+        this.ngOnInit();
+      }
+      if(this.option_selected === 2){
+        this.solicitud_selected = null;
+      }
+      if(this.option_selected === 3){
+        this.solicitud_selected = null;
+      }
+    }
 
   init_data(_id:string){
     this.productoService.getProductoById(_id).subscribe(
@@ -399,7 +408,7 @@ export class ProductoComponent implements OnInit {
       response =>{
         this.colores = response;
         this.color_to_cart = this.colores[0].color;
-        console.log(response);
+        // console.log(response);
 
       },
       error=>{
@@ -435,7 +444,7 @@ export class ProductoComponent implements OnInit {
     return this.categoryService.getCategories().subscribe(
       resp=>{
         this.categories = resp;
-        console.log(this.categories);
+        // console.log(this.categories);
       }
     )
   }

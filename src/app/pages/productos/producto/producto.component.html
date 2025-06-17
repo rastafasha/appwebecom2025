@@ -250,19 +250,17 @@
                     <div class="row">
                         <div class="col-md-12 woocommerce-tabs-inner">
                             <div class="row">
-                                <div class="col-md-8 col-md-offset-2 tab-content-set">
-                                    <ul class="tabs tab-style-2" role="tablist">
-                                        <li class="active" role="presentation">
-                                            <a href="#Description" aria-controls="Description" role="tab"
-                                                data-toggle="tab">Description</a>
+                                <div class=" tab-content-set">
+                                    <ul class="nav" role="tablist">
+                                        <li >
+                                            <a href="#" onclick="return false;" [ngClass]="{'active': option_selected == 1}" (click)="optionSelected(1)" 
+                                                >Description</a>
                                         </li>
-                                        <li role="presentation">
-                                            <a href="#Additional-Information" aria-controls="Additional-Information"
-                                                role="tab" data-toggle="tab">Additional Information</a>
+                                        <li >
+                                            <a href="#" onclick="return false;" [ngClass]="{'active': option_selected == 2}" (click)="optionSelected(2)" >Additional Information</a>
                                         </li>
-                                        <li role="presentation">
-                                            <a href="#Review" aria-controls="Review" role="tab"
-                                                data-toggle="tab">Review</a>
+                                        <li >
+                                            <a href="#" onclick="return false;" [ngClass]="{'active': option_selected == 3}" (click)="optionSelected(3)" >Review</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -270,10 +268,10 @@
                         </div>
                         <div class="col-md-8 col-md-offset-2">
                             <div class="tab-content tab-content-style-2">
-                                <div class="tab-pane fade in active" id="Description" role="tabpanel">
+                                <div  *ngIf="option_selected == 1">
                                     <p [innerHTML]="producto.detalle"></p>
                                 </div>
-                                <div class="tab-pane fade" id="Additional-Information" role="tabpanel">
+                                <div  *ngIf="option_selected == 2">
                                     <iframe class="videom" [src]="getVideoIframe(producto.video_review)" frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; "
                                         allowfullscreen></iframe>
@@ -308,7 +306,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="tab-pane fade" id="Review" role="tabpanel">
+                                <div  *ngIf="option_selected == 3">
                                     <!-- comentarios -->
                                     <div class="border-top border-bottom my-lg-3 py-5">
                                         <div class="pt-md-2" id="reviews">
@@ -622,101 +620,7 @@
                 </div>
 
                 <!-- productos nuevos -->
-                <div class="shop-layout-1" id="page">
-                    <section class="box-sm">
-                        <div class="container pt-5 pb-5">
-                            <h2 class="h3 text-center pb-4" *ngIf="identity">Productos nuevos</h2>
-                            <div class="row">
-
-                                <figure class="item col-xs-12 col-sm-3"
-                                    *ngFor="let slide of news_productos; let indice = index">
-                                    <div class="product product-style-1">
-                                        <div class="img-wrapper">
-                                            <a [routerLink]="['/app/producto/', slide._id]">
-                                                <img class="img-responsive" [src]="slide.img | imagenPipe: 'productos'"
-                                                    [title]="slide.titulo" alt="{{slide.titulo}} thumbnail" />
-                                            </a>
-                                            <!-- <div class="product-control-wrapper bottom-right">
-                                                <div class="wrapper-control-item item-wish-list">
-                                                    <a class="js-wish-list js-notify-add-wish-list" href="#">
-                                                        <span class="lnr lnr-heart"></span>
-                                                    </a>
-                                                </div>
-                                                <div class="wrapper-control-item item-add-cart js-action-add-cart">
-                                                    <a class="animate-icon-cart" (click)="addToCart()">
-                                                        <span class="lnr lnr-cart"></span>
-                                                    </a>
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                        <figcaption class="desc text-center">
-                                            <h3>
-                                                <a class="product-name"
-                                                    [routerLink]="['/app/producto/', slide._id]">{{slide.titulo.substr(0,60)}}...</a>
-                                            </h3>
-                                            <p>
-                                                <a class="product-meta d-block font-size-xs pb-1"
-                                                    [routerLink]="['/app/category/',slide.categoria._id]">{{slide.categoria.nombre}}
-                                                    - {{slide.subcategoria | slice: 0:20}}s...</a>
-                                            </p>
-                                            <span class="price">${{producto.precio_ahora}}</span><br>
-                                            <span class="price">${{producto.precio_antes}}</span>
-
-                                            <div class="stars">
-                                                <div class="star-rating" *ngIf="slide.stars == 5">
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                </div>
-                                                <div class="star-rating" *ngIf="slide.stars >= 4 && slide.stars < 5">
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                </div>
-                                                <div class="star-rating" *ngIf="slide.stars >= 3 && slide.stars < 4">
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                </div>
-                                                <div class="star-rating" *ngIf="slide.stars >= 2 && slide.stars < 3">
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                </div>
-                                                <div class="star-rating" *ngIf="slide.stars >= 1 && slide.stars < 2">
-                                                    <i class="sr-star fa fa-star-filled active"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                </div>
-                                                <div class="star-rating" *ngIf="slide.stars >= 0 && slide.stars < 1">
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                    <i class="sr-star fa fa-star-filled"></i>
-                                                </div>
-                                            </div>
-                                        </figcaption>
-                                    </div>
-                                </figure>
-
-
-
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
+                <app-newproducts></app-newproducts>
                 <!-- productos nuevos -->
             </div>
         </section>

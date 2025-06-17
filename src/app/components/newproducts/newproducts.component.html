@@ -1,0 +1,94 @@
+<div class="shop-layout-1" id="page">
+                    <section class="box-sm">
+                        <div class="container pt-5 pb-5">
+                            <h2 class="h3 text-center pb-4" *ngIf="identity">Productos nuevos</h2>
+                            <div class="row">
+
+                                <figure class="item col-xs-12 col-sm-3"
+                                    *ngFor="let newproduct of news_productos; let indice = index">
+                                    <div class="product product-style-1">
+                                        <div class="img-wrapper">
+                                            <a [routerLink]="['/app/producto/', newproduct._id]">
+                                                <img class="img-responsive" [src]="newproduct.img | imagenPipe: 'productos'"
+                                                    [title]="newproduct.titulo" alt="{{newproduct.titulo}} thumbnail" />
+                                            </a>
+                                            <!-- <div class="product-control-wrapper bottom-right">
+                                                <div class="wrapper-control-item item-wish-list">
+                                                    <a class="js-wish-list js-notify-add-wish-list" href="#">
+                                                        <span class="lnr lnr-heart"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="wrapper-control-item item-add-cart js-action-add-cart">
+                                                    <a class="animate-icon-cart" (click)="addToCart()">
+                                                        <span class="lnr lnr-cart"></span>
+                                                    </a>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <figcaption class="desc text-center">
+                                            <h3>
+                                                <a class="product-name"
+                                                    [routerLink]="['/app/producto/', newproduct._id]">{{newproduct.titulo.substr(0,60)}}...</a>
+                                            </h3>
+                                            <p>
+                                                <a class="product-meta d-block font-size-xs pb-1"
+                                                    [routerLink]="['/app/category/',newproduct.categoria._id]">{{newproduct.categoria.nombre}}
+                                                    - {{newproduct.subcategoria | slice: 0:20}}s...</a>
+                                            </p>
+                                            <span class="price">${{newproduct.precio_ahora}}</span><br>
+                                            <span class="price">${{newproduct.precio_antes}}</span>
+
+                                            <!-- <div class="stars">
+                                                <div class="star-rating" *ngIf="newproduct.stars == 5">
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                </div>
+                                                <div class="star-rating" *ngIf="newproduct.stars >= 4 && newproduct.stars < 5">
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                </div>
+                                                <div class="star-rating" *ngIf="newproduct.stars >= 3 && newproduct.stars < 4">
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                </div>
+                                                <div class="star-rating" *ngIf="newproduct.stars >= 2 && newproduct.stars < 3">
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                </div>
+                                                <div class="star-rating" *ngIf="newproduct.stars >= 1 && newproduct.stars < 2">
+                                                    <i class="sr-star fa fa-star-filled active"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                </div>
+                                                <div class="star-rating" *ngIf="newproduct.stars >= 0 && newproduct.stars < 1">
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                    <i class="sr-star fa fa-star-filled"></i>
+                                                </div>
+                                            </div> -->
+                                        </figcaption>
+                                    </div>
+                                </figure>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
