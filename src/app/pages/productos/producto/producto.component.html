@@ -260,7 +260,7 @@
                                             <a href="#" onclick="return false;" [ngClass]="{'active': option_selected == 1}" (click)="optionSelected(1)" 
                                                 >Description</a>
                                         </li>
-                                        <li >
+                                        <li *ngIf="producto.video_review">
                                             <a href="#" onclick="return false;" [ngClass]="{'active': option_selected == 2}" (click)="optionSelected(2)" >Additional Information</a>
                                         </li>
                                         <li >

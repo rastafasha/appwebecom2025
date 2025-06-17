@@ -6,11 +6,7 @@
             <div class="grillacard" *ngIf="!isLoading" >
                 <ng-container *ngFor="let producto of productos | slice:0:10; let i = index ">
                     <div class="cardimagen">
-                        <a [routerLink]="['producto/',producto._id]">
-    
-                            <div class="imagencard" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
-                            </div>
-                            </a>
+                        <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
                             <div class="info">
                                 <div class="topfav" style="cursor: pointer;">
                                     <i class="fa fa-heart-o"></i>
@@ -34,7 +30,7 @@
                                 </div>
         
                             </div>
-                        
+                        </div>
 
                     </div>
 

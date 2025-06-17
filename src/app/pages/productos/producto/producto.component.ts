@@ -328,12 +328,24 @@ export class ProductoComponent implements OnInit {
     //   }
     // );
 
-    // this.listar_newest();
+    this.listar_newest();
 
     if(!this.identity){
       this.router.navigateByUrl('/login');
     }
 
+  }
+
+  listar_newest(){
+    this.productoService.listar_newest().subscribe(
+      response =>{
+        this.news_productos = response.data;
+        console.log(this.news_productos);
+      },
+      error=>{
+
+      }
+    );
   }
 
    optionSelected(value:number){

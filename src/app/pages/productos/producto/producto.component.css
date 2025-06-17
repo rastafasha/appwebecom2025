@@ -65,3 +65,7 @@
    background: linear-gradient(180deg,rgba(12, 105, 171, 1) 0%, rgba(0, 212, 255, 0.26) 70%, rgba(0, 212, 255, 0) 100%);
 }
 
+.videom{
+    width: 768px;
+    height: 430px;
+}
