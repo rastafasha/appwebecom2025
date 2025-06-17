@@ -14,10 +14,11 @@
     border-radius: 100px; height: 30px; width: 30px;
 }
 
-.woocommerce-tabs {
+.woocommerce-tabs-inner {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 .tab-content-set{
@@ -26,9 +27,20 @@
         justify-content: space-around;
         align-items: center;
         padding: 20px;
+        gap: 15px;
         
     }
     & li {
 
     }
+    
+}
+
+.tb-cont-inside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 15px;
 }

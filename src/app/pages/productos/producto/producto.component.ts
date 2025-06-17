@@ -340,7 +340,8 @@ export class ProductoComponent implements OnInit {
       this.option_selected = value;
       if(this.option_selected === 1){
 
-        this.ngOnInit();
+        // this.ngOnInit();
+        this.solicitud_selected = null;
       }
       if(this.option_selected === 2){
         this.solicitud_selected = null;

@@ -17,7 +17,8 @@
 
                                     <h2>{{producto.titulo}}</h2>
                                 </a>
-                                <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p>
+                                <!-- <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p> -->
+                                <p [innerHTML]="producto.info_short |slice:0:20"></p>
                                 <p><b>{{producto.precio_ahora|currency}}</b></p>
                             </div>
                             <div class="rating">
