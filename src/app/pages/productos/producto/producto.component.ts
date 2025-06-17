@@ -281,7 +281,6 @@ export class ProductoComponent implements OnInit {
         if(isNaN(this.raiting_porcent)){
           this.raiting_porcent = 0;
         }
-
       },
       error=>{
         console.log(error);
@@ -656,6 +655,17 @@ close_alert(){
 }
 
 
+  onPress(){
 
+    const cartButtons = document.getElementsByClassName("cart-button");
+    Array.from(cartButtons).forEach(button => {
+      button.addEventListener('click', cartClick);
+    });
+
+    function cartClick(this: any) {
+      let button: HTMLButtonElement = this as HTMLButtonElement;
+      button.classList.add('clicked');
+    }
+  }
 
 }
