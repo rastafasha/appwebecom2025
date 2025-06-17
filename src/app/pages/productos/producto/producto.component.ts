@@ -405,11 +405,13 @@ export class ProductoComponent implements OnInit {
   }
 
   getColorProducto(_id:string){
+    this.isLoading = true
     this._colorService.colorByProduct(_id).subscribe(
       response =>{
         this.colores = response;
         this.color_to_cart = this.colores[0].color;
         // console.log(response);
+        this.isLoading = false
 
       },
       error=>{

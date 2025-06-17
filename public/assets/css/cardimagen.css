@@ -7,12 +7,26 @@
     /* height: 345px; */
     padding: 0px;
     border-radius: 20px;
-    background-image: url('../img/img-buenaventura.jpg');
+    /* background-image: url('../img/img-buenaventura.jpg'); */
     background-size: cover;
     margin: 5px;
     box-sizing: border-box;
 }
 
+.cardimagen .imagencard {
+     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    float: left;
+    width: calc(255px);
+    height: 245px;
+    padding: 0px;
+    border-radius: 20px;
+    background-size: cover;
+    margin: 5px;
+    box-sizing: border-box;
+    position: relative;
+}
 .cardimagen .info {
     display: flex;
     flex-direction: column-reverse;
@@ -21,6 +35,8 @@
     height: 100%;
     width: 100%;
     justify-content: space-between;
+    position: relative;
+    top: 0;
     /* background: linear-gradient(to top, var(--black), var(--black), transparent); */
 }
 

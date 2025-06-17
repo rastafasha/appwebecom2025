@@ -5,30 +5,37 @@
             <app-loading *ngIf="isLoading"></app-loading>
             <div class="grillacard" *ngIf="!isLoading" >
                 <ng-container *ngFor="let producto of productos | slice:0:10; let i = index ">
-                    <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
-                        <div class="info">
-                            <div class="topfav">
-                                <i class="fa fa-heart-o"></i>
-                            </div>
-                        </div>
-                        <div class="detalle">
-                            <div class="basico">
-                                <a [routerLink]="['producto/',producto._id]">
-
-                                    <h2>{{producto.titulo}}</h2>
-                                </a>
-                                <!-- <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p> -->
-                                <p [innerHTML]="producto.info_short |slice:0:20"></p>
-                                <p><b>{{producto.precio_ahora|currency}}</b></p>
-                            </div>
-                            <div class="rating">
-                                44.4 <i class="fa fa-star"></i>
-                            </div>
-                            <div class="adicional">
-                                <!-- <p>{{producto.stock}}</p> -->
-                            </div>
+                    <div class="cardimagen">
+                        <a [routerLink]="['producto/',producto._id]">
     
-                        </div>
+                            <div class="imagencard" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
+                            </div>
+                            </a>
+                            <div class="info">
+                                <div class="topfav" style="cursor: pointer;">
+                                    <i class="fa fa-heart-o"></i>
+                                </div>
+                            </div>
+                            <div class="detalle">
+                                <div class="basico">
+                                    <a [routerLink]="['producto/',producto._id]">
+    
+                                        <h2>{{producto.titulo}}</h2>
+                                    </a>
+                                    <!-- <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p> -->
+                                    <p [innerHTML]="producto.info_short |slice:0:20"></p>
+                                    <p><b>{{producto.precio_ahora|currency}}</b></p>
+                                </div>
+                                <div class="rating">
+                                    44.4 <i class="fa fa-star"></i>
+                                </div>
+                                <div class="adicional">
+                                    <!-- <p>{{producto.stock}}</p> -->
+                                </div>
+        
+                            </div>
+                        
+
                     </div>
 
                 </ng-container>

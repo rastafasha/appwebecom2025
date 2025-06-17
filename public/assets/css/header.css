@@ -1,15 +1,19 @@
 .header {
     align-self: center;
+    height: 125px;
     width: 100%;
+    top: -50px;
     margin: 0 auto;
-    height: 40px;
     display: flex;
     justify-items: center;
     justify-content: space-between;
     position: fixed;
     z-index: 999;
-    top: 20px;
     transition: all .2s ease;
+    background-image: url('../svg/header-scroll.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
 }
 
 .header2 .header {
@@ -40,13 +44,13 @@
 }
 .header .logocenter img{
    width: 80px;
-    transform: translate(-53px, -13px);
+    transform: translate(-53px, 10px);
     transition: all .2s ease;
 }
 
 .header2 .logocenter img{
    width: 80px;
-    transform: translate(-53px, 0px);
+    transform: translate(-53px, 10px);
     transition: all .2s ease;
 }
 

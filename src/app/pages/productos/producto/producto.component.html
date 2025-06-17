@@ -6,12 +6,12 @@
 <div *ngIf="producto && !isLoading">
     <div class="shop-detail-3 woocommerce" id="page">
 
-        <!-- <section class="sub-header shop-detail-1">
-            <img class="rellax bg-overlay" [src]="producto.img | imagenPipe: 'productos'" alt="{{producto.titulo}}">
-            <div class="overlay-call-to-action"></div>
-            <h3 class="heading-style-3" style="color:#ccc">{{producto.titulo}}</h3>
-        </section> -->
-        <section class="boxed-sm" style="margin-top: 100px;">
+        <section class="sub-header shop-detail-1" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
+            <img class="rellax bg-overlay" >
+            <!-- <div class="overlay-call-to-action"></div> -->
+            <!-- <h3 class="heading-style-3" style="color:#ccc">{{producto.titulo}}</h3> -->
+        </section>
+        <section class="boxed-sm" style="margin-top: 30px;">
             <div class="container">
                 <div class="row product-detail">
                     <div class="row product-detail-wrapper  p-3 border-radius mb-5" >
@@ -143,15 +143,18 @@
                                                 <span
                                                     class="badge badge-danger badge-shadow align-middle mt-n2">Oferta</span>
                                             </div>
-                                            <div class="font-size-sm" *ngIf="producto?.subcategoria !== 'Comida Rápida' && producto?.subcategoria !== 'Alimentos'">
+
+                                            <app-loading *ngIf="isLoading"></app-loading>
+                                            <div class="font-size-sm" *ngIf="producto?.subcategoria !== 'Comida Rápida' && producto?.subcategoria !== 'Alimentos' && !isLoading">
                                                 <span class="text-heading font-weight-medium mr-1">
                                                     Colores:</span>
+                                                    <br>
                                                 <span class="text-muted listacolor" id="colorOption">
                                                     <ng-container *ngFor="let color of colores; let indice = first">
                                                         <ng-container *ngIf="indice"><i [style.background]="color.color"
                                                                 style="cursor: pointer;"
                                                                 (click)="get_color(color)"></i>{{color.titulo}}</ng-container>
-                                                        <ng-container *ngIf="!indice"> / <i
+                                                        <ng-container *ngIf="!indice">  <i
                                                                 [style.background]="color.color"
                                                                 style="cursor: pointer;" (click)="get_color(color)"></i>
                                                             {{color.titulo}}</ng-container>
