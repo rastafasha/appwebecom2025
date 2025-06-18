@@ -4,7 +4,7 @@
 
             <app-loading *ngIf="isLoading"></app-loading>
             <div class="grillacard" *ngIf="!isLoading" >
-                <ng-container *ngFor="let producto of productos | slice:0:10; let i = index ">
+                <ng-container class="lista-imagenes" *ngFor="let producto of productos | slice:0:10; let i = index ">
                     <div class="cardimagen">
                         <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
                             <div class="info">

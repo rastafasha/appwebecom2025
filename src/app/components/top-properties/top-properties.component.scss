@@ -11,3 +11,29 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.imagen-principal{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.galeria{
+    padding: 15px
+}
+
+.lista-imagenes img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right:10px ;
+    display: block;
+}
+
+.lista-imagenes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: auto;
+    margin-top: 10px;
+}

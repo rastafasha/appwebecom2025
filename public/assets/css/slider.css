@@ -31,7 +31,6 @@
     border-radius: 40px;
     flex-direction: row;
     position: absolute;
-    transform: translate(0px, 80px);
 }
 
 .slider .search p {
@@ -74,9 +73,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    position: absolute;
-    bottom: 0;
-    left: calc(50% - 60px);
 }
 
 .randomplace p {
@@ -89,10 +85,7 @@
     height: 40px;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
-    position: absolute;
     align-items: center;
-    transform: translateX(133%);
 }
 
 .menucenter ul {
@@ -130,7 +123,9 @@
     background-color: var(--white);
 }
 
-@media(max-width:1024px) {}
+@media(max-width:1024px) {
+    
+}
 
 @media(max-width:768px) {
     .slider .search {
@@ -139,7 +134,7 @@
     }
 }
 
-@media(max-width:420px) {
+@media(max-width:480px) {
     .slider {
         height: 100vh;
         width: 100%;
