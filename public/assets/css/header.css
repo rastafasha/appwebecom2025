@@ -406,14 +406,7 @@
 
 @media(max-width:420px) {
     .header {
-        width: 100vw;
-        height: 80px;
-        display: flex;
-        justify-content: space-between;
-        padding: 0px 10px;
-        margin-top: 0px;
-        position: absolute;
-        z-index: 1;
+        
     }
     .header2 {
         height: 80px;
@@ -479,25 +472,22 @@
 
 @media(max-width:377px) {
     .header {
-        width: 100vw;
         height: 80px;
-        display: flex;
-        justify-content: space-between;
-        padding: 0px 10px;
-        margin-top: 0px;
-        position: absolute;
-        z-index: 1;
+        padding: 10px;
+        position: fixed;
+        z-index: 999;
+        background-image: url(../svg/header-scroll.svg);
+        background-repeat: no-repeat;
+        background-size: 240%;
+        background-position: 77% 90%;
     }
     .header2 {
         height: 80px;
         padding: 10px;
         position: fixed;
         z-index: 999;
-        /* background: rgba(248, 248, 249, 0.834);
-        box-shadow: 0 8px 32px 0 rgb(11 11 11 / 37%); */
         background-image: url(../svg/header-scroll.svg);
         background-repeat: no-repeat;
-        /* background-size: cover; */
         background-size: 240%;
         background-position: 77% 90%;
     }
@@ -529,24 +519,33 @@
         display: none;
     }
     .mask img, .mask-m{
-        display: block;
+        display: none;
     }
     .logocenter {
         margin: 0%;
         display: block;
-        padding-left: 0px;
+        
     }
 
-    .logocenter img {
-        width: 100px;
-        padding-left: 8px;
-        margin-top: 5px;
+    .header .logocenter img {
+        width: 80px;
+        transform: translate(7px, 0px);
+        transition: all .2s ease;
+    }
+
+    .header .menuright {
+        top: 10px;
+        right: 470px;
     }
 
     .header2 .logocenter img {
         width: 100px;
-        padding-left: 2px;
-        margin-top: -5px;
+        transform: translate(0px, 0px);
+    }
+
+    .header2 .menuright {
+        top: 10px;
+        right: 10px;
     }
 
     

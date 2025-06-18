@@ -358,7 +358,7 @@
         /* grid-template-rows: repeat(5, 1fr); */
         grid-column-gap: 0px;
         grid-row-gap: 0px;
-        left: -10%;
+        left: 0%;
         position: relative;
     }
     .grilla .div1 {
@@ -393,6 +393,9 @@
     .grilla {
         display: flex;
         flex-direction: column;
+    }
+    .topdestinations .cardimagen {
+        width: auto;
     }
     .div1 {
         height: auto;
