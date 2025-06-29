@@ -1,5 +1,5 @@
  <!-- slider -->
-    <div class="slider beach">
+    <!-- <div class="slider beach">
         <div class="mask mask-m"></div>
         <div class="mask mask-d">
             <img   src="./assets/svg/mask-buttons.svg" alt="Mall Connect">
@@ -31,5 +31,34 @@
                 <button class="btn-azul">Random Place</button>
             </a>
         </div>
-    </div>
+    </div> -->
     <!-- slider -->
+
+    <div id="carouselExampleIndicators" class="carousel slider" data-ride="carousel" data-interval="8000">
+
+    <div class="carousel-inner">
+        <div class="item" *ngFor="let slider of sliders | slice:0:1; let i=index; " [class.active]="i === 0">
+            <div class="desktop">
+                <div class="BannPpal" [style.background-image]="'url(' + slider.img + ')'| imagenPipe: 'sliders'" >
+                    <div class="container">
+                        <div class="cuadrotext">
+                            <h3 class="Up {{slider?.is_activeText}}">{{slider.first_title}}</h3>
+                            <p class="Up {{slider?.is_activeText}}">{{slider.subtitulo}}</p><br><br>
+                            <div class="text-center">
+                                <a [href]="slider.enlace" [target]="slider.target" class="btn btn-success btn-lg {{slider.mostrarboton}}">Boton</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+
+</div>

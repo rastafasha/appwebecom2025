@@ -1,0 +1,12 @@
+.blog-v .post .img-wrapper img {
+    opacity: 1 !important;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.imagenmarco {
+    overflow: hidden;
+    height: 300px;
+}

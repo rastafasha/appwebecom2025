@@ -1,0 +1,236 @@
+<app-header></app-header>
+<div class="blog-detail-01" id="page">
+
+    <section class="sub-header shop-layout-1">
+        <img class="rellax bg-overlay" [src]="blog.img | imagenPipe: 'blogs'" alt="{{blog.titulo}}">
+        <!-- <img class="rellax bg-overlay" src="{{imagenSerUrl}}/blogs/{{blog.img}}" alt="{{blog.titulo}}"> -->
+        <div class="overlay-call-to-action"></div>
+        <h3 class="heading-style-3">{{blog.titulo}}</h3>
+    </section>
+    <section class="boxed-sm">
+        <div class="container">
+            <div class="row main">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="sidebar">
+                            <div class="widget widget-search">
+                                <form class="organic-form form-inline btn-add-on border no-radius">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Search..." type="text">
+                                        <button class="btn btn-brand" type="submit">
+                      <i class="fa fa-search"></i>
+                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- recientes -->
+                            <div class="widget widget-blog-post">
+                                <h4 class="title text-center">Recent Post</h4>
+                                <ul class="list-blog">
+                                    <li *ngFor="let blogr of blogrecientes ">
+                                        <a [routerLink]="['/blog', blogr._id]">
+                                            <div class="img-wrapper">
+                                                <img [src]="blogr.img | imagenPipe: 'blogs'" alt="{{blogr.titulo}}">
+                                                <!-- <img src="{{imagenSerUrl}}/blogs/{{blog.img}}" alt="{{blog.titulo}}"> -->
+                                            </div>
+                                            <div class="desc">
+                                                <h5 class="title">{{blogr.titulo }}...</h5>
+                                                <p class="meta-time">{{blogr.createdAt | date:'mediumDate'}}</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- recientes -->
+                            <!-- categorias -->
+                            <div class="widget widget-categories">
+                                <h4 class="title-widget text-center">Categories</h4>
+                                <ul class="list-blog">
+                                    <li *ngFor="let cat of categories ">
+                                        <a routerLink="['../category', cat.nombre]">{{cat.nombre}}</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                            <div class="widget widget-categories">
+                                <h4 class="title-widget text-center">Archives</h4>
+                                <ul>
+                                    <li>
+                                        <a href="shop.html">March 2017
+                      <span>(5)</span>
+                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">Feberuary 2017
+                      <span>(7)</span>
+                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">January 2017
+                      <span>(9)</span>
+                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">December 2016
+                      <span>(10)</span>
+                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">November 2016
+                      <span>(6)</span>
+                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- categorias -->
+                        </div>
+                    </div>
+                    <!-- detalle -->
+                    <div class="col-md-9">
+                        <article class="blog-detail">
+                            <h3 class="title-blog-detail">{{blog.titulo}}</h3>
+                            <p class="meta">
+                                <span class="time">{{blog.createdAt | date:'mediumDate'}}</span>
+                                <span class="comment">0</span>
+                            </p>
+                            <div class="content">
+                                <img class="feature-image" [src]="blog.img | imagenPipe: 'blogs'" alt="feature-image">
+                                <!-- <img class="feature-image" src="{{imagenSerUrl}}/blogs/{{blog.img}}" alt="feature-image"> -->
+                                <p class="sapo">{{blog.descripcion}}</p>
+
+                            </div>
+                        </article>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="widget-social-color">
+                                    <ul>
+                                        <li>
+                                            <a class="facebook" data-toggle="tooltip" title="Facebook" href="http://www.facebook.com/authemes">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="pinterest" data-toggle="tooltip" title="Pinterest" href="http://www.pinterest.com/authemes">
+                                                <i class="fa fa-pinterest"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="twitter" data-toggle="tooltip" title="Twitter" href="http://www.twitter.com/authemes">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="google-plus" data-toggle="tooltip" title="Google Plus" href="https://plus.google.com/authemes">
+                                                <i class="fa fa-google-plus"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="instagram" data-toggle="tooltip" title="Instagram" href="https://instagram.com/authemes">
+                                                <i class="fa fa-instagram"> </i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="post-control">
+                                    <a class="prev-post" [routerLink]="['/blog', blog._id]">
+                                        <i class="fa fa-angle-left"></i>PREVIOUSE POST
+                                        <h4 class="title-next-post">{{blog.titulo}}</h4>
+                                    </a>
+                                    <a class="next-post" [routerLink]="['/blog', blog._id]">NEXT POST
+                    <i class="fa fa-angle-right"></i>
+                    <h4 class="title-next-post">{{blog.titulo}}</h4>
+                  </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="comment-area">
+                                    <h4 class="title-comment">2 Comments</h4>
+                                    <ol class="comment-list">
+                                        <li>
+                                            <div class="the-comment">
+                                                <div class="avatar">
+                                                    <img class="avatar" alt="avatar" src="images/comment/01.png">
+                                                </div>
+                                                <div class="comment-box">
+                                                    <div class="comment-author meta">
+                                                        <p class="author">Mark Hunt</p>
+                                                        <p class="time">15 March 2017</p>
+                                                    </div>
+                                                    <div class="comment-text">
+                                                        <p>This is a test … Quisque ligulas ipsum, euismod atras vulputate iltricies etri elit.This is a test … Quisque ligulas ipsum, euismod atras vulputate iltricies etri elit.</p>
+                                                        <a class="comment-reply-link" rel="nofollow" href="#">REPLY</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul class="children">
+                                                <li>
+                                                    <div class="the-comment">
+                                                        <div class="avatar">
+                                                            <img class="avatar" alt="avatar" src="images/comment/02.png">
+                                                        </div>
+                                                        <div class="comment-box">
+                                                            <div class="comment-author meta">
+                                                                <p class="author">Lori Peters</p>
+                                                                <p class="time">16 March 2017</p>
+                                                            </div>
+                                                            <div class="comment-text">
+                                                                <p>This is a reply test … Class aptent taciti sociosqu ad litora torquent per connubial rostra.</p>
+                                                                <a class="comment-reply-link" rel="nofollow" href="#">REPLY</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="comment-area-form">
+                                    <h4 class="title-comment">Leave a Comment</h4>
+                                    <p>Your email address will not be published.</p>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group organic-form xs-radius">
+                                                    <input class="form-control" type="text" placeholder="Your Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group organic-form xs-radius">
+                                                    <input class="form-control" type="email" placeholder="Your Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group organic-form xs-radius">
+                                                    <textarea class="form-control" type="text" rows="6" placeholder="Your Comment"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <button class="btn btn-brand pill" type="submit">SUBMIT</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- detalle -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<app-footer></app-footer>

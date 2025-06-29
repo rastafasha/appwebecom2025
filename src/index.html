@@ -64,5 +64,17 @@
             $(event.target).addClass(selectedClass);
         });
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#carouselExampleIndicators').each(function() {
+                $(this).carousel({
+                    pause: false,
+                    interval: 9000
+                });
+            });
+
+        });
+    </script>
 </body>
 </html>

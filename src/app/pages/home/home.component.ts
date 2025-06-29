@@ -11,6 +11,7 @@ import { InsideComponent } from '../../components/inside/inside.component';
 import { CommentsComponent } from '../../components/comments/comments.component';
 import { FotofooterComponent } from '../../components/fotofooter/fotofooter.component';
 import { PromocionComponent } from '../../shared/promocion/promocion.component';
+import { BlogFeaturedComponent } from "../../components/blog-featured/blog-featured.component";
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,8 @@ import { PromocionComponent } from '../../shared/promocion/promocion.component';
     InsideComponent,
     CommentsComponent,
     FotofooterComponent,
-    PromocionComponent
+    PromocionComponent,
+    BlogFeaturedComponent
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

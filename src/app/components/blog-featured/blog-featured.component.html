@@ -1,0 +1,31 @@
+<section class="boxed-sm">
+    <div class="container">
+        <div class="heading-wrapper text-center">
+            <h3 class="heading">Our Featured Posts</h3>
+        </div>
+        <div class="row blog-v reverse">
+            <div class="col-md-12" *ngFor="let blog of blogs">
+                <div class="post">
+                    <div class="img-wrapper js-set-bg-blog-thumb imagenmarco">
+                        <a [routerLink]="['/blog', blog._id]">
+                            <img [src]="blog.img | imagenPipe: 'blogs'" alt="{{blog.titulo}}" />
+                        </a>
+                    </div>
+                    <div class="desc">
+                        <h3>
+                            <a [routerLink]="['/blog', blog._id]">{{blog.titulo}}</a>
+                        </h3>
+                        <p class="meta">
+                            <span class="time">{{blog.createdAt | date:'mediumDate'}}</span>
+                        </p>
+                        <p [innerHTML]="blog.descripcion"></p>
+                        <!-- <p class="sapo">{{blog.descripcion | slice:0:120}}...</p> -->
+                        <a class="read-more" [routerLink]="['../blog', blog._id]">+ info
+              <i class="fa fa-long-arrow-right"></i>
+            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

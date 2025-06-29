@@ -16,6 +16,7 @@ export class Slider {
     public updatedAt: Date,
     public createdAt: Date,
     public _id?: string,
+    public is_activeText?: string
 
     ){}
 
