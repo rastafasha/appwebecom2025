@@ -8,7 +8,7 @@
                                     *ngFor="let newproduct of news_productos; let indice = index">
                                     <div class="product product-style-1">
                                         <div class="img-wrapper">
-                                            <a [routerLink]="['/app/producto/', newproduct._id]">
+                                            <a [routerLink]="['/app/producto/', newproduct.slug]">
                                                 <img class="img-responsive" [src]="newproduct.img | imagenPipe: 'productos'"
                                                     [title]="newproduct.titulo" alt="{{newproduct.titulo}} thumbnail" />
                                             </a>
@@ -28,7 +28,7 @@
                                         <figcaption class="desc text-center">
                                             <h3>
                                                 <a class="product-name"
-                                                    [routerLink]="['/app/producto/', newproduct._id]">{{newproduct.titulo.substr(0,60)}}...</a>
+                                                    [routerLink]="['/app/producto/', newproduct.slug]">{{newproduct.titulo.substr(0,60)}}...</a>
                                             </h3>
                                             <p>
                                                 <a class="product-meta d-block font-size-xs pb-1"

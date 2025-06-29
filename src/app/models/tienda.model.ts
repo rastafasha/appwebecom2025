@@ -8,6 +8,7 @@ export class Tienda{
     public nombre: string,
     public local: string,
     public state_banner : boolean,
+    public img: string,
     public redssociales?: string,
     public telefono?: string,
     public productos?: string,
@@ -20,7 +21,6 @@ export class Tienda{
     public subcategoria?: string,
     public isFeatured?: boolean,
     public status?: boolean,
-      public img?: string,
     public _id?: string
 
   ){

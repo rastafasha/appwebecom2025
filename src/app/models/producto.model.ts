@@ -10,6 +10,7 @@ export class Producto {
   video_review!: string;
   info_short!: string;
   detalle!: string;
+  slug!: string;
   stock!: number;
   categoria!: Categoria;
   subcategoria!: string;

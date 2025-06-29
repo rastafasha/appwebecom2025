@@ -36,15 +36,15 @@
 
                                     <div class="galeria-prod">
                                         <ng-container
-                                            *ngFor="let imagen of galeria;let primero = first;let indice=index">
+                                            *ngFor="let gal of galeria;let primero = first;let indice=index">
                                             <a class="cz-thumblist-item active" [attr.id]="'img_'+indice"
-                                                (click)="click_img(imagen.imagen,'img_'+indice)" *ngIf="primero">
-                                                <img class="gallery__img" [src]="imagen.img | imagenPipe: 'galerias'"
+                                                (click)="click_img(gal.imagen,'img_'+indice)" *ngIf="primero">
+                                                <img class="gallery__img" [src]="gal.imagen | imagenPipe: 'galerias'"
                                                     alt="Product thumb">
                                             </a>
                                             <a class="cz-thumblist-item" [attr.id]="'img_'+indice"
-                                                (click)="click_img(imagen.imagen,'img_'+indice)" *ngIf="!primero">
-                                                <img class="gallery__img" [src]="imagen.img | imagenPipe: 'galerias'"
+                                                (click)="click_img(gal.imagen,'img_'+indice)" *ngIf="!primero">
+                                                <img class="gallery__img" [src]="gal.imagen | imagenPipe: 'galerias'"
                                                     alt="Product thumb">
                                             </a>
                                         </ng-container>

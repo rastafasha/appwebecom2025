@@ -16,7 +16,7 @@
                 <div class="cardimagen" [ngClass]="'div' + (i + 2)" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
                     
                     <div class="info">
-                                <a [routerLink]="['producto/',producto._id]">
+                                <a [routerLink]="['producto/',producto.slug]">
                                 <h1>{{ producto.titulo }}</h1>
                             </a>
                                 <div class="topoftop">

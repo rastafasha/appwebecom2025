@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
 
 
 @Component({
@@ -21,7 +22,8 @@ import { HeaderComponent } from '../../../shared/header/header.component';
     HeaderComponent,
     RouterModule,
     ImagenPipe,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent,
   ],
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.css']
@@ -33,6 +35,7 @@ export class BlogDetailComponent implements OnInit {
   blog!: Blog;
   blogrecientes!: Blog[];
   categories!: Categoria[];
+  isLoading: boolean = false;
 
   configuraciones!: Congeneral;
   configuracion!: Congeneral;
@@ -50,16 +53,17 @@ export class BlogDetailComponent implements OnInit {
   ngOnInit(): void {
 
     window.scrollTo(0,0);
-    this.activatedRoute.params.subscribe( ({id}) => this.obtenerBlog(id));
+    this.activatedRoute.params.subscribe( ({slug}) => this.obtenerBlog(slug));
     this.obtenerCategorias();
     this.obtenerBlogRecent();
   }
 
-  obtenerBlog(_id:string){
-    this.blogService.getBlogById(_id).subscribe(
+  obtenerBlog(slug:string){
+    this.isLoading = true;
+    this.blogService.getBlogBySlug(slug).subscribe(
       resp=>{
         this.blog = resp;
-        console.log(this.blog);
+        this.isLoading = false;
       }
     )
   }
@@ -80,6 +84,28 @@ export class BlogDetailComponent implements OnInit {
       }
     )
   }
+
+
+  addToFavorites(producto:any){
+ 
+// this.productoSeleccionado = producto;
+//   const data = {
+//     producto: this.productoSeleccionado._id,
+//     usuario: this.identity.uid,
+//   }
+  
+//   this.favoritoService.registro(data ).subscribe((res:any)=>{
+//     this.favoriteItem = res;
+//     console.log('sending...', this.productoSeleccionado.titulo)
+//     this.notificacion();
+//     this.msm_success_fav = true;
+//       setTimeout(()=>{
+//         this.close_alert()
+//       },2500);
+    
+//   });
+}
+
 
 
 }

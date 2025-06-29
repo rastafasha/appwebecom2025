@@ -44,7 +44,7 @@ declare var $:any;
     NewproductsComponent
   ],
   templateUrl: './producto.component.html',
-  styleUrls: ['./producto.component.css']
+  styleUrls: ['./producto.component.scss']
 })
 export class ProductoComponent implements OnInit {
 
@@ -298,11 +298,11 @@ export class ProductoComponent implements OnInit {
 
     window.scrollTo(0,0);
     
-    this.activatedRoute.params.subscribe( ({id}) => this.obtenerProducto(id));
-    this.activatedRoute.params.subscribe( ({id}) => this.init_data(id));
-    this.activatedRoute.params.subscribe( ({id}) => this.getGalleryProducto(id));
-    this.activatedRoute.params.subscribe( ({id}) => this.getColorProducto(id));
-    this.activatedRoute.params.subscribe( ({id}) => this.getSelectorProducto(id));
+    this.activatedRoute.params.subscribe( ({slug}) => this.obtenerProducto(slug));
+    // this.activatedRoute.params.subscribe( ({id}) => this.init_data(id));
+    // this.activatedRoute.params.subscribe( ({id}) => this.getGalleryProducto(id));
+    // this.activatedRoute.params.subscribe( ({id}) => this.getColorProducto(id));
+    // this.activatedRoute.params.subscribe( ({id}) => this.getSelectorProducto(id));
     this.obtenerCategorias();
 
     // this.socket.on('new-stock', function (data: any) {
@@ -331,9 +331,9 @@ export class ProductoComponent implements OnInit {
 
     this.listar_newest();
 
-    if(!this.identity){
-      this.router.navigateByUrl('/login');
-    }
+    // if(!this.identity){
+    //   this.router.navigateByUrl('/login');
+    // }
 
   }
 
@@ -406,6 +406,24 @@ export class ProductoComponent implements OnInit {
     );
   }
 
+  obtenerProducto(slug:string){
+    this.isLoading = true;
+    this.productoService.find_by_slug(slug).subscribe(
+      resp=>{
+        this.producto = resp;
+        this.isLoading = false;
+      }
+    )
+    setTimeout(() => {  
+      this.getGalleryProducto(this.producto._id);
+      this.getColorProducto(this.producto._id);
+      this.getSelectorProducto(this.producto._id);
+      this.init_data(this.producto._id);
+      
+    }, 1000);
+    // this.getGalleryProducto(this.producto._id);
+  }
+
   getGalleryProducto(_id:string){
     this._galeriaService.find_by_product(_id).subscribe(
       response =>{
@@ -453,15 +471,7 @@ export class ProductoComponent implements OnInit {
     );
   }
 
-  obtenerProducto(_id:string){
-    this.isLoading = true;
-    this.productoService.getProductoById(_id).subscribe(
-      resp=>{
-        this.producto = resp;
-        this.isLoading = false;
-      }
-    )
-  }
+  
 
   obtenerCategorias(){
     return this.categoryService.getCategories().subscribe(

@@ -7,6 +7,7 @@ export class Blog {
   titulo!: string;
   categoria!: string;
   descripcion!: string;
+  slug!: string;
   video_review!: string;
   isFeatured!: boolean;
   status!: string;

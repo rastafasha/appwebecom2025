@@ -35,6 +35,8 @@
     width: 100%;
     justify-content: space-between;
     /* background: linear-gradient(to top, var(--black), var(--black), transparent); */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8), transparent);
+    border-radius: 0 0 20px 20px;
 }
 
 .cardimagen h1 {

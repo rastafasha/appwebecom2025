@@ -49,6 +49,14 @@ export class BlogService {
         );
 
   }
+  getBlogBySlug(slug: string){
+    const url = `${base_url}/blogs/by_slug/${slug}`;
+    return this.http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean, blog: Blog}) => resp.blog)
+        );
+
+  }
 
 
 

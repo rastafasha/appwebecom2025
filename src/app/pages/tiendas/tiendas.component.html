@@ -1,0 +1,45 @@
+<app-header></app-header>
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="shop-layout-1" id="page" *ngIf="!isLoading">
+
+    <section class="sub-header shop-layout-1">
+        <img class="rellax bg-overlay" src="./assets/images/sub-header/01.jpg" alt="">
+        <div class="overlay-call-to-action"></div>
+        <h3 class="heading-style-3">Sucursales</h3>
+    </section>
+
+    <section class="box-sm">
+        <div class="container">
+            <div class="row main">
+                <div class="row  flex multi-row ">
+                    <!-- <figure class="item" *ngFor="let producto of productos |  paginate: { itemsPerPage: count, currentPage: p }"> -->
+                    <div class="card" *ngFor="let tienda of tiendas ">
+                        <div class="card-body">
+                            <div class="tienda tienda-style-1">
+                            <div class="img-wrapper">
+                                <a [routerLink]="['../tienda/', tienda._id]">
+                                    <img class="img-responsive" [src]="tienda.img| imagenPipe: 'tiendas'" alt="{{tienda.nombre}} thumbnail" />
+                                </a>
+                                
+                            </div>
+                            <figcaption class="desc text-center">
+                                <h3>
+                                    <a class="product-name" [routerLink]="['../producto/', tienda._id]">{{tienda.nombre}}</a>
+                                </h3>
+                                <p>{{tienda.telefono}}</p>
+                                <p [innerHTML]="tienda.direccion"></p>
+                                <p>{{tienda.local}}</p>
+                                <p>{{tienda.pais}}</p>
+                                <p>{{tienda.ciudad}}</p>
+                            </figcaption>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

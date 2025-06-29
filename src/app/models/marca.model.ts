@@ -5,7 +5,8 @@ export class Marca {
   constructor(
     public nombre: string,
     public descripcion: string,
-    public img?: string,
+    public img: string,
+    public slug: string,
     public _id?: string
   ){}
 
