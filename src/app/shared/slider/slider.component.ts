@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Slider } from '../../models/slider';
+import { Slider } from '../../models/slider.model';
 import { SliderService } from '../../services/slider.service';
 
 @Component({

@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-bestwelcome',
-  imports: [],
+  imports: [
+    RouterModule
+  ],
   templateUrl: './bestwelcome.component.html',
   styleUrl: './bestwelcome.component.scss'
 })

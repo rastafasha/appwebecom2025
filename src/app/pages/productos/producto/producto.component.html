@@ -6,7 +6,7 @@
 <div *ngIf="producto && !isLoading">
     <div class="shop-detail-3 woocommerce" id="page">
 
-        <section class="sub-header shop-detail-1"
+        <section class="sub-header shop-detail-1" style="height: 100px;"
             [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
             <img class="rellax bg-overlay">
             <!-- <div class="overlay-call-to-action"></div> -->
@@ -17,12 +17,12 @@
                 <div class="row product-detail">
                     <div class="row product-detail-wrapper  p-3 border-radius mb-5">
 
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="woocommerce-product-gallery vertical">
                                 <div class="main-carousel ">
                                     <div class="item">
                                         <img class="border-radius shadow"
-                                            style="width: 100%; aspect-ratio:1/1; object-fit: contain;"
+                                            style="width: 100%; height: 70vh; aspect-ratio:1/1; object-fit: cover;"
                                             [src]="producto.img | imagenPipe: 'productos'"
                                             alt="{{producto.titulo}} thumbnail">
                                     </div>
@@ -59,7 +59,7 @@
                             </div>
                             <!-- gallery -->
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <!-- mensaje -->
                             <div class="alert alert-success alert-dismissible fade show" role="alert"
                                 *ngIf="msm_success">
@@ -142,7 +142,7 @@
                                                     <span *ngIf="comentarios.length != 1">Reseñas</span>
                                                 </span>
                                             </a>
-                                            <button class="btn btn-wishlist mr-0 mr-lg-n3"
+                                            <button class="btn btn-wishlist mr-0 mr-lg-n3" *ngIf="identity"
                                                 (click)="addToFavorites(producto)" type="button" data-toggle="tooltip"
                                                 title="" data-original-title="Add to wishlist">
                                                 <i class="fa fa-heart-o"></i>
@@ -150,9 +150,9 @@
                                         </div>
                                         <div class="mb-3"><span
                                                 class="h3 font-weight-normal text-accent mr-1">${{producto.precio_ahora}}</span>
-                                            <del class="text-muted font-size-lg mr-3">${{producto.precio_antes}}</del>
+                                            <del class="text-muted font-size-lg mr-3" *ngIf="+producto.precio_ahora !== +producto.precio_antes">${{producto.precio_antes}}</del>
                                             <span
-                                                class="badge badge-danger badge-shadow align-middle mt-n2">Oferta</span>
+                                                class="badge badge-danger badge-shadow align-middle mt-n2" *ngIf="+producto.precio_ahora !== +producto.precio_antes">Oferta</span>
                                         </div>
 
                                         <app-loading *ngIf="isLoading"></app-loading>
@@ -187,18 +187,7 @@
                                             </span>
                                         </div>
                                         <div class="position-relative mr-n4 mb-3">
-                                            <!-- <div *ngFor="let color of colores; let indice = index">
-                                                    <div class="custom-control custom-option custom-control-inline mb-2">
-                                                        <div *ngIf="color.color == color_to_cart">
-                                                            <input class="custom-control-input" type="radio" name="color_to_cart" [attr.id]="'color-'+indice" data-label="colorOption" checked (change)="get_color($event,color)">
-                                                            <label class="custom-option-label rounded-circle" [attr.for]="'color-'+indice"><span class="custom-option-color rounded-circle" [ngStyle]="{'background': color.color}"></span></label>
-                                                        </div>
-                                                        <div *ngIf="color.color != color_to_cart">
-                                                            <input class="custom-control-input" type="radio" name="color_to_cart" [attr.id]="'color-'+indice" data-label="colorOption" (change)="get_color($event,color)">
-                                                            <label class="custom-option-label rounded-circle" [attr.for]="'color-'+indice"><span class="custom-option-color rounded-circle" [ngStyle]="{'background': color.color}"></span></label>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+                                           
 
                                             <div class="product-badge product-available mt-n1"><i
                                                     class="fa fa-check-circle-o text-success"></i> &nbsp; Compra
@@ -235,15 +224,15 @@
                                                    
                                                 <button class="cart-button"  (click)="onPress()"
                                                     *ngIf="!identity" type="submit">
-                                                     <span class="add-to-cart">Add to cart</span>
-                                                        <span class="added">Added</span>
+                                                     <span class="add-to-cart">Add to Cart </span>
+                                                        <span class="added">Added!</span>
                                                         <i class="fa fa-shopping-cart"></i>
                                                         <i class="fa fa-gift"></i>
                                                 </button>
                                                 <button class=" cart-button" *ngIf="identity" (click)="onPress()"
                                                     type="submit">
-                                                     <span class="add-to-cart">Add to cart</span>
-                                                        <span class="added">Added</span>
+                                                     <span class="add-to-cart">Add to Cart </span>
+                                                        <span class="added">Added!</span>
                                                         <i class="fa fa-shopping-cart"></i>
                                                         <i class="fa fa-gift"></i>
                                                 </button>
@@ -252,10 +241,10 @@
                                                 {{err_stock}}</div>
                                         </form>
                                         <!-- Product panels-->
-                                        <div class="card ">
+                                        <div >
                                             <!-- <p class="text-justify" style="font-size: 14px;">{{producto.info_short}}
                                                 </p> -->
-                                            <p [innerHTML]="producto.info_short"></p>
+                                            <!-- <p [innerHTML]="producto.info_short"></p> -->
 
                                         </div>
                                         <!-- Sharing-->

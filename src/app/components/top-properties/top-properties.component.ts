@@ -9,6 +9,7 @@ import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import { FavoritoService } from '../../services/favorito.service';
 import { Favorite } from '../../models/favorite.model';
 import { LoadingComponent } from '../../shared/loading/loading.component';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-top-properties',
@@ -34,14 +35,17 @@ export class TopPropertiesComponent {
   imagenSerUrl = environment.mediaUrl;
 
   favoriteItem!:Favorite;
+  identity: any;
 
   constructor(
     public productoService: ProductoService,
     public favoritoService: FavoritoService,
     private router: Router,
-    handler: HttpBackend
+    handler: HttpBackend,
+    public usuarioService: UsuarioService,
   ) {
     this.http = new HttpClient(handler);
+    this.identity = usuarioService.usuario;
    }
 
   ngOnInit(): void {
@@ -52,7 +56,7 @@ export class TopPropertiesComponent {
   }
   loadProducts(){
     this.isLoading = true;
-    this.productoService.getProductosActivos().subscribe(
+    this.productoService.listar_newest().subscribe(
       productos => {
         this.productos = productos;
         this.isLoading = false;

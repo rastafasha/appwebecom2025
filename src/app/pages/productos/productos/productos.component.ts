@@ -13,6 +13,7 @@ import { FooterComponent } from '../../../shared/footer/footer.component';
 import { Marca } from '../../../models/marca.model';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { MarcasComponent } from '../../marcas/marcas.component';
+import { UsuarioService } from '../../../services/usuario.service';
 
 
 
@@ -39,6 +40,7 @@ export class ProductosComponent implements OnInit {
   limit: number = 6;
   display: string = 'none'
   error!: string;
+  public identity;
 
   p: number = 1;
   count: number = 8;
@@ -55,9 +57,11 @@ export class ProductosComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     handler: HttpBackend,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public usuarioService: UsuarioService,
   ) {
     this.http = new HttpClient(handler);
+    this.identity = usuarioService.usuario;
    }
 
   ngOnInit(): void {
@@ -102,6 +106,16 @@ export class ProductosComponent implements OnInit {
   addToCart(): void{
     console.log('sending...')
     this.messageService.sendMessage(this.product);
+  }
+
+  toggleFavorite(product: Producto): void {
+    
+    // product.isFavorite = !product.isFavorite;
+    // if (product.isFavorite) {
+    //   this.messageService.addToFavorites(product);
+    // } else {
+    //   this.messageService.removeFromFavorites(product);
+    // }
   }
 
 }

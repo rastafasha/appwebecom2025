@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Slider } from '../models/slider';
+import { Slider } from '../models/slider.model';
 import { environment } from '../../environments/environment';
 
 const base_url = environment.baseUrl;

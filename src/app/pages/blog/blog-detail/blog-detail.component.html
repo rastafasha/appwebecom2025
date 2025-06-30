@@ -6,7 +6,7 @@
 <div *ngIf="blog && !isLoading">
     <div class="shop-detail-3 woocommerce" id="page">
 
-        <section class="sub-header shop-detail-1"
+        <section class="sub-header shop-detail-1" style="height: 100px;"
             [style.background-image]="'url(' + blog.img + ')' | imagenPipe: 'blogs'">
             <img class="rellax bg-overlay">
             <!-- <div class="overlay-call-to-action"></div> -->
@@ -22,7 +22,7 @@
                                 <div class="main-carousel ">
                                     <div class="item">
                                         <img class="border-radius shadow"
-                                            style="width: 100%; aspect-ratio:1/1; object-fit: contain;"
+                                            style="width: 100%; height: 70vh; aspect-ratio:1/1; object-fit: cover;"
                                             [src]="blog.img | imagenPipe: 'blogs'"
                                             alt="{{blog.titulo}} thumbnail">
                                     </div>
@@ -67,7 +67,7 @@
                                     <div class="product-details ml-auto pb-3">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                            
-                                            <button class="btn btn-wishlist mr-0 mr-lg-n3"
+                                            <button class="btn btn-wishlist mr-0 mr-lg-n3" *ngIf="identity"
                                                 (click)="addToFavorites(blog)" type="button" data-toggle="tooltip"
                                                 title="" data-original-title="Add to wishlist">
                                                 <i class="fa fa-heart-o"></i>
@@ -75,7 +75,7 @@
                                         </div>
 
                                         <!-- Product panels-->
-                                        <div class="card ">
+                                        <div >
                                             <p [innerHTML]="blog.descripcion"></p>
 
                                         </div>

@@ -14,7 +14,7 @@ import { Direccion } from '../models/direccion.model';
 
 
 const base_url = environment.baseUrl;
-declare const gapi: any;
+// declare const gapi: any;
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class UsuarioService {
     private router: Router,
     private ngZone: NgZone
     ) {
-      this.googleInit();
+      // this.googleInit();
       this.user;
   }
 
@@ -68,16 +68,16 @@ export class UsuarioService {
 
   googleInit(){
 
-    return new Promise<void>((resolve) =>{
+    // return new Promise<void>((resolve) =>{
 
-      gapi.load('auth2', () =>{
-        this.auth2 = gapi.auth2.init({
-          client_id: environment.client_idGoogle,
-          cookiepolicy: 'single_host_origin',
-        });
-        resolve();
-      });
-    });
+    //   gapi.load('auth2', () =>{
+    //     this.auth2 = gapi.auth2.init({
+    //       client_id: environment.client_idGoogle,
+    //       cookiepolicy: 'single_host_origin',
+    //     });
+    //     resolve();
+    //   });
+    // });
 
 
   }

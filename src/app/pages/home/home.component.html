@@ -3,12 +3,21 @@
 <app-destacados></app-destacados>
 <div class="clear"></div>
 <app-top-properties></app-top-properties>
+<!-- <div style="display: flex;" class="flex justify-content-center mt-5 align-content-center align-items-center">
+    <a [routerLink]="['./productos']"  class="btn btn-success btn-lg ">Todos nuestros productos</a>
+</div> -->
 <app-bestwelcome></app-bestwelcome>
 <app-promocion></app-promocion>
 <app-blog-featured></app-blog-featured>
+<div style="display: flex; margin: 60px;" class="flex justify-content-center mt-5 align-content-center align-items-center">
+    <a [routerLink]="['./blogs']"  class="btn-azul  ">+ Publicaciones</a>
+</div>
 <app-experience></app-experience>
 <app-inside></app-inside>
 <app-marcas [limit]="limit" [display]="display"></app-marcas>
+<div style="display: flex; " class="flex justify-content-center mt-5 align-content-center align-items-center">
+    <a [routerLink]="['./marcas']"  class="btn-azul  ">Todas nuestras marcas</a>
+</div>
 <app-comments></app-comments>
 <app-fotofooter></app-fotofooter>
 <app-footer></app-footer>

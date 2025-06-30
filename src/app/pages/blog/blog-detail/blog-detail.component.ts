@@ -13,6 +13,7 @@ import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { UsuarioService } from '../../../services/usuario.service';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class BlogDetailComponent implements OnInit {
 
   configuraciones!: Congeneral;
   configuracion!: Congeneral;
+  identity: any;
 
 
   constructor(
@@ -48,7 +50,10 @@ export class BlogDetailComponent implements OnInit {
     public categoryService: CategoryService,
     private messageService: MessageService,
     public configuracionService: CongeneralService,
-  ) { }
+    public usuarioService: UsuarioService,
+  ) { 
+    this.identity = usuarioService.usuario;
+  }
 
   ngOnInit(): void {
 

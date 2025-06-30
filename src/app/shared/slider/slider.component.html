@@ -43,19 +43,17 @@
     <div class="carousel-inner">
         <div class="carousel-item active" *ngFor="let slider of sliders ; let i=index; "
             [class.active]="i === 0">
-            <div class="desktop">
-                <div class="BannPpal" [style.background-image]="'url(' + slider.img + ')'| imagenPipe: 'sliders'" >
+            <div class="BannPpal" [style.background-image]="'url(' + slider.img + ')'| imagenPipe: 'sliders'" >
                     <div class="container">
                         <div class="cuadrotext {{slider.align}}">
                             <h3 class="Up {{slider?.is_activeText}} {{slider.color}}">{{slider.first_title}}</h3>
                             <p class="Up {{slider?.is_activeText}} {{slider.color}}">{{slider.subtitulo}}</p>
                             <div class="text-center">
-                                <a [href]="slider.enlace" [target]="slider.target" class="btn btn-success btn-lg {{slider.mostrarboton}}">+ Info</a>
+                                <a [href]="slider.enlace" [target]="slider.target" class="btn-azul btn-lg {{slider.mostrarboton}}">+ Info</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
     </div>

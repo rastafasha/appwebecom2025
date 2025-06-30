@@ -5,7 +5,7 @@
     <section class="sub-header shop-layout-1">
         <img class="rellax bg-overlay" src="./assets/images/sub-header/01.jpg" alt="">
         <div class="overlay-call-to-action"></div>
-        <h3 class="heading-style-3">Sucursales</h3>
+        <h3 class="heading-style-3">Stores</h3>
     </section>
 
     <section class="box-sm" *ngIf="!isLoading">
@@ -29,13 +29,13 @@
                             </figcaption>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{tienda.local}}</li>
-                            <li class="list-group-item">{{tienda.pais}}</li>
-                            <li class="list-group-item">{{tienda.ciudad}}</li>
+                            <li class="list-group-item"><i class="fa fa-map-marker"></i> {{tienda.local}}</li>
+                            <li class="list-group-item"><i class="fa fa-map-marker"></i> {{tienda.pais}}</li>
+                            <li class="list-group-item"><i class="fa fa-map-marker"></i> {{tienda.ciudad}}</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="card-link">{{tienda.telefono}}</a>
-                            <a href="#" class="card-link">{{tienda.categoria?.nombre}}</a>
+                            <a href="#" class="card-link"><i class="fa fa-phone"></i> {{tienda.telefono}}</a>
+                            <a href="#" class="card-link"><i class="fa fa-bookmark"></i> {{tienda.categoria?.nombre}}</a>
                         </div>
                     </div>
                 </div>

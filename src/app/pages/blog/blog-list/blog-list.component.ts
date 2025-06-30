@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
 
 
 
@@ -17,10 +18,11 @@ import { HeaderComponent } from '../../../shared/header/header.component';
     HeaderComponent,
     RouterModule,
     ImagenPipe,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent
   ],
   templateUrl: './blog-list.component.html',
-  styleUrls: ['./blog-list.component.css']
+  styleUrls: ['./blog-list.component.scss']
 })
 export class BlogListComponent implements OnInit {
 
@@ -29,6 +31,7 @@ export class BlogListComponent implements OnInit {
   error!: {};
   p: number = 1;
   count: number = 8;
+  isLoading: boolean = false;
 
   constructor(
     private blogService: BlogService
@@ -36,10 +39,11 @@ export class BlogListComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0,0);
+    this.isLoading = true;
     this.blogService.getBlogs().subscribe(
       blogs => {
         this.blogs = blogs;
-        console.log(this.blogs);
+        this.isLoading = false;
       }
     )
   }

@@ -411,11 +411,11 @@ export class ProductoComponent implements OnInit {
         
       }
     )
-    this.init_data(this.producto._id);
-    this.getGalleryProducto(this.producto._id);
     setTimeout(() => {  
       this.getSelectorProducto(this.producto._id);
       this.getColorProducto(this.producto._id);
+      this.getGalleryProducto(this.producto._id);
+      this.init_data(this.producto._id);
       
     }, 1000);
     // this.getGalleryProducto(this.producto._id);

@@ -72,7 +72,10 @@ export class ProductoService {
   
   listar_newest():Observable<any>{
     const url = `${base_url}/productos/productos_nuevos/show_producto`;
-    return this.http.get(url,  this.headers);
+    return this.http.get<any>(url,  this.headers)
+    .pipe(
+      map((resp:{ok: boolean, productos: Producto}) => resp.productos)
+      );
   }
 
   findProducto_by_Categorynombre(nombre: any):Observable<any>{

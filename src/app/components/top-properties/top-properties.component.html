@@ -5,10 +5,10 @@
             <app-loading *ngIf="isLoading"></app-loading>
             <div class="grillacard" *ngIf="!isLoading" >
                 <ng-container class="lista-imagenes" *ngFor="let producto of productos | slice:0:10; let i = index ">
-                    <div class="cardimagen">
+                    <div class="cardimageninfo">
                         <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
                             <div class="info">
-                                <div class="topfav" style="cursor: pointer;">
+                                <div class="topfav" *ngIf="identity"  style="cursor: pointer;">
                                     <i class="fa fa-heart-o"></i>
                                 </div>
                             </div>
@@ -20,7 +20,12 @@
                                     </a>
                                     <!-- <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p> -->
                                     <p [innerHTML]="producto.info_short |slice:0:20"></p>
+                                    <div class="precio">
+                                        <p style="text-decoration: line-through;" *ngIf="+producto.precio_ahora !== +producto.precio_antes"><b>{{producto.precio_antes|currency}}</b></p>
                                     <p><b>{{producto.precio_ahora|currency}}</b></p>
+                                    <span
+                                                class="badge badge-danger badge-shadow align-middle mt-n2" *ngIf="+producto.precio_ahora !== +producto.precio_antes">Oferta</span>
+                                    </div>
                                 </div>
                                 <div class="rating">
                                     44.4 <i class="fa fa-star"></i>

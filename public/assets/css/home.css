@@ -112,6 +112,20 @@
     padding-top: 10px;
 }
 
+.precio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    gap: 10px;
+}
+
+.precio:nth-child(2) {
+    color:red;
+}
+
 .rating {
     background-color: var(--orangelight);
     border-radius: 50px;
@@ -128,6 +142,12 @@
 
 .rating .fa {
     color: var(--star);
+}
+
+.prodductos-list .grillacard {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 

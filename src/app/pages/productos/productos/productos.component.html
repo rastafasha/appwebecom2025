@@ -1,74 +1,67 @@
 <app-header></app-header>
-<div class="shop-layout-1" id="page">
+<div class="shop-layout-1 " id="page">
 
-    <section class="sub-header shop-layout-1">
-        <img class="rellax bg-overlay" src="./assets/images/sub-header/01.jpg" alt="">
+    <section class="sub-header shop-layout-1" style="height: 250px;">
+        <!-- <img class="rellax bg-overlay" [src]="marca.img | imagenPipe: 'marcas'" alt="{{marca.nombre}} thumbnail"> -->
         <div class="overlay-call-to-action"></div>
-        <h3 class="heading-style-3">Productos {{marca.slug}} </h3>
+        <h3 class="heading-style-3">Products {{marca.slug}} </h3>
         <h3 class="heading-style-3"></h3>
     </section>
-<app-loading *ngIf="isLoading"></app-loading>
+    <app-loading *ngIf="isLoading"></app-loading>
 
     <section class="box-sm" *ngIf="!isLoading && error">
         <div class="container">
             <div class="row main" style="height: 50vh; display: flex; align-items: center; justify-content: center;">
-        <p>{{ error }}</p>
-        </div>        
-        </div>        
+                <p>{{ error }}</p>
+            </div>
+        </div>
 
     </section>
 
     <!-- <app-marcas [limit]="limit" [display]="display"></app-marcas> -->
-    <section class="box-sm" *ngIf="!isLoading && productos.length > 0">
-        <div class="container">
-            <div class="row main">
-                <div class="row product-grid-equal-height-wrapper product-equal-height-4-columns flex multi-row">
-                    <!-- <figure class="item" *ngFor="let producto of productos |  paginate: { itemsPerPage: count, currentPage: p }"> -->
-                    <figure class="item" *ngFor="let producto of productos ">
-                        <div class="product product-style-1">
-                            <div class="img-wrapper">
-                                <a [routerLink]="['../producto/', producto.slug]">
-                                    <img class="img-responsive" [src]="producto.img | imagenPipe: 'productos'" alt="{{producto.titulo}} thumbnail" />
-                                </a>
-                                <!-- <div class="product-control-wrapper bottom-right">
-                                    <div class="wrapper-control-item">
-                                        <a class="js-quick-view" data-toggle="modal" [attr.data-target]="'#' + producto._id">
-                                            <a class="js-quick-view" href="#" type="button" data-toggle="modal" data-target="#quick-view-product">
-                                            <span class="lnr lnr-eye"></span>
-                                        </a>
-                                    </div>
-                                    <div class="wrapper-control-item item-wish-list">
-                                        <a class="js-wish-list js-notify-add-wish-list" href="#">
-                                            <span class="lnr lnr-heart"></span>
-                                        </a>
-                                    </div>
-                                    <div class="wrapper-control-item item-add-cart js-action-add-cart">
-                                        <a class="animate-icon-cart" (click)="addToCart()">
-                                            <span class="lnr lnr-cart"></span>
-                                        </a>
-                                    </div>
-                                </div> -->
-                            </div>
-                            <figcaption class="desc text-center">
-                                <h3>
-                                    <a class="product-name" [routerLink]="['../producto/', producto.slug]">{{producto.titulo}}</a>
-                                </h3>
-                                <span class="price">${{producto.precio_ahora}}</span><br>
-                                <span class="price precioantes">${{producto.precio_antes}}</span>
-                            </figcaption>
-                        </div>
-                    </figure>
-                </div>
-                <div class="clear"></div>
-                <!-- paginador -->
-                <div class="row" *ngIf="productos.length > 8">
-                    <div class="col-md-12 text-right">
-                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+    <div class="container prodductos-list">
+        <div class="grillacard" *ngIf="!isLoading">
+            <ng-container class="lista-imagenes" *ngFor="let producto of productos ; let i = index ">
+                <div class="cardimageninfo">
 
+                    <div class="cardimagen"
+                        [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
+                        <div class="info">
+                            <div class="topfav" style="cursor: pointer;" *ngIf="identity" (click)="toggleFavorite(producto)">
+                                <i class="fa fa-heart-o"></i>
+                            </div>
+                        </div>
+                        <div class="detalle">
+                            <div class="basico">
+                                <a [routerLink]="['../producto/',producto.slug]">
+
+                                    <h2>{{producto.titulo}}</h2>
+                                </a>
+                                <!-- <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p> -->
+                                <p [innerHTML]="producto.info_short |slice:0:20"></p>
+                                <div class="precio">
+                                    <p style="text-decoration: line-through;" *ngIf="+producto.precio_ahora !== +producto.precio_antes"><b>{{producto.precio_antes|currency}}</b>
+                                    </p>
+                                    <p><b>{{producto.precio_ahora|currency}}</b></p>
+                                    <span
+                                                class="badge badge-danger badge-shadow align-middle mt-n2" *ngIf="+producto.precio_ahora !== +producto.precio_antes">Oferta</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                44.4 <i class="fa fa-star"></i>
+                            </div>
+                            <div class="adicional">
+                                <!-- <p>{{producto.stock}}</p> -->
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            </ng-container>
+            <!-- <button class="btn-orange">View More</button> -->
         </div>
-    </section>
+
+    </div>
 </div>
 <app-footer></app-footer>

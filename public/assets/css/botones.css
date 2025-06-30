@@ -8,6 +8,11 @@
     font-family: var(--font);
 }
 
+.btn-azul:hover {
+    text-decoration: none;
+    color: var(--darkblue);
+}
+
 .btn-orange {
     background-color: var(--orange);
     color: var(--white);
