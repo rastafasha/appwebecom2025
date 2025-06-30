@@ -1,4 +1,5 @@
 import { environment } from "../../environments/environment";
+import { Categoria } from "./categoria.model";
 
 const base_url = environment.mediaUrlRemoto;
 
@@ -17,7 +18,7 @@ export class Tienda{
     public ciudad?: string,
     public zip?: string,
     public user?: string,
-    public categoria?: string,
+    public categoria?: Categoria,
     public subcategoria?: string,
     public isFeatured?: boolean,
     public status?: boolean,

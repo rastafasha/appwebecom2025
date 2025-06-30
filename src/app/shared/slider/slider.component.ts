@@ -1,4 +1,4 @@
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
@@ -11,7 +11,7 @@ import { SliderService } from '../../services/slider.service';
   selector: 'app-slider',
   imports: [
     CommonModule,RouterModule, NgFor,
-    ImagenPipe
+    ImagenPipe, NgClass
   ],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss'

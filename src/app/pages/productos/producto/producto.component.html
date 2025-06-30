@@ -38,15 +38,20 @@
                                         <ng-container
                                             *ngFor="let gal of galeria;let primero = first;let indice=index">
                                             <a class="cz-thumblist-item active" [attr.id]="'img_'+indice"
-                                                (click)="click_img(gal.imagen,'img_'+indice)" *ngIf="primero">
+                                                 *ngIf="primero"
+                                                 data-bs-toggle="modal" data-bs-target="#galleryModal" (click)="openGaleryModal(producto)"
+                                                >
                                                 <img class="gallery__img" [src]="gal.imagen | imagenPipe: 'galerias'"
                                                     alt="Product thumb">
                                             </a>
                                             <a class="cz-thumblist-item" [attr.id]="'img_'+indice"
-                                                (click)="click_img(gal.imagen,'img_'+indice)" *ngIf="!primero">
+                                                 *ngIf="!primero"
+                                                 data-bs-toggle="modal" data-bs-target="#galleryModal" (click)="openGaleryModal(producto)"
+                                                 >
                                                 <img class="gallery__img" [src]="gal.imagen | imagenPipe: 'galerias'"
                                                     alt="Product thumb">
                                             </a>
+                                            <app-modal [selectedProduct]="selectedProduct"></app-modal>
                                         </ng-container>
 
                                     </div>

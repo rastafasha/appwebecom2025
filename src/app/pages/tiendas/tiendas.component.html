@@ -13,26 +13,31 @@
             <div class="row main">
                 <div class="row  flex multi-row ">
                     <!-- <figure class="item" *ngFor="let producto of productos |  paginate: { itemsPerPage: count, currentPage: p }"> -->
-                    <div class="card" *ngFor="let tienda of tiendas ">
+                    <div class="card " *ngFor="let tienda of tiendas ">
+                        <div class="img-wrapper">
+                            <a [routerLink]="['../tienda/', tienda._id]">
+                                <img class="img-responsive" [src]="tienda.img| imagenPipe: 'tiendas'" alt="{{tienda.nombre}} thumbnail" />
+                            </a>
+                            
+                        </div>
                         <div class="card-body">
-                            <div class="tienda tienda-style-1">
-                            <div class="img-wrapper">
-                                <a [routerLink]="['../tienda/', tienda._id]">
-                                    <img class="img-responsive" [src]="tienda.img| imagenPipe: 'tiendas'" alt="{{tienda.nombre}} thumbnail" />
-                                </a>
-                                
-                            </div>
+                            <div class=" tienda-style-1">
                             <figcaption class="desc text-center">
                                 <h3>
                                     <a class="product-name" [routerLink]="['../producto/', tienda._id]">{{tienda.nombre}}</a>
                                 </h3>
-                                <p>{{tienda.telefono}}</p>
                                 <p [innerHTML]="tienda.direccion"></p>
-                                <p>{{tienda.local}}</p>
-                                <p>{{tienda.pais}}</p>
-                                <p>{{tienda.ciudad}}</p>
                             </figcaption>
                         </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{tienda.local}}</li>
+                            <li class="list-group-item">{{tienda.pais}}</li>
+                            <li class="list-group-item">{{tienda.ciudad}}</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">{{tienda.telefono}}</a>
+                            <a href="#" class="card-link">{{tienda.categoria?.nombre}}</a>
                         </div>
                     </div>
                 </div>

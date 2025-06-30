@@ -13,6 +13,8 @@ export class Slider {
     public mostrarboton: boolean,
     public status: boolean,
     public img: string,
+    public align: string,
+    public color: string,
     public updatedAt: Date,
     public createdAt: Date,
     public _id?: string,

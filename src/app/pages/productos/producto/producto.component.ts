@@ -26,6 +26,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { NewproductsComponent } from '../../../components/newproducts/newproducts.component';
+import { ModalComponent } from '../../../components/modal/modal.component';
 
 declare var jQuery:any;
 declare var $:any;
@@ -41,7 +42,8 @@ declare var $:any;
     FormsModule,
     ReactiveFormsModule,
     LoadingComponent,
-    NewproductsComponent
+    NewproductsComponent,
+    ModalComponent
   ],
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.scss']
@@ -53,6 +55,7 @@ export class ProductoComponent implements OnInit {
 
   option_selected:number = 1;
   solicitud_selected:any = null;
+  selectedProduct!:Producto;
 
   animationClass: string = '';
 
@@ -144,7 +147,7 @@ export class ProductoComponent implements OnInit {
   }
 
 
-  click_img(img: any,id: string){
+  click_img(img: any,id: string){debugger
 
     $('.cz-thumblist-item.active').removeClass('active');
     $('#'+id).addClass('active');
@@ -154,12 +157,8 @@ export class ProductoComponent implements OnInit {
 
   get_color(color: { color: string; }){
     this.color_to_cart = color.color;
-    console.log(this.color_to_cart);
   }
-  // get_color(event,color){
-  //   this.color_to_cart = color.color;
-  //   console.log(this.color_to_cart);
-  // }
+  
 
   sort_coments(){
     this._comentarioService.get_data(this.producto._id,this.sort_data_coment).subscribe(
@@ -299,10 +298,6 @@ export class ProductoComponent implements OnInit {
     window.scrollTo(0,0);
     
     this.activatedRoute.params.subscribe( ({slug}) => this.obtenerProducto(slug));
-    // this.activatedRoute.params.subscribe( ({id}) => this.init_data(id));
-    // this.activatedRoute.params.subscribe( ({id}) => this.getGalleryProducto(id));
-    // this.activatedRoute.params.subscribe( ({id}) => this.getColorProducto(id));
-    // this.activatedRoute.params.subscribe( ({id}) => this.getSelectorProducto(id));
     this.obtenerCategorias();
 
     // this.socket.on('new-stock', function (data: any) {
@@ -411,17 +406,18 @@ export class ProductoComponent implements OnInit {
     this.productoService.find_by_slug(slug).subscribe(
       resp=>{
         this.producto = resp;
-        this.isLoading = false;
+        
       }
     )
     setTimeout(() => {  
+      this.init_data(this.producto._id);
       this.getGalleryProducto(this.producto._id);
       this.getColorProducto(this.producto._id);
       this.getSelectorProducto(this.producto._id);
-      this.init_data(this.producto._id);
       
     }, 1000);
     // this.getGalleryProducto(this.producto._id);
+    this.isLoading = false;
   }
 
   getGalleryProducto(_id:string){
@@ -433,7 +429,6 @@ export class ProductoComponent implements OnInit {
           }
             this.galeria.push({_id:element._id,imagen : element.imagen});
         });
-        console.log(this.galeria);
       },
       error=>{
         console.log(error);
@@ -462,7 +457,6 @@ export class ProductoComponent implements OnInit {
     this._selectorService.selectorByProduct(_id).subscribe(
       response =>{
         this.selectores = response;
-        console.log(this.selectores);
 
       },
       error=>{
@@ -477,15 +471,10 @@ export class ProductoComponent implements OnInit {
     return this.categoryService.getCategories().subscribe(
       resp=>{
         this.categories = resp;
-        // console.log(this.categories);
       }
     )
   }
 
-  // addToCart(): void{
-  //   console.log('sending...')
-  //   this.messageService.sendMessage(this.producto);
-  // }
 
   getVideoIframe(url: string | null) {
     var video, results;
@@ -645,8 +634,6 @@ close_toast(){
 
 
 addToFavorites(producto:any){
-  // this.favoritoService.registro(this.productoSeleccionado);
-  // console.log(this.producto);
 this.productoSeleccionado = producto;
   const data = {
     producto: this.productoSeleccionado._id,
@@ -655,8 +642,7 @@ this.productoSeleccionado = producto;
   
   this.favoritoService.registro(data ).subscribe((res:any)=>{
     this.favoriteItem = res;
-    // console.log(this.favoriteItem);
-    console.log('sending...', this.productoSeleccionado.titulo)
+    // console.log('sending...', this.productoSeleccionado.titulo)
     // this.notificacion();
     this.msm_success_fav = true;
       setTimeout(()=>{
@@ -685,6 +671,10 @@ close_alert(){
       let button: HTMLButtonElement = this as HTMLButtonElement;
       button.classList.add('clicked');
     }
+  }
+
+   openGaleryModal(product: Producto): void {
+    this.selectedProduct = product;
   }
 
 }

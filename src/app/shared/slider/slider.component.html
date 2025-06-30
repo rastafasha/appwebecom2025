@@ -1,5 +1,5 @@
- <!-- slider -->
-    <!-- <div class="slider beach">
+<!-- slider -->
+<!-- <div class="slider beach">
         <div class="mask mask-m"></div>
         <div class="mask mask-d">
             <img   src="./assets/svg/mask-buttons.svg" alt="Mall Connect">
@@ -32,18 +32,23 @@
             </a>
         </div>
     </div> -->
-    <!-- slider -->
+<!-- slider -->
 
-    <div id="carouselExampleIndicators" class="carousel slider" data-ride="carousel" data-interval="8000">
 
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="8000">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    </ol>
     <div class="carousel-inner">
-        <div class="item" *ngFor="let slider of sliders | slice:0:1; let i=index; " [class.active]="i === 0">
+        <div class="carousel-item active" *ngFor="let slider of sliders ; let i=index; "
+            [class.active]="i === 0">
             <div class="desktop">
                 <div class="BannPpal" [style.background-image]="'url(' + slider.img + ')'| imagenPipe: 'sliders'" >
                     <div class="container">
-                        <div class="cuadrotext">
-                            <h3 class="Up {{slider?.is_activeText}}">{{slider.first_title}}</h3>
-                            <p class="Up {{slider?.is_activeText}}">{{slider.subtitulo}}</p><br><br>
+                        <div class="cuadrotext {{slider.align}}">
+                            <h3 class="Up {{slider?.is_activeText}} {{slider.color}}">{{slider.first_title}}</h3>
+                            <p class="Up {{slider?.is_activeText}} {{slider.color}}">{{slider.subtitulo}}</p>
                             <div class="text-center">
                                 <a [href]="slider.enlace" [target]="slider.target" class="btn btn-success btn-lg {{slider.mostrarboton}}">Boton</a>
                             </div>
@@ -52,13 +57,14 @@
                 </div>
             </div>
         </div>
+
     </div>
-
-    <a class="left carousel-control carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="icon-next"></span>
-    </a>
-
+    <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </button>
 </div>
