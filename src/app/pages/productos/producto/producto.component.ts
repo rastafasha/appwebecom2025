@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { NewproductsComponent } from '../../../components/newproducts/newproducts.component';
 import { ModalComponent } from '../../../components/modal/modal.component';
+import { Marca } from '../../../models/marca.model';
 
 declare var jQuery:any;
 declare var $:any;
@@ -52,6 +53,7 @@ export class ProductoComponent implements OnInit {
 
   producto: any = [];
   categories!: Categoria[];
+  marca!:Marca;
 
   option_selected:number = 1;
   solicitud_selected:any = null;
@@ -409,11 +411,11 @@ export class ProductoComponent implements OnInit {
         
       }
     )
+    this.init_data(this.producto._id);
+    this.getGalleryProducto(this.producto._id);
     setTimeout(() => {  
-      this.init_data(this.producto._id);
-      this.getGalleryProducto(this.producto._id);
-      this.getColorProducto(this.producto._id);
       this.getSelectorProducto(this.producto._id);
+      this.getColorProducto(this.producto._id);
       
     }, 1000);
     // this.getGalleryProducto(this.producto._id);

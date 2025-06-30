@@ -1,6 +1,7 @@
 
 import { environment } from '../../environments/environment';
 import { Categoria } from './categoria.model';
+import { Marca } from './marca.model';
 
 const base_url = environment.mediaUrlRemoto;
 export class Producto {
@@ -16,7 +17,7 @@ export class Producto {
   subcategoria!: string;
   isFeatured!: boolean;
   status!: boolean;
-  marca!: string;
+  marca!: Marca;
   createdAt!: Date;
   updatedAt!: Date;
   img!: string;
