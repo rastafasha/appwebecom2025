@@ -25,14 +25,14 @@
 }
 
  .tab-content-set{
-     &.nav{
-            display: flex;
+      display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 20px;
             gap: 15px;
-            
-        }
+            & ul {
+                gap: 10px;
+            }
  }
     
 

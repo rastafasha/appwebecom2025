@@ -11,24 +11,27 @@
 }
 
 .cuadrotext {
-    display: flex
-;
+    display: flex;
+    width: 78vw;
     flex-direction: column;
     /* align-items: center; */
     position: relative;
     margin: auto;
     transform: translate(0px, 270px);
-    & h3 {
+    
+}
+.cuadrotext h3 {
         font-family: 'Poppins', sans-serif;
         text-transform: uppercase;
         font-size: 40px;
         text-align: center;
         color: #333;
     }
-    & p {
+    
+.cuadrotext p {
         color: #333;
     }
-}
+
 
 .carousel2 {
     height: auto;

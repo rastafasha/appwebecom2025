@@ -111,6 +111,13 @@ export class ProductoService {
       map((resp:{ok: boolean, producto: Producto}) => resp.producto)
       );
   }
+  find_by_branding(marca: any):Observable<any>{
+    const url = `${base_url}/productos/producto_by_branding/${marca}`;
+    return this.http.get<any>(url)
+    .pipe(
+      map((resp:{ok: boolean, productos: Producto}) => resp.productos)
+      );
+  }
 
   reducir_stock(id: any,cantidad: any):Observable<any>{
 

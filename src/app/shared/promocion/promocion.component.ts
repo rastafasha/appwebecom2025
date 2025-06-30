@@ -63,6 +63,7 @@ export class PromocionComponent implements OnInit {
         console.log(response);
         this.promocion = response[0];
         this.data_countdown(this.promocion.end);
+        
 
       },error=>{
 

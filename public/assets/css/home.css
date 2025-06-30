@@ -49,7 +49,7 @@
 .topproperties {
     display: flex;
     padding: var(--padding-section);
-    height: 65vh;
+    height: 80vh;
 }
 
 .topproperties h1 {

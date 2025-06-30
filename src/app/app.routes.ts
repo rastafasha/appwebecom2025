@@ -14,6 +14,7 @@ export const routes: Routes = [
     {path: 'tiendas', component: TiendasComponent },
     {path: 'productos', component: ProductosComponent },
     {path: 'producto/:slug', component: ProductoComponent },
+    {path: 'productos/marca/:slug', component: ProductosComponent },
     {path: 'blogs', component: BlogListComponent },
     {path: 'blog/:slug', component: BlogDetailComponent },
     {path: '**', component: HomeComponent }

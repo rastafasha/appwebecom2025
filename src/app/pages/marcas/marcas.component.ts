@@ -1,5 +1,5 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
@@ -27,6 +27,8 @@ export class MarcasComponent {
 
   public marcas!:Marca[] | null;
   isLoading: boolean = true;
+  @Input() limit!:number;
+  @Input() display: string = 'block';
 
   constructor(
     private marcaService: MarcaService

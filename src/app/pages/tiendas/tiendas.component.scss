@@ -1,24 +1,32 @@
 .tienda{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
+   
     height: 100%;
     padding: 20px;
+    gap: 10px;
+    & .card{
+        display: flex;
+        flex-direction: column;
+         width: 21vw;
+        
+    }
     & .img-wrapper{
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        height: 100px;
+        height: 140px;
         margin-bottom: 10px;
         overflow: hidden;
     }
     & img {
-        width: auto;
-        max-width: 100px;
-        max-height: 100px;
+        width: 100%;
+        height: auto;
+        // max-width: 100px;
+        max-height: 200px;
     }
     & h3 {
         margin-top: 10px;
@@ -32,5 +40,21 @@
                 text-decoration: none;
             }
         }
+    }
+}
+
+.sub-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+    padding-top: 50px;
+    & h2 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #333;
+        text-align: center;
+    
     }
 }

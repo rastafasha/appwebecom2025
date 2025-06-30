@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { FooterComponent } from '../../../shared/footer/footer.component';
+import { Marca } from '../../../models/marca.model';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { MarcasComponent } from '../../marcas/marcas.component';
 
 
 
@@ -20,7 +23,10 @@ import { FooterComponent } from '../../../shared/footer/footer.component';
     HeaderComponent,
     RouterModule,
     ImagenPipe,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent,
+    MarcasComponent,
+
   ],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.scss']
@@ -29,8 +35,9 @@ export class ProductosComponent implements OnInit {
 
   public productos: Producto[]=[];
   public product!: Producto;
-
-
+  public isLoading: boolean = true;
+  limit: number = 6;
+  display: string = 'none'
   error!: string;
 
   p: number = 1;
@@ -41,10 +48,12 @@ export class ProductosComponent implements OnInit {
   private http: HttpClient;
   ServerUrl = environment.baseUrl;
   imagenSerUrl = environment.mediaUrl;
+  marca!: Marca ;
 
   constructor(
     public productoService: ProductoService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     handler: HttpBackend,
     private messageService: MessageService
   ) {
@@ -53,16 +62,39 @@ export class ProductosComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0,0);
-    this.loadProducts();
-    window.scrollTo(0,0);
+
+    this.marca = new Marca('', '', '', '');
+    this.marca.slug = this.activatedRoute.snapshot.paramMap.get('slug') || '';
+    console.log(this.marca.slug);
+    if( this.router.url === `/productos/marca/${this.marca.slug}`){
+      this.loadProductbybranding();
+    }else{
+      this.loadProducts();
+    }
 
 
   }
   loadProducts(){
+    this.isLoading = true;
     this.productoService.getProductosActivos().subscribe(
       productos => {
         this.productos = productos;
+        this.isLoading = false;
         // console.log(this.productos);
+      }
+    )
+  }
+
+  loadProductbybranding(){
+    this.isLoading = true;
+    this.productoService.find_by_branding(this.marca.slug).subscribe(
+      productos => {
+        this.productos = productos;
+        this.isLoading = false;
+      },
+      error => {
+        this.error = 'No hay productos para esta marca';
+        this.isLoading = false;
       }
     )
   }

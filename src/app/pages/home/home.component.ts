@@ -12,6 +12,8 @@ import { CommentsComponent } from '../../components/comments/comments.component'
 import { FotofooterComponent } from '../../components/fotofooter/fotofooter.component';
 import { PromocionComponent } from '../../shared/promocion/promocion.component';
 import { BlogFeaturedComponent } from "../../components/blog-featured/blog-featured.component";
+import { MarcasComponent } from '../marcas/marcas.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,11 +30,15 @@ import { BlogFeaturedComponent } from "../../components/blog-featured/blog-featu
     CommentsComponent,
     FotofooterComponent,
     PromocionComponent,
-    BlogFeaturedComponent
+    BlogFeaturedComponent,
+    MarcasComponent,
+    RouterModule
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  limit: number = 5;
+  display: string = 'none'
 
 }
