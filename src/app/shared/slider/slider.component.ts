@@ -11,7 +11,7 @@ import { SliderService } from '../../services/slider.service';
   selector: 'app-slider',
   imports: [
     CommonModule,RouterModule, NgFor,
-    ImagenPipe, NgClass
+    ImagenPipe
   ],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss'

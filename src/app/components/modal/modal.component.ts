@@ -7,8 +7,7 @@ import { Producto } from '../../models/producto.model';
   selector: 'app-modal',
   imports: [
     CommonModule,
-    NgFor,
-    NgIf
+    NgFor
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'

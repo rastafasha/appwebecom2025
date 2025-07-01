@@ -1,9 +1,10 @@
-<section class="topproperties">
+<section class="topproperties" style="margin-bottom: 60px;">
         <div class="container">
             <h1>Top Choise Recents</h1>
+            <p class="text-center mb-3">Discover our top products, selected for you.</p>
 
             <app-loading *ngIf="isLoading"></app-loading>
-            <div class="grillacard" *ngIf="!isLoading" >
+            <div class="grillacard mt-5" *ngIf="!isLoading" >
                 <ng-container class="lista-imagenes" *ngFor="let producto of productos | slice:0:10; let i = index ">
                     <div class="cardimageninfo">
                         <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">

@@ -8,41 +8,49 @@
         <h3 class="heading-style-3">Stores</h3>
     </section>
 
-    <section class="box-sm" *ngIf="!isLoading">
-        <div class="container">
-            <div class="row main">
-                <div class="row  tienda ">
-                    <!-- <figure class="item" *ngFor="let producto of productos |  paginate: { itemsPerPage: count, currentPage: p }"> -->
-                    <div class="card " *ngFor="let tienda of tiendas ">
-                        <div class="img-wrapper">
-                            <a [routerLink]="['../tienda/', tienda._id]">
-                                <img [src]="tienda.img| imagenPipe: 'tiendas'" alt="{{tienda.nombre}} thumbnail" />
-                            </a>
-                            
-                        </div>
-                        <div class="card-body">
-                            <figcaption class="desc text-center">
-                                <h3>
-                                    <a class="product-name" [routerLink]="['../producto/', tienda._id]">{{tienda.nombre}}</a>
-                                </h3>
-                                <p [innerHTML]="tienda.direccion"></p>
-                            </figcaption>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><i class="fa fa-map-marker"></i> {{tienda.local}}</li>
-                            <li class="list-group-item"><i class="fa fa-map-marker"></i> {{tienda.pais}}</li>
-                            <li class="list-group-item"><i class="fa fa-map-marker"></i> {{tienda.ciudad}}</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link"><i class="fa fa-phone"></i> {{tienda.telefono}}</a>
-                            <a href="#" class="card-link"><i class="fa fa-bookmark"></i> {{tienda.categoria?.nombre}}</a>
-                        </div>
-                    </div>
+    <div class="container">
+	<div class="row" *ngIf="!isLoading">
+		<div class="col-lg-3 col-sm-6"*ngFor="let tienda of tiendas " >
+
+            <div class="card hovercard" >
+                <div class="cardheader" [style.background-image]="'url(' + tienda.img + ')' | imagenPipe: 'tiendas'">
                 </div>
-                <div class="clear"></div>
-                
+                <div class="avatar">
+                    <img [src]="tienda.img| imagenPipe: 'tiendas'" alt="{{tienda.nombre}} thumbnail" />
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a target="_blank" href="https://scripteden.com/">{{tienda.nombre}}</a>
+                    </div>
+                    <div class="desc">{{tienda.local}}</div>
+                    <div class="desc">{{tienda.pais}}</div>
+                    <div class="desc">{{tienda.ciudad}}</div>
+                    <div class="desc">{{tienda.telefono}}</div>
+                    <div class="desc">{{tienda.categoria?.nombre}}</div>
+                    <div class="desc"><p [innerHTML]="tienda.direccion"></p></div>
+                </div>
+                <div class="bottom">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="https://plus.google.com/+ahmshahnuralam">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-behance"></i>
+                    </a>
+                </div>
             </div>
+
         </div>
-    </section>
+
+	</div>
+</div>
+
 </div>
 <app-footer></app-footer>

@@ -49,6 +49,15 @@ export class PageService {
         );
   }
 
+  getPageBySlug(slug: string){
+      const url = `${base_url}/pages/by_slug/${slug}`;
+      return this.http.get<any>(url, this.headers)
+        .pipe(
+          map((resp:{ok: boolean, page: About}) => resp.page)
+          );
+  
+    }
+
 
 
 

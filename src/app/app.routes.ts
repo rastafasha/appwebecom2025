@@ -6,6 +6,7 @@ import { BlogListComponent } from './pages/blog/blog-list/blog-list.component';
 import { BlogDetailComponent } from './pages/blog/blog-detail/blog-detail.component';
 import { MarcasComponent } from './pages/marcas/marcas.component';
 import { TiendasComponent } from './pages/tiendas/tiendas.component';
+import { GenericPageComponent } from './pages/generic-page/generic-page.component';
 
 export const routes: Routes = [
 
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path: 'productos/marca/:slug', component: ProductosComponent },
     {path: 'blogs', component: BlogListComponent },
     {path: 'blog/:slug', component: BlogDetailComponent },
+    {path: 'page/:slug', component: GenericPageComponent },
     {path: '**', component: HomeComponent }
 ];
