@@ -1,5 +1,9 @@
 <!-- <section class="container mt-4 mb-grid-gutter" *ngIf="promocion.estado"> -->
-<section class=" promocion" *ngIf="promocion" [style.background]="promocion.colorfondo">
+
+    <!-- <section class=" promocion" *ngIf="promocion && promocion.estado === false">
+        <h3>Manten contacto para promociones futuras</h3>
+    </section> -->
+<section class=" promocion" *ngIf="promocion && promocion.estado === true" [style.background]="promocion.colorfondo">
     <div class="container">
         <div class="row p-2">
             <div class="col-md-4">

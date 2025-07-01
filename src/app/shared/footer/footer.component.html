@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-            <div class="menufooter">
+            <div class="menufooter" >
                 <div class="contenido">
                     <img class="logo" src="./assets/logo.png" alt="logo Mall Connect">
                     <p>Best way to shop</p>
@@ -41,9 +41,11 @@
         </div>
         <div class="creditsocial">
             <p>© 2024 - {{year}} | Mall Connect.</p>
-            <ul class="politicas">
-                <li><a [routerLink]="['/page', 'polticas-de-privacidad']">Politícas de Privacidad</a></li>
-                <li><a [routerLink]="['/page', 'trminos-y-condiciones']">Terminos y Condiciones</a></li>
+            <ul class="politicas" *ngFor="let page of pages;" >
+                
+                <li><a [routerLink]="['/page',page.slug]">{{page.titulo}}</a></li>
+                <!-- <li><a [routerLink]="['/page', 'polticas-de-privacidad']">Politícas de Privacidad</a></li> -->
+                <!-- <li><a [routerLink]="['/page', 'trminos-y-condiciones']">Terminos y Condiciones</a></li> -->
             </ul>
             <ul class="social reds" >
                

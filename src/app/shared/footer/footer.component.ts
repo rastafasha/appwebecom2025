@@ -45,9 +45,9 @@ export class FooterComponent {
       //filtramos los que traen el origen 'footer'
       this.pages = this.pages.filter((page: any) => page.origen === 'footer');
       //ordenamos por createdAt de forma descendente
-      this.pages.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      // this.pages.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       //tomamos los primeros
-      this.pages = this.pages.slice(0, 3);
+      this.pages = this.pages.slice(0, 2);
     }, (error: any) => {
       console.error('Error fetching pages:', error);
       this.pages = [];
@@ -69,8 +69,8 @@ export class FooterComponent {
   this.congeneralService.cargarCongenerals().subscribe((resp:any)=>{
 
     this.congeneral_id = resp[0]._id as string;
-    console.log('resp',resp);
-    console.log('congeneral_id',this.congeneral_id);
+    // console.log('resp',resp);
+    // console.log('congeneral_id',this.congeneral_id);
    this.redessociales = resp[0].redessociales;
 
     // const redes = resp[0].redessociales;
