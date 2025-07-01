@@ -12,7 +12,7 @@
 
 .cuadrotext {
     display: flex;
-    width: 78vw;
+    width: 57vw;
     flex-direction: column;
     /* align-items: center; */
     position: relative;
@@ -45,7 +45,7 @@
     z-index: 10;
     padding-top: 20px;
     padding-bottom: 20px;
-    color: #fff;
+    color: var(--orange);
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }

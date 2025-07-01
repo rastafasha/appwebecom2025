@@ -36,9 +36,10 @@
 
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="8000">
+
+    
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li  *ngFor="let slider of sliders; let i = index" data-target="#carouselExampleIndicators" data-slide-to="0" [class.active]="i === currentSlide"></li>
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active" *ngFor="let slider of sliders ; let i=index; "
@@ -58,11 +59,11 @@
 
     </div>
     <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="fa fa-chevron-circle-left fa-2x  text-success" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="fa fa-chevron-circle-right fa-2x text-success" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </button>
 </div>

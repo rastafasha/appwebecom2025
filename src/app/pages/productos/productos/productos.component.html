@@ -4,6 +4,10 @@
     <section class="sub-header shop-layout-1" style="height: 250px;">
         <!-- <img class="rellax bg-overlay" [src]="marca.img | imagenPipe: 'marcas'" alt="{{marca.nombre}} thumbnail"> -->
         <div class="overlay-call-to-action"></div>
+        <div style="display: flex; " >
+                    <a href="javascript:void(0)" (click)="goBack()"  class="btn-azul  ">volver</a>
+                </div>
+                &nbsp;&nbsp;
         <h3 class="heading-style-3">Products {{marca.slug}} </h3>
         <h3 class="heading-style-3"></h3>
     </section>
@@ -11,8 +15,11 @@
 
     <section class="box-sm" *ngIf="!isLoading && error">
         <div class="container">
-            <div class="row main" style="height: 50vh; display: flex; align-items: center; justify-content: center;">
+            <div class="row main" style="height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <p>{{ error }}</p>
+                <div style="display: flex; " >
+                    <a href="javascript:void(0)" (click)="goBack()"  class="btn-azul  ">volver</a>
+                </div>
             </div>
         </div>
 

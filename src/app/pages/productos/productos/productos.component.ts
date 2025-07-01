@@ -15,7 +15,7 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { MarcasComponent } from '../../marcas/marcas.component';
 import { UsuarioService } from '../../../services/usuario.service';
 
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-productos',
@@ -26,7 +26,6 @@ import { UsuarioService } from '../../../services/usuario.service';
     ImagenPipe,
     FooterComponent,
     LoadingComponent,
-    MarcasComponent,
 
   ],
   templateUrl: './productos.component.html',
@@ -59,6 +58,7 @@ export class ProductosComponent implements OnInit {
     handler: HttpBackend,
     private messageService: MessageService,
     public usuarioService: UsuarioService,
+    private location: Location,
   ) {
     this.http = new HttpClient(handler);
     this.identity = usuarioService.usuario;
@@ -117,5 +117,9 @@ export class ProductosComponent implements OnInit {
     //   this.messageService.removeFromFavorites(product);
     // }
   }
+
+  goBack() {
+        this.location.back(); // <-- go back to previous location on cancel
+      }
 
 }

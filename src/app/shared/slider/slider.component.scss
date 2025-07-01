@@ -1,0 +1,10 @@
+.carousel-indicators{
+    &> li {
+        background-color: var(--azul);
+        opacity: 0.5;
+        &.active {
+            background-color: var(--darkblue);
+            opacity: 1;
+        }
+    }
+}

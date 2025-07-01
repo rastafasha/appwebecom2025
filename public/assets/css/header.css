@@ -156,6 +156,8 @@
 .header .menuright ul li a {
     list-style: none;
     color: var(--orange);
+    padding: 0;
+    margin: 0;
 }
 
 .header .menuright ul li.dropdown .dropdown-menu a {

@@ -21,7 +21,7 @@ export class SliderComponent {
   sliders!: Slider[]|null;
     imagenSerUrl = environment.mediaUrl;
 
-    
+    currentSlide = 0;
   
   
     constructor(
@@ -42,5 +42,9 @@ export class SliderComponent {
         }
       )
     }
+
+    selectSlide(index: number) {
+    this.currentSlide = index;
+  }
 
 }
