@@ -14,11 +14,8 @@ export class Congeneral{
     public direccion: string,
     public horarios: string,
     public iframe_mapa: string,
-    public facebook: string,
-    public instagram: string,
-    public youtube: string,
     public language: string,
-    public twitter: string,
+    public redessociales: Redes,
     public logo?: string,
     public favicon?: string,
     public _id?:string
@@ -52,5 +49,23 @@ export class Congeneral{
       return `${base_url}/uploads/congenerals/no-image.jpg`;
     }
 
+  }
+}
+
+export class Redes{
+  id:string;
+  title: string;
+  url: string;
+  icono: string;
+  constructor(
+    id: string,
+    title: string,
+    url: string,
+    icono: string
+  ){
+    this.id = id;
+    this.title = title;
+    this.url = url;
+    this.icono = icono;
   }
 }

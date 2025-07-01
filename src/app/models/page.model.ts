@@ -6,6 +6,7 @@ export class About {
   titulo!: string;
   categoria!: string;
   descripcion!: string;
+  origen!: string;
   video_review!: string;
   isFeatured!: boolean;
   status!: string;

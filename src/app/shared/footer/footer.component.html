@@ -9,22 +9,20 @@
                 <div class="contenido">
                     <h2>Connect us</h2>
                     <p>hola&#64;mallconnect.me</p>
-                    <p>1234567890</p>
                 </div>
                 <div class="contenido">
-                    <h2>About us</h2>
+                    <h2>Contenido</h2>
                     <ul>
-                        <li><a [routerLink]="['/page','nosotros']">About us</a></li>
-                        <li><a href="">Features</a></li>
+                        <li><a [routerLink]="['/productos']">Products</a></li>
                         <li><a [routerLink]="['/blogs']">News</a></li>
                     </ul>
                 </div>
                 <div class="contenido">
                     <h2>Company</h2>
                     <ul>
-                        <li><a href="">Why MallConnect?</a></li>
+                        <li><a [routerLink]="['/page','nosotros']">Why MallConnect?</a></li>
                         <li><a href="">Partner with us</a></li>
-                        <li><a href="">FAQ</a></li>
+                        <li><a [routerLink]="['/page','faq']">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="contenido">
@@ -42,32 +40,30 @@
             </div>
         </div>
         <div class="creditsocial">
-            <p>© 2024 Mall Connect.</p>
+            <p>© 2024 - {{year}} | Mall Connect.</p>
             <ul class="politicas">
                 <li><a [routerLink]="['/page', 'polticas-de-privacidad']">Politícas de Privacidad</a></li>
                 <li><a [routerLink]="['/page', 'trminos-y-condiciones']">Terminos y Condiciones</a></li>
             </ul>
-            <ul class="social">
-                <li>
-                    <a href="">
-                        <div class="icon" id="facebook"></div>
+            <ul class="social reds" >
+               
+                <div class="socialr">
+                    <li *ngFor="let red of redessociales;let i = index;">
+                    <a  *ngIf="red.icono !== 'fa fa-whatsapp'" [href]="red.url" target="_blank" rel="noopener noreferrer">
+                      <div class="option-admin">
+                        <i class="{{red.icono}}"></i>
+                      </div>
+                    </a>
+                    <a *ngIf="red.icono === 'fa fa-whatsapp'" 
+                    href="https://wa.me/{{red.url}}?text=Estoy%20interesado%20en%20el%20producto,%20favor%20ampliar%20informacion"
+                    target="_blank" rel="noopener noreferrer">
+                      <div class="option-admin">
+                        <i class="{{red.icono}}"></i>
+                      </div>
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        <div class="icon" id="twitter"></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <div class="icon" id="instagram"></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <div class="icon" id="tiktok"></div>
-                    </a>
-                </li>
+                </div>
+               
             </ul>
         </div>
     </div>
