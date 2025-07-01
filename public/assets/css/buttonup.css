@@ -1,0 +1,30 @@
+*, ::after, ::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+.button-up{
+    background-color: var(--darkblue);
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 100px;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    transition: .3s ease;
+    color: #fff;
+    z-index: 1000;
+
+    &:hover{
+        transform: translateY(-3px);
+    }
+}
+
+.button-inactive{
+    display: none;
+}

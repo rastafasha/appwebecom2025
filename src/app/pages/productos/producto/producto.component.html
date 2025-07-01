@@ -269,18 +269,19 @@
                     <div class="woocommerce-tabs-inner">
                             <div class="tab-content-set">
                                     <ul class="nav">
+                                        <!-- onclick="return false;" -->
                                         <li>
-                                            <a href="#" onclick="return false;"
+                                            <a href="#" 
                                                 [ngClass]="{'active': option_selected == 1}"
                                                 (click)="optionSelected(1)">Description</a>
                                         </li>
                                         <li *ngIf="producto.video_review">
-                                            <a href="#" onclick="return false;"
+                                            <a href="#" 
                                                 [ngClass]="{'active': option_selected == 2}"
                                                 (click)="optionSelected(2)">Additional Information</a>
                                         </li>
                                         <li>
-                                            <a href="#" onclick="return false;"
+                                            <a href="#" 
                                                 [ngClass]="{'active': option_selected == 3}"
                                                 (click)="optionSelected(3)">Review</a>
                                         </li>

@@ -13,3 +13,10 @@
 
     }
 }
+
+.button-up{
+
+    &:hover{
+        transform: translateY(-3px);
+    }
+}
