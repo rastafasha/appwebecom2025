@@ -409,13 +409,14 @@ export class ProductoComponent implements OnInit {
       resp=>{
         this.producto = resp;
         
+        this.data_comentarios();
       }
     )
     setTimeout(() => {  
+      // this.init_data(this.producto._id);
       this.getSelectorProducto(this.producto._id);
       this.getColorProducto(this.producto._id);
       this.getGalleryProducto(this.producto._id);
-      this.init_data(this.producto._id);
       
     }, 1000);
     // this.getGalleryProducto(this.producto._id);

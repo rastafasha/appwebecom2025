@@ -6,7 +6,7 @@
 <div *ngIf="producto && !isLoading">
     <div class="shop-detail-3 woocommerce" id="page">
 
-        <section class="sub-header shop-detail-1" style="height: 100px;"
+        <section class="sub-header shop-detail-1" style="height: 100px; background-repeat: no-repeat; background-size: cover; filter: blur(50px);"
             [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
             <img class="rellax bg-overlay">
             <!-- <div class="overlay-call-to-action"></div> -->
@@ -22,7 +22,8 @@
                                 <div class="main-carousel ">
                                     <div class="item">
                                         <img class="border-radius shadow"
-                                            style="width: 100%; height: 70vh; aspect-ratio:1/1; object-fit: cover;"
+                                            style="width: 100%; height: 70vh; aspect-ratio:1/1; object-fit: cover;
+                                            "
                                             [src]="producto.img | imagenPipe: 'productos'"
                                             alt="{{producto.titulo}} thumbnail">
                                     </div>

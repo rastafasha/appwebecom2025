@@ -4,99 +4,26 @@
     <h1 class="text-center">No hay info</h1>
 </div>
 <div *ngIf="blog && !isLoading">
-    <div class="shop-detail-3 woocommerce" id="page">
+    <section class="sub-header shop-detail-1" style="height: 100px; background-repeat: no-repeat; background-size: cover; filter: blur(50px);"
+        [style.background-image]="'url(' + blog.img + ')' | imagenPipe: 'blogs'">
+        <img class="rellax bg-overlay">
+    </section>
 
-        <section class="sub-header shop-detail-1" style="height: 100px;"
-            [style.background-image]="'url(' + blog.img + ')' | imagenPipe: 'blogs'">
-            <img class="rellax bg-overlay">
-            <!-- <div class="overlay-call-to-action"></div> -->
-            <!-- <h3 class="heading-style-3" style="color:#ccc">{{blog.titulo}}</h3> -->
-        </section>
-        <section class="boxed-sm" style="margin-top: 30px;">
-            <div class="container">
-                <div class="row product-detail">
-                    <div class="row product-detail-wrapper  p-3 border-radius mb-5">
-
-                        <div class="col-md-6">
-                            <div class="woocommerce-product-gallery vertical">
-                                <div class="main-carousel ">
-                                    <div class="item">
-                                        <img class="border-radius shadow"
-                                            style="width: 100%; height: 70vh; aspect-ratio:1/1; object-fit: cover;"
-                                            [src]="blog.img | imagenPipe: 'blogs'"
-                                            alt="{{blog.titulo}} thumbnail">
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!-- gallery -->
-                            <!-- <div class="col-lg-7 pr-lg-0 pt-lg-4">
-                                <div class="cz-product-gallery">
-
-                                    <div class="galeria-prod">
-                                        <ng-container
-                                            *ngFor="let imagen of galeria;let primero = first;let indice=index">
-                                            <a class="cz-thumblist-item active" [attr.id]="'img_'+indice"
-                                                (click)="click_img(imagen.imagen,'img_'+indice)" *ngIf="primero">
-                                                <img class="gallery__img" [src]="imagen.img | imagenPipe: 'galerias'"
-                                                    alt="Product thumb">
-                                            </a>
-                                            <a class="cz-thumblist-item" [attr.id]="'img_'+indice"
-                                                (click)="click_img(imagen.imagen,'img_'+indice)" *ngIf="!primero">
-                                                <img class="gallery__img" [src]="imagen.img | imagenPipe: 'galerias'"
-                                                    alt="Product thumb">
-                                            </a>
-                                        </ng-container>
-
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- gallery -->
-                        </div>
-                        <div class="col-md-6">
-                            
-                            <div class="summary">
-                                <div class="desc">
-                                    <div class="header-desc">
-                                        <h2 class="product-title">{{blog.titulo}} </h2>
-                                    </div>
-                                </div>
-                                <!-- detalle -->
-                                <div class="" id="preview-img">
-                                    <div class="product-details ml-auto pb-3">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                           
-                                            <button class="btn btn-wishlist mr-0 mr-lg-n3" *ngIf="identity"
-                                                (click)="addToFavorites(blog)" type="button" data-toggle="tooltip"
-                                                title="" data-original-title="Add to wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </button>
-                                        </div>
-
-                                        <!-- Product panels-->
-                                        <div >
-                                            <p [innerHTML]="blog.descripcion"></p>
-
-                                        </div>
-                                        <!-- Sharing-->
-
-                                    </div>
-                                </div>
-                                <!-- detalle -->
-
-
-                            </div>
-                        </div>
-                    </div>
+    <section class="blog-detail mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <img class="border-radius shadow"
+                        style="width: 100%; height: 70vh; aspect-ratio:1/1; object-fit: cover;"
+                        [src]="blog.img | imagenPipe: 'blogs'" alt="{{blog.titulo}} thumbnail">
+                    <h1>{{ blog.titulo }}</h1>
+                    <p class="text-muted">{{ blog.createdAt | date:'mediumDate' }}</p>
+                    <div class="blog-content" [innerHTML]="blog.descripcion"></div>
                 </div>
-                
-
-                <!-- blogs nuevos -->
-                <!-- <app-newproducts></app-newproducts> -->
-                <!-- blogs nuevos -->
+                <div class="col-md-4">
+                </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 </div>
 <app-footer></app-footer>

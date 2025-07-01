@@ -14,20 +14,21 @@ import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { UsuarioService } from '../../../services/usuario.service';
+import { BlogFeaturedComponent } from "../../../components/blog-featured/blog-featured.component";
 
 
 @Component({
   selector: 'app-blog-detail',
-  imports:[
+  imports: [
     CommonModule,
     HeaderComponent,
     RouterModule,
     ImagenPipe,
     FooterComponent,
     LoadingComponent,
-  ],
+],
   templateUrl: './blog-detail.component.html',
-  styleUrls: ['./blog-detail.component.css']
+  styleUrls: ['./blog-detail.component.scss']
 })
 export class BlogDetailComponent implements OnInit {
 

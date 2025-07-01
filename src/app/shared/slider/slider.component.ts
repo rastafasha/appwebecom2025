@@ -18,7 +18,7 @@ import { SliderService } from '../../services/slider.service';
 })
 export class SliderComponent {
 
-  sliders!: Slider[]|null;
+  sliders!: Slider[];
     imagenSerUrl = environment.mediaUrl;
 
     currentSlide = 0;
@@ -45,6 +45,14 @@ export class SliderComponent {
 
     selectSlide(index: number) {
     this.currentSlide = index;
+  }
+
+   prevSlide() {
+    this.currentSlide = (this.currentSlide === 0) ? this.sliders.length - 1 : this.currentSlide - 1;
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide === this.sliders.length - 1) ? 0 : this.currentSlide + 1;
   }
 
 }

@@ -39,7 +39,8 @@
 
     
     <ol class="carousel-indicators">
-        <li  *ngFor="let slider of sliders; let i = index" data-target="#carouselExampleIndicators" data-slide-to="0" [class.active]="i === currentSlide"></li>
+        <!-- <li  *ngFor="let slider of sliders; let i = index"  [class.active]="i === currentSlide" (click)="selectSlide(i)"></li> -->
+        <li  *ngFor="let slider of sliders; let i = index"  [class.active]="i === currentSlide" ></li>
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active" *ngFor="let slider of sliders ; let i=index; "

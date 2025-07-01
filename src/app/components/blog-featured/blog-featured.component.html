@@ -10,7 +10,7 @@
                     <div class="info">
                         <a [routerLink]="['blog/',blog.slug]">
                             <h1>{{ blog.titulo }}</h1>
-                            <p [innerHTML]="blog.descripcion"></p>
+                            <!-- <p [innerHTML]="blog.descripcion"></p> -->
                         </a>
                         <div class="topoftop">
                             <span class="time">{{blog.createdAt | date:'mediumDate'}}</span>
