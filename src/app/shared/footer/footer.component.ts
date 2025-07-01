@@ -75,7 +75,7 @@ export class FooterComponent {
 
     // const redes = resp[0].redessociales;
     // this.redessociales = Array.isArray(redes) ? redes : redes ? [redes] : [];
-    console.log(this.redessociales);
+    // console.log(this.redessociales);
     
   })
 }

@@ -51,7 +51,7 @@ export class HeaderComponent {
       //filtramos los que traen el origen 'header o ambos'
       this.pages = this.pages.filter((page: any) => page.origen === 'header' || page.origen === 'ambos');
 
-      console.log(this.pages);
+      // console.log(this.pages);
       //ordenamos por createdAt de forma descendente
       // this.pages.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       //tomamos los primeros

@@ -12,10 +12,11 @@ import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { Marca } from '../../../models/marca.model';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
-import { MarcasComponent } from '../../marcas/marcas.component';
 import { UsuarioService } from '../../../services/usuario.service';
 
 import { Location } from '@angular/common';
+import { Tienda } from '../../../models/tienda.model';
+import { TiendaService } from '../../../services/tienda.service';
 
 @Component({
   selector: 'app-productos',
@@ -50,14 +51,16 @@ export class ProductosComponent implements OnInit {
   ServerUrl = environment.baseUrl;
   imagenSerUrl = environment.mediaUrl;
   marca!: Marca ;
+  tienda!: Tienda ;
 
   constructor(
     public productoService: ProductoService,
+    public usuarioService: UsuarioService,
+    public tiendaService: TiendaService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    handler: HttpBackend,
     private messageService: MessageService,
-    public usuarioService: UsuarioService,
+    handler: HttpBackend,
     private location: Location,
   ) {
     this.http = new HttpClient(handler);
@@ -72,7 +75,11 @@ export class ProductosComponent implements OnInit {
     console.log(this.marca.slug);
     if( this.router.url === `/productos/marca/${this.marca.slug}`){
       this.loadProductbybranding();
-    }else{
+    }
+    if( this.router.url === `/productos/tienda/${this.tienda.slug}`){
+      this.loadProductbyStore();
+    }
+    else{
       this.loadProducts();
     }
 
@@ -98,6 +105,20 @@ export class ProductosComponent implements OnInit {
       },
       error => {
         this.error = 'No hay productos para esta marca';
+        this.isLoading = false;
+      }
+    )
+  }
+  loadProductbyStore(){
+    this.isLoading = true;
+    this.tiendaService.find_by_store(this.tienda.slug).subscribe(
+      tienda => {
+        this.tienda = tienda;
+        console.log(this.tienda);
+        this.isLoading = false;
+      },
+      error => {
+        this.error = 'No hay productos para esta tiendaß';
         this.isLoading = false;
       }
     )

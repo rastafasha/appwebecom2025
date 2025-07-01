@@ -87,4 +87,11 @@ export class TiendaService {
     return this.http.get(url,  this.headers);
   }
 
+  find_by_store(tienda: any):Observable<any>{
+      const url = `${base_url}/tiendas/by_branding/${tienda}`;
+      return this.http.get<any>(url)
+      .pipe(
+        map((resp:{ok: boolean, tienda: Tienda}) => resp.tienda)
+        );
+    }
 }

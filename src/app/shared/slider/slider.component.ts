@@ -38,7 +38,7 @@ export class SliderComponent {
       return this.sliderService.getSliders().subscribe(
         resp=>{
           this.sliders = resp;
-          console.log(this.sliders);
+          // console.log(this.sliders);
         }
       )
     }

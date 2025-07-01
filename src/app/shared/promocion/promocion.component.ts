@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { Promocion } from '../../models/promocion.model';
-import { PromocionService } from '../../services/promocion.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { Promocion } from '../../models/promocion.model';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
+import { PromocionService } from '../../services/promocion.service';
 
 declare let tns: any;
 declare let countdown: any;
@@ -61,7 +61,7 @@ export class PromocionComponent implements OnInit {
 
     this.promocionService.cargarPromocionsActive().subscribe(
       (response:any) =>{
-        console.log(response);
+        // console.log(response);
         this.promocion = response[0];
         this.data_countdown(this.promocion.end);
 

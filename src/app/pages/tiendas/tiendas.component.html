@@ -20,7 +20,7 @@
                 </div>
                 <div class="info">
                     <div class="title">
-                        <a target="_blank" href="https://scripteden.com/">{{tienda.nombre}}</a>
+                        <a  [routerLink]="['../productos/tienda/', tienda.slug]">{{tienda.nombre}}</a>
                     </div>
                     <div class="desc">{{tienda.local}}</div>
                     <div class="desc">{{tienda.pais}}</div>

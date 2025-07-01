@@ -41,7 +41,7 @@ export class MarcasComponent {
     this.marcaService.cargarMarcas().subscribe(
       marcas => {
         this.marcas = marcas;
-        console.log(this.marcas);
+        // console.log(this.marcas);
         this.isLoading = false;
       }
     )

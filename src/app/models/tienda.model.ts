@@ -7,6 +7,7 @@ export class Tienda{
   constructor(
     public icono : string,
     public nombre: string,
+    public slug: string,
     public local: string,
     public state_banner : boolean,
     public img: string,
