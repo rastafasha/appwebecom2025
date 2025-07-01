@@ -76,6 +76,9 @@ export class ProductosComponent implements OnInit {
     if( this.router.url === `/productos/marca/${this.marca.slug}`){
       this.loadProductbybranding();
     }
+
+    this.tienda = new Tienda('', '', '', '', false, ''); // Add default values for required parameters
+    this.tienda.slug = this.activatedRoute.snapshot.paramMap.get('slug') || '';
     if( this.router.url === `/productos/tienda/${this.tienda.slug}`){
       this.loadProductbyStore();
     }
@@ -118,7 +121,7 @@ export class ProductosComponent implements OnInit {
         this.isLoading = false;
       },
       error => {
-        this.error = 'No hay productos para esta tiendaß';
+        this.error = 'No hay productos para esta tienda';
         this.isLoading = false;
       }
     )
