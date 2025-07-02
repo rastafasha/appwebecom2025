@@ -61,11 +61,14 @@ ngOnInit(){
         }else{
           localStorage.removeItem('email');
         }
+        this.usuarioService.getLocalStorage();
          if(localStorage.getItem('user')){
           setTimeout(()=>{
             this.router.navigateByUrl('/my-account');
           },500);
         }
+        
+      
         // this.router.navigateByUrl('/my-account');
       },(err) => {
         Swal.fire('Error', err.error.msg, 'error');

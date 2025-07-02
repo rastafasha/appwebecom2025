@@ -55,7 +55,7 @@
                                         <li><a routerLink="/productos">Productos</a></li>
                                         <li><a routerLink="/tiendas">Tiendas</a></li>
                                         <!-- <li><a href="homeindividual.html">Promociones</a></li> -->
-                                        <li *ngIf="identity"><a routerLink="/userprofile">Mi perfil</a></li>
+                                        <li *ngIf="identity"><a [routerLink]="['/my-account/',]">Mi perfil</a></li>
                                         <li *ngIf="identity"><a href="javascript:void(0)" (click)="logout()">Salir</a></li>
                                         <li *ngIf="!identity"><a routerLink="/login">Login</a></li>
                                         <li *ngIf="!identity"><a routerLink="/registro">Registro</a></li>

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PageService } from '../../services/page.service';
 import { UsuarioService } from '../../services/usuario.service';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-header',
@@ -17,16 +18,22 @@ import { UsuarioService } from '../../services/usuario.service';
 export class HeaderComponent {
 
   pages:any;
-  public identity;
+  public identity!:Usuario;
+  public usuario!:any;
 
   constructor(private pageService: PageService,
     public usuarioService: UsuarioService,
   ) {
-    this.identity = usuarioService.usuario;
+    // this.identity = usuarioService.getUser();
   }
 
   ngOnInit(){
     this.getPages();
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
   }
 
 

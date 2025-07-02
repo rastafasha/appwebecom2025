@@ -12,6 +12,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MyaccountComponent } from './pages/myaccount/myaccount.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { RecoveryComponent } from './auth/recovery/recovery.component';
+import { CartCheckoutComponent } from './pages/myaccount/cart-checkout/cart-checkout.component';
+import { Direccion } from './models/direccion.model';
+import { DireccionesComponent } from './pages/myaccount/direcciones/direcciones.component';
+import { PerfilComponent } from './pages/myaccount/perfil/perfil.component';
 
 export const routes: Routes = [
 
@@ -29,6 +33,9 @@ export const routes: Routes = [
     {path: 'registro', component: RegisterComponent },
     {path: 'recovery-password', component: RecoveryComponent },
     {path: 'my-account', component: MyaccountComponent },
+    {path: 'my-account/perfil/:id', component: PerfilComponent },
+    {path: 'my-account/direcciones', component: DireccionesComponent },
+    {path: 'my-account/cart', component: CartCheckoutComponent },
     {path: 'cart', component: CarritoComponent},
     {path: '**', component: HomeComponent }
 ];

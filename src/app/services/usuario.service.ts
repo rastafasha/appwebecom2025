@@ -54,9 +54,14 @@ export class UsuarioService {
   getLocalStorage() {
     if (localStorage.getItem('token') && localStorage.getItem('user')) {
       let USER = localStorage.getItem('user');
-
-      this.usuario = JSON.parse(USER ? USER : '');
-    } 
+      if (USER && USER !== 'undefined') {
+        this.usuario = JSON.parse(USER);
+      } else {
+        this.usuario = new Usuario('', '', '', '', '', '', '', '', false, 'USER', '');
+      }
+    } else {
+      this.usuario = new Usuario('', '', '', '', '', '', '', '', false, 'USER', '');
+    }
   }
   guardarLocalStorage(token: string, user: any) {
     localStorage.setItem('token', token);
@@ -215,6 +220,10 @@ export class UsuarioService {
     const url = `${base_url}/usuarios/${id}`;
     return this.http.get(url, this.headers);
   }
+
+  getUser(){
+      return this.usuario;
+    }
 
   get_user_data(): Observable<any> {
     const url = `${base_url}/usuarios`;

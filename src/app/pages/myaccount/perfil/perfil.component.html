@@ -22,7 +22,7 @@
             <form [formGroup]="perfilForm" (ngSubmit)="actualizarPerfil()" autocomplete="off">
                 <div class="bg-secondary rounded-lg p-4 mb-4">
                     <div class="media align-items-center">
-                        <img [src]="usuario.img | imagenPipe: 'usuarios'" width="90" alt="user.first_name">
+                        <img [src]="(usuario.img ?? '') | imagenPipe: 'usuarios'" width="90" alt="user.first_name">
                         <div class="media-body pl-3">
                             <button class="btn btn-light btn-shadow btn-sm mb-2" type="button"><i class="czi-loading mr-2"></i>Avatar</button>
                             <div class="p mb-0 font-size-ms text-muted">Sube JPG, GIF or PNG.</div>
@@ -122,7 +122,7 @@
                                     <img *ngIf="imgTemp" [src]="imgTemp" style="width: 100px;">
                                 </div>
                                 <span class="cz-file-drop-message">Suelta la imagen aquí</span>
-                                <input type="file" class="cz-file-drop-input" (change)="cambiarImagen($event.target.files[0])">
+                                <input type="file" class="cz-file-drop-input" (change)="cambiarImagen($event)">
                                 <br>
                                 <br>
                                 <button type="button" [disabled]="!imagenSubir" (click)="subirImagen()" class="btn btn-success waves-effect waves-light m-r-10 btn-block">

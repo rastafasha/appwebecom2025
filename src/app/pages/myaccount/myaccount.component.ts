@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Usuario } from '../../models/usuario.model';
@@ -14,7 +14,8 @@ import { AsideCuentaComponent } from './aside-cuenta/aside-cuenta.component';
   imports: [
     HeaderComponent,
     FooterComponent,
-    AsideCuentaComponent
+    AsideCuentaComponent,
+    RouterModule
 
   ],
   templateUrl: './myaccount.component.html',
@@ -22,7 +23,7 @@ import { AsideCuentaComponent } from './aside-cuenta/aside-cuenta.component';
 })
 export class MyaccountComponent implements OnInit {
 
-  usuario: Usuario;
+  identity!: Usuario;
   imagenSerUrl = environment.mediaUrl;
 
   constructor(
@@ -33,13 +34,16 @@ export class MyaccountComponent implements OnInit {
     handler: HttpBackend
   ) {
     this.http = new HttpClient(handler);
-    this.usuario = usuarioService.usuario;
   }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
-    this.usuario;
-    console.log(this.usuario);
+
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
   }
 
 

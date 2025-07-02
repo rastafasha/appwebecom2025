@@ -20,7 +20,7 @@ export class AdminGuard implements CanActivate {
       if(this.usuarioService.role === 'USER') {
         return true;
       }else {
-        this.router.navigateByUrl('/app');
+        this.router.navigateByUrl('/my-account');
         return false;
       }
   }

@@ -3,10 +3,13 @@ import { Usuario } from '../../../models/usuario.model';
 import { UsuarioService } from '../../../services/usuario.service';
 import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-aside-cuenta',
-  imports:[ImagenPipe,
+  imports:[
+    CommonModule,
+    ImagenPipe,
     RouterModule
   ],
   templateUrl: './aside-cuenta.component.html',

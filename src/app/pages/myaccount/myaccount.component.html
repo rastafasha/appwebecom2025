@@ -9,19 +9,62 @@
     <section class="boxed-sm" style="height: calc(100vh - 100px); margin-top: 100px;">
         <div class="container">
             <div class="row blog-v reverse">
-                <div class="col-md-4">
-                    <app-aside-cuenta></app-aside-cuenta>
-
-                </div>
+               <div class="col-sm-4">
+                <!-- <app-aside-cuenta></app-aside-cuenta> -->
+               </div>
                 <div class="col-md-8">
-                    <h1>Hola!</h1>
-                    <!-- <h2>{{usuario.email}}</h2> -->
-                    <br>
-                    <h1>Gracias por Registrarte</h1>
+                    <h1>Hola, {{identity.first_name}}!</h1>
+                    <h2>Gracias por Registrarte</h2>
                     <p>Antes de continuar la compra, favor configurar datos de envio y registro </p>
 
 
 
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a [routerLink]="['/my-account/perfil', identity.uid]">
+                                <i class="fa fa-user"></i>
+                                <p>Mis Datos</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a [routerLink]="['/my-account/direcciones']">
+                                <i class="fa fa-map-marker"></i>
+                                <p>Direcciones</p>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a [routerLink]="['/my-account/ordenes']">
+                                <i class="fa fa-shopping-basket"></i>
+                                <p>Ordenes</p>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a [routerLink]="['/my-account/cart']">
+                                <i class="fa fa-shopping-cart"></i>
+                                <p>Mi Carrito</p>
+
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

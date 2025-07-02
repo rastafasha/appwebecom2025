@@ -79,7 +79,13 @@ export class RegisterComponent implements OnInit {
     this.usuarioService.crearUsuario(this.registerForm.value).subscribe(
       resp =>{
         console.log(resp);
-        this.router.navigateByUrl('/login');
+        // this.router.navigateByUrl('/login');
+        this.usuarioService.getLocalStorage();
+         if(localStorage.getItem('user')){
+          setTimeout(()=>{
+            this.router.navigateByUrl('/my-account');
+          },500);
+        }
       },(err) => {
         Swal.fire('Error', err.error.msg, 'error');
       }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment';
 import { Usuario } from '../../../models/usuario.model';
@@ -11,6 +11,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { AsideCuentaComponent } from '../aside-cuenta/aside-cuenta.component';
+import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 
 declare var jQuery:any;
 declare var $:any;
@@ -26,8 +27,10 @@ interface HtmlInputEvent extends Event{
     HeaderComponent,
     FooterComponent,
     AsideCuentaComponent,
-    RouterModule
-
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ImagenPipe
 
   ],
   templateUrl: './perfil.component.html',
@@ -141,22 +144,22 @@ export class PerfilComponent implements OnInit {
 
     })
   }
-
-
-  cambiarImagen(file: File){
-    this.imagenSubir = file;
-
-    if(!file){
-      return this.imgTemp = null;
-    }
+cambiarImagen(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    // your code here, using 'file'
+  }
+  
 
     const reader = new FileReader();
-    const url64 = reader.readAsDataURL(file);
+    // reader.readAsDataURL(file);
 
     reader.onloadend = () =>{
       this.imgTemp = reader.result;
     }
-  }
+}
+
 
   subirImagen(){
     this.fileUploadService
