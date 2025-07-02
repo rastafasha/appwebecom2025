@@ -20,7 +20,7 @@ export class SearchComponent {
     @Input() searchType: string = '';
     @Input() colleccionName: any[] = [];
 
-    @Input() colleccion!: 'productos' | 'usuarios' | 'cursos' |'blogs';
+    @Input() colleccion!: 'productos' | 'usuarios' | 'cursos' |'blogs' |'marcas';
     @Input() modelo!:any;
 
     resultados: any[] = [];

@@ -7,6 +7,7 @@ import { Marca } from '../../models/marca.model';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import { MarcaService } from '../../services/marca.service';
 import { LoadingComponent } from '../../shared/loading/loading.component';
+import { SearchComponent } from '../../shared/search/search.component';
 
 @Component({
   selector: 'app-marcas',
@@ -18,17 +19,19 @@ import { LoadingComponent } from '../../shared/loading/loading.component';
     FooterComponent,
     ImagenPipe,
     LoadingComponent,
-    NgIf
+    NgIf,
+    SearchComponent
   ],
   templateUrl: './marcas.component.html',
   styleUrl: './marcas.component.scss'
 })
 export class MarcasComponent {
 
-  public marcas!:Marca[] | null;
-  isLoading: boolean = true;
   @Input() limit!:number;
   @Input() display: string = 'block';
+  public marcas:Marca[]=[];
+  isLoading: boolean = true;
+  query:string ='';
 
   constructor(
     private marcaService: MarcaService
@@ -45,5 +48,15 @@ export class MarcasComponent {
         this.isLoading = false;
       }
     )
+  }
+  handleSearchEvent(event: any) {
+    if (event.marcas) {
+      this.marcas = event.marcas;
+    }
+  }
+
+  public PageSize(): void {
+    this.query = '';
+    this.loadMarcas();
   }
 }

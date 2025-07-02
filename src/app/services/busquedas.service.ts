@@ -48,7 +48,7 @@ export class BusquedasService {
     return resultados;
   }
 
-  buscar(tipo: 'usuarios'|'productos'|'cursos'|'blogs',
+  buscar(tipo: 'usuarios'|'productos'|'cursos'|'blogs'|'marcas',
         termino: string
         ){
     const url = `${base_url}/todo/coleccion/${tipo}/${termino}`;
