@@ -121,6 +121,13 @@ export class ProductoService {
       map((resp:{ok: boolean, productos: Producto}) => resp.productos)
       );
   }
+  find_by_storeId(tienda: any):Observable<any>{
+    const url = `${base_url}/productos/producto_by_tiendaId/${tienda}`;
+    return this.http.get<any>(url)
+    .pipe(
+      map((resp:{ok: boolean, productos: Producto}) => resp.productos)
+      );
+  }
 
   reducir_stock(id: any,cantidad: any):Observable<any>{
 

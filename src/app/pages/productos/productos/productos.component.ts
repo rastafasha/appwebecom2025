@@ -70,22 +70,21 @@ export class ProductosComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0,0);
 
-    this.marca = new Marca('', '', '', '');
-    this.marca.slug = this.activatedRoute.snapshot.paramMap.get('slug') || '';
-    console.log(this.marca.slug);
-    if( this.router.url === `/productos/marca/${this.marca.slug}`){
-      this.loadProductbybranding();
-    }
-
-    this.tienda = new Tienda('', '', '', '', false, ''); // Add default values for required parameters
-    this.tienda.slug = this.activatedRoute.snapshot.paramMap.get('slug') || '';
-    if( this.router.url === `/productos/tienda/${this.tienda.slug}`){
-      this.loadProductbyStore();
-    }
-    else{
-      this.loadProducts();
-    }
-
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.marca = new Marca('', '', '', '');
+      this.marca.slug = params.get('slug') || '';
+      if(this.marca.slug){
+        this.loadProductbybranding();
+      } else {
+        this.tienda = new Tienda('', '', '', '', false, '');
+        this.tienda._id = params.get('id') || '';
+        if(this.tienda._id){
+          this.loadProductbyStore();
+        } else {
+          this.loadProducts();
+        }
+      }
+    });
 
   }
   loadProducts(){
@@ -114,16 +113,20 @@ export class ProductosComponent implements OnInit {
   }
   loadProductbyStore(){
     this.isLoading = true;
-    this.tiendaService.find_by_store(this.tienda.slug).subscribe(
-      tienda => {
-        this.tienda = tienda;
-        console.log(this.tienda);
+    this.productoService.find_by_storeId(this.tienda._id).subscribe(
+      productos => {
+        this.productos = productos;
+        console.log(this.productos);
         this.isLoading = false;
+        if(this.productos.length === 0 ){
+          this.error = 'No hay productos para esta tienda';
+        }
       },
       error => {
         this.error = 'No hay productos para esta tienda';
         this.isLoading = false;
-      }
+      },
+      
     )
   }
 
