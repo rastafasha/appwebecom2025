@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-recovery',
@@ -23,7 +23,7 @@ export class RecoveryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  recovery(recoveryForm){
+  recovery(recoveryForm: { valid: any; }){
     if(recoveryForm.valid){
       this._userService.set_recovery_token(this.email).subscribe(
         response =>{
@@ -40,7 +40,7 @@ export class RecoveryComponent implements OnInit {
     }
   }
 
-  verify(verifyForm){
+  verify(verifyForm: { valid: any; }){
     if(verifyForm.valid){
       this._userService.verify_token(this.email, this.codigo).subscribe(
         response =>{
@@ -64,7 +64,7 @@ export class RecoveryComponent implements OnInit {
     }
   }
 
-  change_password(passwordForm){debugger
+  change_password(passwordForm: { valid: any; }){debugger
     if(passwordForm.valid){
       if(this.new_password.length <= 7){
         this.msm_error = 'Ingrese la contraseña debe tener mas de 7 caracteres.';

@@ -1,0 +1,72 @@
+<app-header></app-header>
+<section class="sub-header shop-layout-1">
+    <img class="rellax bg-overlay" src="images/sub-header/05.jpg" alt="">
+    <div class="overlay-call-to-action"></div>
+    <h3 class="heading-style-3">Mis Direcciones</h3>
+</section>
+<!-- Page Content-->
+<div class="container pb-5 mb-2 mb-md-3">
+    <div class="row">
+        <!-- Sidebar-->
+        <aside class="col-lg-4 pt-4 pt-lg-0">
+            <app-aside-cuenta></app-aside-cuenta>
+        </aside>
+        <!-- Content  -->
+        <section class="col-lg-8">
+            <!-- Toolbar-->
+            <div class="btn btn-danger">
+                <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+            </div>
+            <!-- Addresses form-->
+            <form class=" p-t-20 col-xs-12" [formGroup]="direccionForm" (ngSubmit)="onSubmit()">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Nombre y apellidos</label>
+                        <input class="form-control" type="text" required placeholder="Nombres y apellidos" formControlName="nombres_completos">
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>País</label>
+                        <!-- <input class="form-control" type="text" required placeholder="pais" formControlName="pais"> -->
+                        <select class="form-control" name="pais" required formControlName="pais">
+                      <option value="" selected disabled>SELECCIONAR</option>
+                      <option value="{{item.substr(0,20)}}" *ngFor="let item of data_paises">{{item.substr(0,20)}}</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <textarea class="form-control" placeholder="Ingrese la dirección" required formControlName="direccion"></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Referencia</label>
+                        <textarea class="form-control" placeholder="Referencia de su dirección" required formControlName="referencia"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <input class="form-control" type="text" id="address-fn" required placeholder="Ciudad" formControlName="ciudad">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>ZIP</label>
+                        <input class="form-control" type="text" id="address-fn" required placeholder="Código Postal" formControlName="zip">
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="direccionForm.invalid" class="btn btn-success waves-effect waves-light m-r-10 btn-block">
+     <i class="fa fa-save"></i> Guardar cambios
+    </button>
+            </form>
+        </section>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -15,17 +15,15 @@ Login register and recover password Page
 .login-box {
     width: 400px;
     margin: 0 auto;
-}
-
-.login-box .footer {
-    width: 100%;
-    left: 0px;
-    right: 0px;
-}
-
-.login-box .social {
-    display: block;
-    margin-bottom: 30px;
+    & .footer {
+        width: 100%;
+        left: 0px;
+        right: 0px;
+    }
+    & .social {
+        display: block;
+        margin-bottom: 30px;
+    }
 }
 
 #recoverform {
@@ -35,12 +33,11 @@ Login register and recover password Page
 .login-sidebar {
     padding: 0px;
     margin-top: 0px;
-}
-
-.login-sidebar .login-box {
-    right: 0px;
-    position: absolute;
-    height: 100%;
+    & .login-box {
+        right: 0px;
+        position: absolute;
+        height: 100%;
+    }
 }
 
 .login {
@@ -48,4 +45,6 @@ Login register and recover password Page
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 70px;
+    margin-bottom: 50px;
 }

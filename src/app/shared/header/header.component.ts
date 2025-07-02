@@ -43,6 +43,9 @@ export class HeaderComponent {
       menuLateral[i].classList.remove("active");
     }
   }
+  logout(){
+    this.usuarioService.logout();
+  }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });

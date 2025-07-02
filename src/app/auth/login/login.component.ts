@@ -1,16 +1,28 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
-declare const gapi: any;
+// declare const gapi: any;
 
 
 @Component({
   selector: 'app-login',
+  standalone:true,
+
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HeaderComponent,
+    FooterComponent
+],
   templateUrl: './login.component.html',
-  styleUrls: [ './login.component.css' ]
+  styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnInit {
 
@@ -35,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
 ngOnInit(){
-  this.renderButton();
+  // this.renderButton();
   this.usuarioService.getLocalStorage();
 }
 
@@ -43,12 +55,17 @@ ngOnInit(){
 
     this.usuarioService.login(this.loginForm.value).subscribe(
       resp =>{
-        if(this.loginForm.get('remember').value){
-          localStorage.setItem('email', this.loginForm.get('email').value);
+        if(this.loginForm.get('remember')?.value){
+          localStorage.setItem('email', this.loginForm.get('email')?.value);
         }else{
           localStorage.removeItem('email');
         }
-        this.router.navigateByUrl('/app/my-account');
+         if(localStorage.getItem('user')){
+          setTimeout(()=>{
+            this.router.navigateByUrl('/my-account');
+          },500);
+        }
+        // this.router.navigateByUrl('/my-account');
       },(err) => {
         Swal.fire('Error', err.error.msg, 'error');
       }
@@ -58,42 +75,42 @@ ngOnInit(){
 
 
 
-  renderButton() {
-    gapi.signin2.render('my-signin2', {
-      'scope': 'profile email',
-      'width': 240,
-      'height': 50,
-      'longtitle': true,
-      'theme': 'dark',
-    });
-    this.startApp();
-  }
+  // renderButton() {
+  //   gapi.signin2.render('my-signin2', {
+  //     'scope': 'profile email',
+  //     'width': 240,
+  //     'height': 50,
+  //     'longtitle': true,
+  //     'theme': 'dark',
+  //   });
+  //   this.startApp();
+  // }
 
   async startApp(){
     this.usuarioService.googleInit();
     this.auth2 = this.usuarioService.auth2;
 
-    this.attachSignin(document.getElementById('my-signin2'));
+    // this.attachSignin(document.getElementById('my-signin2'));
   }
 
-  attachSignin(element) {
-    this.auth2.attachClickHandler(element, {},
-        (googleUser) =>{
-          const id_token = googleUser.getAuthResponse().id_token;
+  // attachSignin(element) {
+  //   this.auth2.attachClickHandler(element, {},
+  //       (googleUser) =>{
+  //         const id_token = googleUser.getAuthResponse().id_token;
 
-          this.usuarioService.loginGoogle(id_token).subscribe(
-            resp=>{
+  //         this.usuarioService.loginGoogle(id_token).subscribe(
+  //           resp=>{
 
-              this.ngZone.run(()=>{
-                this.router.navigateByUrl('/app/my-account');
-              })
-            }
-          );
+  //             this.ngZone.run(()=>{
+  //               this.router.navigateByUrl('/app/my-account');
+  //             })
+  //           }
+  //         );
 
 
-        }, (error) =>{
-          alert(JSON.stringify(error, undefined, 2));
-        });
-  }
+  //       }, (error) =>{
+  //         alert(JSON.stringify(error, undefined, 2));
+  //       });
+  // }
 
 }

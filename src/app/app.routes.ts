@@ -7,6 +7,10 @@ import { BlogDetailComponent } from './pages/blog/blog-detail/blog-detail.compon
 import { MarcasComponent } from './pages/marcas/marcas.component';
 import { TiendasComponent } from './pages/tiendas/tiendas.component';
 import { GenericPageComponent } from './pages/generic-page/generic-page.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { MyaccountComponent } from './pages/myaccount/myaccount.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 export const routes: Routes = [
 
@@ -20,5 +24,9 @@ export const routes: Routes = [
     {path: 'blogs', component: BlogListComponent },
     {path: 'blog/:slug', component: BlogDetailComponent },
     {path: 'page/:slug', component: GenericPageComponent },
+    {path: 'login', component: LoginComponent },
+    {path: 'registro', component: RegisterComponent },
+    {path: 'my-account', component: MyaccountComponent },
+    {path: 'cart', component: CarritoComponent},
     {path: '**', component: HomeComponent }
 ];
