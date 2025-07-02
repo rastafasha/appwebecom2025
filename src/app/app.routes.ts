@@ -11,6 +11,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MyaccountComponent } from './pages/myaccount/myaccount.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
+import { RecoveryComponent } from './auth/recovery/recovery.component';
 
 export const routes: Routes = [
 
@@ -26,6 +27,7 @@ export const routes: Routes = [
     {path: 'page/:slug', component: GenericPageComponent },
     {path: 'login', component: LoginComponent },
     {path: 'registro', component: RegisterComponent },
+    {path: 'recovery-password', component: RecoveryComponent },
     {path: 'my-account', component: MyaccountComponent },
     {path: 'cart', component: CarritoComponent},
     {path: '**', component: HomeComponent }

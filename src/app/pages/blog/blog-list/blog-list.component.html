@@ -1,13 +1,15 @@
 <app-header></app-header>
+<app-loading *ngIf="isLoading"></app-loading>
 <div class="blog-layout-2" id="page">
-    <section class="sub-header shop-layout-1" style="height: 250px;">
-        <!-- <img class="rellax bg-overlay" [src]="marca.img | imagenPipe: 'marcas'" alt="{{marca.nombre}} thumbnail"> -->
+    <section class="sub-header shop-layout-1"  *ngIf="!isLoading" style="height: 120px; background-image: url('./assets/img/fondo-brow.jpeg'); background-repeat: no-repeat; background-size: cover; filter: blur(50px);">
+        
         <div class="overlay-call-to-action"></div>
         <h3 class="heading-style-3">News </h3>
         <h3 class="heading-style-3"></h3>
     </section>
 
-    <app-loading *ngIf="isLoading"></app-loading>
+
+    
     <section class="box-sm" *ngIf="!isLoading && error">
         <div class="container">
             <div class="row main" style="height: 50vh; display: flex; align-items: center; justify-content: center;">
@@ -16,7 +18,7 @@
         </div>
 
     </section>
-<app-search [query]="query"  [colleccion]="'blogs'" [colleccionName]="blogs" (searchEvent)="handleSearchEvent($event)" (resetEvent)="PageSize()"></app-search>
+<app-search *ngIf="!isLoading" [query]="query"  [colleccion]="'blogs'" [colleccionName]="blogs" (searchEvent)="handleSearchEvent($event)" (resetEvent)="PageSize()"></app-search>
 
     <section class="boxed-sm" *ngIf="!isLoading ">
          <div class="container">

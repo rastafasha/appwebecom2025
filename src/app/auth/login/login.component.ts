@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
@@ -19,7 +19,8 @@ import { FooterComponent } from '../../shared/footer/footer.component';
     ReactiveFormsModule,
     FormsModule,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RouterModule
 ],
   templateUrl: './login.component.html',
   styleUrls: [ './login.component.scss' ]

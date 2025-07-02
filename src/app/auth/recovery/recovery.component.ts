@@ -1,9 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-recovery',
+  imports:[
+    RouterModule,
+    FormsModule,
+    HeaderComponent,
+    FooterComponent,
+    NgIf
+  ],
   templateUrl: './recovery.component.html',
   styleUrls: ['./recovery.component.css']
 })
