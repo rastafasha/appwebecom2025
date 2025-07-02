@@ -173,7 +173,7 @@ ul.politicas li:nth-last-child() {
     .footer .creditsocial {
         display: flex;
         width: 100%;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
         align-items: baseline;
         margin: auto;

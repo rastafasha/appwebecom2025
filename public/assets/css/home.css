@@ -407,9 +407,30 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
     }
+
+    .prodductos-list .grillacard{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        left: 0%;
+        position: relative;
+    }
+    .prodductos-list .grillacard .cardimagen {
+        width: 173px;
+    }
+    .prodductos-list .grillacard .cardimagen .detalle {
+        display: flex;
+        flex-direction: column;
+    }
+    .prodductos-list .grillacard .cardimageninfo {
+        display: flex;
+        height: 44vh;
+    }
+
 }
 
-@media(max-width:420px) {
+@media(max-width:468px) {
     .grilla {
         display: flex;
         flex-direction: column;
@@ -499,5 +520,9 @@
         width: 152px;
         height: 157px;
         margin-bottom: 80px;
+    }
+
+    .inside .cuadrosinside .cardimagen {
+        width: 112px;
     }
 }

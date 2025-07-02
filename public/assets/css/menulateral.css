@@ -52,7 +52,7 @@
 .sidemenu {
    position: absolute;
     top: -40px;
-    right: -30px;
+    right: -130vw;
     width: 30%;
     z-index: 999;
     padding: 4rem;
@@ -72,11 +72,12 @@
     box-shadow: 0 8px 32px 0 rgba(11, 11, 11, 0.37);
     background: rgba(250, 250, 250, 0.611);
 }
-.header2 .sidemenu.active,
+
 .sidemenu.active {
     transform: translate3d(0, 0, 0);
     transition: 0.3s all;
     width: 350px;
+    right: -10vw;
     
 }
 
@@ -170,7 +171,10 @@
     .sidemenu {
         width: 40%;
     }
-}
+    
+    }
+
+   
 
 @media(max-width:420px) {
     .menu {

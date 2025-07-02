@@ -1,32 +1,32 @@
-.topproperties{
-    & .grillacard{
+.topproperties {
+    & .grillacard {
         height: 50vh;
         overflow: hidden;
         overflow-x: scroll;
     }
 }
 
-.imagencard{
+.imagencard {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.imagen-principal{
+.imagen-principal {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.galeria{
+.galeria {
     padding: 15px
 }
 
-.lista-imagenes img{
+.lista-imagenes img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    margin-right:10px ;
+    margin-right: 10px;
     display: block;
 }
 
@@ -38,7 +38,16 @@
     margin-top: 10px;
 }
 
-.productos {
-}
- 
+.productos {}
 
+@media (max-width:768px) {
+    .topproperties {
+        & .grillacard {
+            height: 30vh;
+
+            & .cardimageninfo {
+                height: 30vh;
+            }
+        }
+    }
+}
