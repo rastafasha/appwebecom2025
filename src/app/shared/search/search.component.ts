@@ -18,13 +18,14 @@ export class SearchComponent {
     @Input() query: string = '';
     @Input() placeholder: string = 'Buscar...';
     @Input() searchType: string = '';
+    @Input() colleccionName: any[] = [];
 
     @Input() colleccion!: 'productos' | 'usuarios' | 'cursos' |'blogs';
     @Input() modelo!:any;
 
     resultados: any[] = [];
 
-    @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
+    @Output() searchEvent: EventEmitter<any> = new EventEmitter<any>();
     @Output() resetEvent: EventEmitter<void> = new EventEmitter<void>();
 
     isLoading:boolean =false;
@@ -37,23 +38,29 @@ export class SearchComponent {
     // }
 
       search(query:string){
-        this.searchEvent.emit(query);
         this.isLoading = true;
-            this.busquedaService.buscar(this.colleccion, query)
-            .subscribe( (resultados: any) => {
-              if (Array.isArray(resultados)) {
-                  this.resultados = resultados as any[];
-                if (resultados.length === 0 || (resultados[0] && 'titulo' in resultados[0])) {
-                  this.resultados = resultados as any[];
-                } else {
-                  this.resultados = [];
-                }
+        this.busquedaService.buscar(this.colleccion, query)
+          .subscribe( (resultados: any) => {
+            if (Array.isArray(resultados)) {
+              this.resultados = resultados as any[];
+              if (resultados.length === 0 || (resultados[0] && 'titulo' in resultados[0])) {
+                this.resultados = resultados as any[];
+                this.colleccionName = this.resultados;
+                // Emit search results with dynamic key based on colleccion
+                const resultObject: any = {};
+                resultObject[this.colleccion] = this.resultados;
+                this.searchEvent.emit(resultObject);
               } else {
                 this.resultados = [];
+                this.searchEvent.emit({ [this.colleccion]: [] });
               }
-              this.isLoading = false;
-            })
-          }
+            } else {
+              this.resultados = [];
+              this.searchEvent.emit({ [this.colleccion]: [] });
+            }
+            this.isLoading = false;
+          })
+      }
 
     reset() {
         this.query = '';

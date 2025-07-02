@@ -52,11 +52,14 @@ export class BlogListComponent implements OnInit {
   }
 
   
-public PageSize(): void {
+  public PageSize(): void {
     this.query = '';
     this.ngOnInit();
   }
-  
 
-
+  handleSearchEvent(event: any) {
+    if (event.blogs) {
+      this.blogs = event.blogs;
+    }
+  }
 }

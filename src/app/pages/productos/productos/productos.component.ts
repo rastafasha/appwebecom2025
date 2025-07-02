@@ -167,24 +167,10 @@ export class ProductosComponent implements OnInit {
     this.ngOnInit();
   }
 
- 
-  //  search(query:string){
-    
-  //   this.isLoading = true;
-  //       this.busquedaService.buscar('productos', query)
-  //       .subscribe( (resultados: any) => {
-  //         if (Array.isArray(resultados)) {
-  //           // Filter only Producto[] type arrays
-  //           if (resultados.length === 0 || (resultados[0] && 'titulo' in resultados[0])) {
-  //             this.productos = resultados as Producto[];
-  //           } else {
-  //             this.productos = [];
-  //           }
-  //         } else {
-  //           this.productos = [];
-  //         }
-  //         this.isLoading = false;
-  //       })
-  //     }
+  handleSearchEvent(event: any) {
+    if (event.productos) {
+      this.productos = event.productos;
+    }
+  }
 
 }

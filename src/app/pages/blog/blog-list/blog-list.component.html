@@ -16,7 +16,7 @@
         </div>
 
     </section>
-    <app-search [query]="query"  [colleccion]="'blogs'" (searchEvent)="($event)" (resetEvent)="PageSize()"></app-search>
+<app-search [query]="query"  [colleccion]="'blogs'" [colleccionName]="blogs" (searchEvent)="handleSearchEvent($event)" (resetEvent)="PageSize()"></app-search>
 
     <section class="boxed-sm" *ngIf="!isLoading ">
          <div class="container">
