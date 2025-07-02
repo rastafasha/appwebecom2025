@@ -39,6 +39,24 @@ export class BlogService {
       )
 
   }
+  getBlogsActivos(){
+
+    const url = `${base_url}/blogs/activos`;
+    return this.http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean, blogs: Blog[]}) => resp.blogs)
+      )
+
+  }
+  getBlogsActivosDestacados(){
+
+    const url = `${base_url}/blogs/destacados`;
+    return this.http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean, blogs: Blog[]}) => resp.blogs)
+      )
+
+  }
 
 
   getBlogById(_id: string){

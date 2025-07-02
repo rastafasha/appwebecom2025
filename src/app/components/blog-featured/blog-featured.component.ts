@@ -33,7 +33,7 @@ export class BlogFeaturedComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.blogService.getBlogs().subscribe(
+    this.blogService.getBlogsActivosDestacados().subscribe(
       blogs => {
         this.blogs = blogs;
         this.isLoading = false;

@@ -40,7 +40,7 @@ export class BlogListComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0,0);
     this.isLoading = true;
-    this.blogService.getBlogs().subscribe(
+    this.blogService.getBlogsActivos().subscribe(
       blogs => {
         this.blogs = blogs;
         this.isLoading = false;
