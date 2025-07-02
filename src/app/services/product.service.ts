@@ -172,6 +172,10 @@ export class ProductoService {
 
 
 
+  search(query=''){
+    return this.http.get(`${base_url}/productos/search`, {params: {buscar: query}})
+
+  }
 
 
 

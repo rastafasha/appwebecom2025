@@ -53,8 +53,10 @@
                                         <li><a routerLink="/productos">Productos</a></li>
                                         <li><a routerLink="/tiendas">Tiendas</a></li>
                                         <!-- <li><a href="homeindividual.html">Promociones</a></li> -->
-                                        <li><a href="r">Mi perfil</a></li>
-                                        <li><a href="r">Salir</a></li>
+                                        <li *ngIf="identity"><a href="r">Mi perfil</a></li>
+                                        <li *ngIf="identity"><a href="r">Salir</a></li>
+                                        <li *ngIf="!identity"><a href="r">Login</a></li>
+                                        <li *ngIf="!identity"><a href="r">Registro</a></li>
                                         <!-- <li><a href="">Contacto</a></li> -->
                                     </ul>
                                 </nav>

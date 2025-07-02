@@ -17,6 +17,9 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { Location } from '@angular/common';
 import { Tienda } from '../../../models/tienda.model';
 import { TiendaService } from '../../../services/tienda.service';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BusquedasService } from '../../../services/busquedas.service';
+import { SearchComponent } from '../../../shared/search/search.component';
 
 @Component({
   selector: 'app-productos',
@@ -27,6 +30,9 @@ import { TiendaService } from '../../../services/tienda.service';
     ImagenPipe,
     FooterComponent,
     LoadingComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    SearchComponent
 
   ],
   templateUrl: './productos.component.html',
@@ -52,11 +58,18 @@ export class ProductosComponent implements OnInit {
   imagenSerUrl = environment.mediaUrl;
   marca!: Marca ;
   tienda!: Tienda ;
+  public productosTemp: Producto[] = [];
+
+  query:string ='';
+  searchForm!:FormGroup;
+  currentPage = 1;
+  collecion='productos';
 
   constructor(
     public productoService: ProductoService,
     public usuarioService: UsuarioService,
     public tiendaService: TiendaService,
+    public busquedaService: BusquedasService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
@@ -148,5 +161,30 @@ export class ProductosComponent implements OnInit {
   goBack() {
         this.location.back(); // <-- go back to previous location on cancel
       }
+
+  public PageSize(): void {
+    this.query = '';
+    this.ngOnInit();
+  }
+
+ 
+  //  search(query:string){
+    
+  //   this.isLoading = true;
+  //       this.busquedaService.buscar('productos', query)
+  //       .subscribe( (resultados: any) => {
+  //         if (Array.isArray(resultados)) {
+  //           // Filter only Producto[] type arrays
+  //           if (resultados.length === 0 || (resultados[0] && 'titulo' in resultados[0])) {
+  //             this.productos = resultados as Producto[];
+  //           } else {
+  //             this.productos = [];
+  //           }
+  //         } else {
+  //           this.productos = [];
+  //         }
+  //         this.isLoading = false;
+  //       })
+  //     }
 
 }

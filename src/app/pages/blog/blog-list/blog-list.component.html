@@ -16,6 +16,8 @@
         </div>
 
     </section>
+    <app-search [query]="query"  [colleccion]="'blogs'" (searchEvent)="($event)" (resetEvent)="PageSize()"></app-search>
+
     <section class="boxed-sm" *ngIf="!isLoading ">
          <div class="container">
         <div class="grilla">

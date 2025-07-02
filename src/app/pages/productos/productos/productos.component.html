@@ -25,6 +25,8 @@
 
     </section>
 
+    <app-search [query]="query" [modelo]="producto" [colleccion]="'productos'" (searchEvent)="($event)" (resetEvent)="PageSize()"></app-search>
+
     <!-- <app-marcas [limit]="limit" [display]="display"></app-marcas> -->
     <div class="container prodductos-list">
         <div class="grillacard" *ngIf="!isLoading">

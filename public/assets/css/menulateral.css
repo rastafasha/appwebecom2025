@@ -53,10 +53,10 @@
    position: absolute;
     top: -40px;
     right: -130vw;
-    width: 30%;
+    width: 40%;
     z-index: 999;
     padding: 4rem;
-    background: rgba(250, 250, 250, 0.812);
+    background: rgba(250, 250, 250, 0.9);
     backdrop-filter: blur(30px);
     box-shadow: 0 8px 32px 0 rgba(11, 11, 11, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -65,19 +65,20 @@
     transform: translate3d(100%, 0, 0);
     transition: transform 0.5 ease-in-out;
     overflow: hidden;
-    transition: 0.3s all;
+    transition: 0.5s all;
 }
 
-.header2 .sidemenu {
+/* .header2 .sidemenu {
     box-shadow: 0 8px 32px 0 rgba(11, 11, 11, 0.37);
-    background: rgba(250, 250, 250, 0.611);
-}
+    background: rgba(250, 250, 250, 0.812);
+    backdrop-filter: blur(30px);
+} */
 
 .sidemenu.active {
     transform: translate3d(0, 0, 0);
-    transition: 0.3s all;
+    transition: 0.5s all;
     width: 350px;
-    right: -10vw;
+    right: -2vw;
     
 }
 
@@ -172,7 +173,7 @@
         width: 40%;
     }
     
-    }
+}
 
    
 

@@ -8,6 +8,7 @@ import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { SearchComponent } from '../../../shared/search/search.component';
 
 
 
@@ -19,7 +20,8 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
     RouterModule,
     ImagenPipe,
     FooterComponent,
-    LoadingComponent
+    LoadingComponent,
+    SearchComponent,
   ],
   templateUrl: './blog-list.component.html',
   styleUrls: ['./blog-list.component.scss']
@@ -32,6 +34,7 @@ export class BlogListComponent implements OnInit {
   p: number = 1;
   count: number = 8;
   isLoading: boolean = false;
+  query:string ='';
 
   constructor(
     private blogService: BlogService
@@ -47,6 +50,13 @@ export class BlogListComponent implements OnInit {
       }
     )
   }
+
+  
+public PageSize(): void {
+    this.query = '';
+    this.ngOnInit();
+  }
+  
 
 
 }

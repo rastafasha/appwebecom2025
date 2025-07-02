@@ -2,6 +2,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PageService } from '../../services/page.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-header',
@@ -16,9 +17,12 @@ import { PageService } from '../../services/page.service';
 export class HeaderComponent {
 
   pages:any;
+  public identity;
 
-  constructor(private pageService: PageService,) {
-    
+  constructor(private pageService: PageService,
+    public usuarioService: UsuarioService,
+  ) {
+    this.identity = usuarioService.usuario;
   }
 
   ngOnInit(){

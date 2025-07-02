@@ -15,7 +15,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { UsuarioService } from '../../../services/usuario.service';
 import { BlogFeaturedComponent } from "../../../components/blog-featured/blog-featured.component";
-
+import { SharedbuttonComponent } from '../../../shared/sharedbutton/sharedbutton.component';
 
 @Component({
   selector: 'app-blog-detail',
@@ -26,13 +26,15 @@ import { BlogFeaturedComponent } from "../../../components/blog-featured/blog-fe
     ImagenPipe,
     FooterComponent,
     LoadingComponent,
-],
+    SharedbuttonComponent
+  ],
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss']
 })
 export class BlogDetailComponent implements OnInit {
 
   imagenSerUrl = environment.mediaUrl;
+  siteOrigin: string = window.location.origin;
 
   blog!: Blog;
   blogrecientes!: Blog[];
@@ -90,28 +92,4 @@ export class BlogDetailComponent implements OnInit {
       }
     )
   }
-
-
-  addToFavorites(producto:any){
- 
-// this.productoSeleccionado = producto;
-//   const data = {
-//     producto: this.productoSeleccionado._id,
-//     usuario: this.identity.uid,
-//   }
-  
-//   this.favoritoService.registro(data ).subscribe((res:any)=>{
-//     this.favoriteItem = res;
-//     console.log('sending...', this.productoSeleccionado.titulo)
-//     this.notificacion();
-//     this.msm_success_fav = true;
-//       setTimeout(()=>{
-//         this.close_alert()
-//       },2500);
-    
-//   });
-}
-
-
-
 }

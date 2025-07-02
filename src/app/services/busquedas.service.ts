@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.model';
 import { Producto } from '../models/producto.model';
 import { Curso } from '../models/curso.model';
+import { Blog } from '../models/blog';
 
 const base_url = environment.baseUrl;
 
@@ -43,8 +44,11 @@ export class BusquedasService {
   private trasnformarProductos(resultados: any[]): Producto[]{
     return resultados;
   }
+  private trasnformarBlogs(resultados: any[]): Blog[]{
+    return resultados;
+  }
 
-  buscar(tipo: 'usuarios'|'productos'|'cursos',
+  buscar(tipo: 'usuarios'|'productos'|'cursos'|'blogs',
         termino: string
         ){
     const url = `${base_url}/todo/coleccion/${tipo}/${termino}`;
@@ -60,6 +64,8 @@ export class BusquedasService {
 
                 case 'productos':
                 return this.trasnformarProductos(resp.resultados)
+                case 'blogs':
+                return this.trasnformarBlogs(resp.resultados)
               default:
                 return[];
           }

@@ -16,9 +16,11 @@
                     <img class="border-radius shadow"
                         style="width: 100%; height: 70vh; aspect-ratio:1/1; object-fit: cover;"
                         [src]="blog.img | imagenPipe: 'blogs'" alt="{{blog.titulo}} thumbnail">
+                    <app-sharedbutton [url]="siteOrigin + '/blog/' + blog.slug" [title]="blog.titulo"></app-sharedbutton>
                     <h1>{{ blog.titulo }}</h1>
                     <p class="text-muted">{{ blog.createdAt | date:'mediumDate' }}</p>
                     <div class="blog-content" [innerHTML]="blog.descripcion"></div>
+                    <app-sharedbutton [url]="siteOrigin + '/blog/' + blog.slug" [title]="blog.titulo"></app-sharedbutton>
                 </div>
                 <div class="col-md-4">
                 </div>
