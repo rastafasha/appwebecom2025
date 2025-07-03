@@ -14,7 +14,6 @@ import { AsideCuentaComponent } from './aside-cuenta/aside-cuenta.component';
   imports: [
     HeaderComponent,
     FooterComponent,
-    AsideCuentaComponent,
     RouterModule
 
   ],

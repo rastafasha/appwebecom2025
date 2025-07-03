@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { AsideCuentaComponent } from '../../aside-cuenta/aside-cuenta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImagenPipe } from '../../../../pipes/imagen-pipe.pipe';
-
 declare var jQuery:any;
 declare var $:any;
 
@@ -26,7 +25,8 @@ declare var $:any;
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    ImagenPipe
+    ImagenPipe,
+
   ],
   templateUrl: './detalle-orden.component.html',
   styleUrls: ['./detalle-orden.component.css']

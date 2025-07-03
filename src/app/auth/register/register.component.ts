@@ -5,13 +5,15 @@ import Swal from 'sweetalert2';
 import { Tienda } from '../../models/tienda.model';
 import { TiendaService } from '../../services/tienda.service';
 import { UsuarioService } from '../../services/usuario.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   imports:[
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgIf
   ],
   templateUrl: './register.component.html',
   styleUrls: [ './register.component.scss' ]
