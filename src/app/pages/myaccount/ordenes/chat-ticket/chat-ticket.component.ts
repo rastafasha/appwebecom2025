@@ -1,16 +1,34 @@
 import { Component, OnInit, ViewChild, ElementRef, DoCheck } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import io from "socket.io-client";
 import { environment } from '../../../../../environments/environment';
 import { TicketService } from '../../../../services/ticket.service';
 import { UsuarioService } from '../../../../services/usuario.service';
+import { HeaderComponent } from '../../../../shared/header/header.component';
+import { FooterComponent } from '../../../../shared/footer/footer.component';
+import { AsideCuentaComponent } from '../../aside-cuenta/aside-cuenta.component';
+import { CommonModule } from '@angular/common';
+import { ImagenPipe } from '../../../../pipes/imagen-pipe.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DateAgoPipe } from '../../../../pipes/date-ago.pipe';
 
 declare var jQuery:any;
 declare var $:any;
 
 @Component({
   selector: 'app-chat-ticket',
+  imports:[
+    CommonModule,
+    RouterModule,
+    HeaderComponent,
+    RouterModule,
+    FooterComponent,
+    AsideCuentaComponent,
+    ReactiveFormsModule,
+    FormsModule,
+    DateAgoPipe
+  ],
   templateUrl: './chat-ticket.component.html',
   styleUrls: ['./chat-ticket.component.css']
 })

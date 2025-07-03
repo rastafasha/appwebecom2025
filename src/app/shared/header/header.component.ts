@@ -4,13 +4,15 @@ import { RouterModule } from '@angular/router';
 import { PageService } from '../../services/page.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario.model';
+import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 
 @Component({
   selector: 'app-header',
   imports: [
     CommonModule,
     RouterModule,
-    NgFor
+    NgFor,
+    ImagenPipe
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

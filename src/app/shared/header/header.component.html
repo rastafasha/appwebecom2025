@@ -45,7 +45,8 @@
                                 <span></span>
                                 <span></span>
                             </a>
-                            <img src="./assets/svg/user-login.svg" alt="Mall Connect">
+                            <img *ngIf="!identity" src="./assets/svg/user-login.svg" alt="Mall Connect">
+                            <img *ngIf="identity && identity.img" [src]="(identity.img || '') | imagenPipe: 'usuarios'" alt="Mall Connect">
                             <div class="sidemenu">
                                 <a href="javascript:void(0)" (click)="closeMenu()" class="close"></a>
                                 <nav>
