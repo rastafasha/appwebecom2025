@@ -48,13 +48,16 @@ export class HeaderComponent {
 
   loadCartItemCount() {
     if(this.identity && this.identity.uid){
-      this.carritoService.preview_carrito(this.identity.uid).subscribe(cart => {
-        if(cart && cart.items){
-          this.cartItemCount = cart.items.reduce((acc: number, item: any) => acc + item.quantity, 0);
-          console.log(this.cartItemCount);
-        } else {
-          this.cartItemCount = 0;
-        }
+      this.carritoService.preview_carrito(this.identity.uid).subscribe((res:any) => {
+        
+        this.cartItemCount = res.length;
+
+        // if(res && res.items){
+        //   this.cartItemCount = res.items.reduce((acc: number, item: any) => acc + item.quantity, 0);
+        //   // console.log(this.cartItemCount);
+        // } else {
+        //   this.cartItemCount = 0;
+        // }
       }, error => {
         console.error('Error loading cart:', error);
         this.cartItemCount = 0;
@@ -62,10 +65,19 @@ export class HeaderComponent {
     }
   }
 
+  
+
   getCart(){
     this.storageService.getCart();
   }
 
+  get iconBagColorClass(): string {
+    const colors = ['icon-bag-red', 'icon-bag-black', 'icon-bag-yellow'];
+    if(this.cartItemCount > 0){
+      return colors[this.cartItemCount % colors.length];
+    }
+    return '';
+  }
 
  openMenu() {
     const menuLateral = document.getElementsByClassName("sidemenu");

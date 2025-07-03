@@ -64,7 +64,7 @@ interface CuponResponse {
     FormsModule
   ],
   templateUrl: './carrito.component.html',
-  styleUrls: ['./carrito.component.css']
+  styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent implements OnInit {
 
@@ -438,7 +438,7 @@ export class CarritoComponent implements OnInit {
 
   listar_carrito(){
     this._carritoService.preview_carrito(this.identity.uid ?? '').subscribe(
-      response =>{
+      (response:any) =>{
         this.carrito = response;
         this.subtotal = 0;
         this.carrito.forEach(element => {
@@ -450,7 +450,7 @@ export class CarritoComponent implements OnInit {
             color: element.color,
             selector : element.selector
           })
-          console.log(this.carrito);
+          // console.log(this.carrito);
 
         });
         this.subtotal = Math.round(this.subtotal + parseInt(this.precio_envio));

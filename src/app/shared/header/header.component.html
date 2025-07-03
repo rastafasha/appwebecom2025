@@ -30,9 +30,9 @@
                             </li>
                             <li>
                                 <a routerLink="/cart">
-                                    
-                                    <img class="globowhite" style=" cursor: pointer;" src="./assets/svg/icon-bag.png" alt="Mall Connect">
-                                    <img class="globoblack"  src="./assets/svg/icon-bag.png" alt="Mall Connect">
+                                    <span class="cart-count-badge" *ngIf="cartItemCount > 0 && cartItemCount <= 10">{{cartItemCount}}</span>
+                                    <span class="cart-count-badge" *ngIf="cartItemCount > 10"> <i class="fa fa-info"></i></span>
+                                    <img [class]="iconBagColorClass" style="cursor: pointer;" src="./assets/svg/icon-bag.png" alt="Mall Connect">
                                 </a>
                             </li>
                             <li>
