@@ -142,7 +142,12 @@ export class CarritoComponent implements OnInit {
     private _trasferencias: TransferenciasService
 
   ) {
-    this.identity = _userService.usuario;
+    // this.identity = _userService.usuario;
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
     this.url = environment.baseUrl;
   }
 

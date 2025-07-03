@@ -16,6 +16,7 @@ import { CartCheckoutComponent } from './pages/myaccount/cart-checkout/cart-chec
 import { Direccion } from './models/direccion.model';
 import { DireccionesComponent } from './pages/myaccount/direcciones/direcciones.component';
 import { PerfilComponent } from './pages/myaccount/perfil/perfil.component';
+import { DireccionEditComponent } from './pages/myaccount/direccion-edit/direccion-edit.component';
 
 export const routes: Routes = [
 
@@ -35,6 +36,7 @@ export const routes: Routes = [
     {path: 'my-account', component: MyaccountComponent },
     {path: 'my-account/perfil/:id', component: PerfilComponent },
     {path: 'my-account/direcciones', component: DireccionesComponent },
+    {path: 'my-account/direccion/crear', component: DireccionEditComponent },
     {path: 'my-account/cart', component: CartCheckoutComponent },
     {path: 'cart', component: CarritoComponent},
     {path: '**', component: HomeComponent }

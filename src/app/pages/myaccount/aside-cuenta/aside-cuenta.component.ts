@@ -18,12 +18,16 @@ import { CommonModule } from '@angular/common';
 export class AsideCuentaComponent implements OnInit {
 
   public url!:string;
-  public usuario: Usuario;
+  public identity!: Usuario;
 
   constructor(
     private usuarioService: UsuarioService,
   ) {
-    this.usuario = usuarioService.usuario;
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
    }
 
   ngOnInit(): void {

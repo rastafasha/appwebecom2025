@@ -16,7 +16,8 @@
             <!-- Addresses list-->
 
             <hr class="pb-4">
-            <div *ngFor="let item_venta of ventas |  paginate: { itemsPerPage: count, currentPage: p }">
+            <!-- <div *ngFor="let item_venta of ventas |  paginate: { itemsPerPage: count, currentPage: p }"> -->
+            <div *ngFor="let item_venta of ventas ">
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="product-title font-size-base" style="margin-bottom: 0px;"><a>Compra: N°-{{item_venta._id.toUpperCase()}}</a></h3>
@@ -39,8 +40,8 @@
                                     <span *ngIf="!item_venta.tracking_number" class="badge badge-dark">No disponible</span>
                                 </div>
                                 <div class="font-size-lg text-accent pt-2"><span class="text-muted mr-2">Total pagado:</span>${{item_venta.total_pagado}}</div>
-
-                                <div *ngIf="item_venta.estado != 'Cancelado' || item_venta.estado != 'Reembolsado'">
+                                
+                                <div *ngIf="item_venta.estado !== 'Cancelado' && item_venta.estado !== 'Reembolsado'">
                                     <div class="btn-group btn-group mt-4" role="group" aria-label="Small group">
                                         <div *ngIf="item_venta.estado == 'Enviado'">
                                             <div *ngIf="item_venta.tracking_number">
@@ -71,7 +72,7 @@
             <!-- paginador -->
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
                 </div>
             </div>

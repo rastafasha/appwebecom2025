@@ -48,7 +48,7 @@ export class PerfilComponent implements OnInit {
   public msm_success = false;
   public pass_error = false;
 
-  public usuario: Usuario;
+  public identity!: Usuario;
 
   public perfilForm!: FormGroup;
   public imagenSubir!: File;
@@ -66,7 +66,12 @@ export class PerfilComponent implements OnInit {
     private http: HttpClient,
     private fileUploadService: FileUploadService
   ) {
-    this.usuario = usuarioService.usuario;
+    // this.usuario = usuarioService.usuario;
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
     this.url = environment.baseUrl;
 
   }
@@ -75,16 +80,16 @@ export class PerfilComponent implements OnInit {
     window.scrollTo(0,0);
 
     this.perfilForm = this.fb.group({
-      email: [ this.usuario.email, Validators.required ],
-      first_name: [ this.usuario.first_name, Validators.required ],
-      last_name: [ this.usuario.last_name, Validators.required ],
-      numdoc: [ this.usuario.numdoc ],
-      telefono: [ this.usuario.telefono ],
-      pais: [ this.usuario.pais],
-      google: [ this.usuario.google],
-      role: [ this.usuario.role],
+      email: [ this.identity.email, Validators.required ],
+      first_name: [ this.identity.first_name, Validators.required ],
+      last_name: [ this.identity.last_name, Validators.required ],
+      numdoc: [ this.identity.numdoc ],
+      telefono: [ this.identity.telefono ],
+      pais: [ this.identity.pais],
+      google: [ this.identity.google],
+      role: [ this.identity.role],
     });
-    if(this.usuario){
+    if(this.identity){
       this.http.get('https://restcountries.com/v2/all').subscribe(
         data => {
 
@@ -133,11 +138,11 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.actualizarPerfil(this.perfilForm.value)
     .subscribe(resp => {
       const {first_name, last_name, telefono, pais,  numdoc, email} = this.perfilForm.value;
-      this.usuario.first_name = first_name;
-      this.usuario.last_name = last_name;
-      this.usuario.telefono = telefono;
-      this.usuario.numdoc = numdoc;
-      this.usuario.pais = pais;
+      this.identity.first_name = first_name;
+      this.identity.last_name = last_name;
+      this.identity.telefono = telefono;
+      this.identity.numdoc = numdoc;
+      this.identity.pais = pais;
       Swal.fire('Guardado', 'Los cambios fueron actualizados', 'success');
     }, (err)=>{
       Swal.fire('Error', err.error.msg, 'error');
@@ -163,8 +168,8 @@ cambiarImagen(event: Event) {
 
   subirImagen(){
     this.fileUploadService
-    .actualizarFoto(this.imagenSubir, 'usuarios', this.usuario.uid || '')
-    .then(img => { this.usuario.img = img;
+    .actualizarFoto(this.imagenSubir, 'usuarios', this.identity.uid || '')
+    .then(img => { this.identity.img = img;
       Swal.fire('Guardado', 'La imagen fue actualizada', 'success');
     }).catch(err =>{
       Swal.fire('Error', 'No se pudo subir la imagen', 'error');

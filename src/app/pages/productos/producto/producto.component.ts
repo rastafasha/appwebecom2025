@@ -28,6 +28,7 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { NewproductsComponent } from '../../../components/newproducts/newproducts.component';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { Marca } from '../../../models/marca.model';
+import { Usuario } from '../../../models/usuario.model';
 
 declare var jQuery:any;
 declare var $:any;
@@ -61,6 +62,7 @@ export class ProductoComponent implements OnInit {
 
   animationClass: string = '';
 
+  // Remove direct io usage and use WebSocketService instead
   // public socket = io(environment.soketServer);
 
   
@@ -77,7 +79,7 @@ export class ProductoComponent implements OnInit {
   public selector_to_cart = ' ';
   public err_stock ='';
   public selector_error = false;
-  public identity;
+  public identity!:Usuario;
   public isLoading:boolean = false;
 
   public comentarios :any=[];
@@ -145,11 +147,15 @@ export class ProductoComponent implements OnInit {
     private webSocketService: WebSocketService,
   ) {
     this.url = environment.baseUrl;
-    this.identity = usuarioService.usuario;
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
   }
 
 
-  click_img(img: any,id: string){debugger
+  click_img(img: any,id: string){
 
     $('.cz-thumblist-item.active').removeClass('active');
     $('#'+id).addClass('active');
@@ -302,10 +308,12 @@ export class ProductoComponent implements OnInit {
     this.activatedRoute.params.subscribe( ({slug}) => this.obtenerProducto(slug));
     this.obtenerCategorias();
 
-    // this.socket.on('new-stock', function (data: any) {
-    //   this.init_data();
+    this.webSocketService.on('new-stock', function (this: ProductoComponent, data: any) {
+      if (data && data._id) {
+        this.init_data(data._id);
+      }
 
-    // }.bind(this));
+    }.bind(this));
 
     // new Drift(document.querySelector('#active_img_thumb'), {
 		// 	paneContainer: document.querySelector('.cz-image-zoom-pane'),
@@ -335,10 +343,10 @@ export class ProductoComponent implements OnInit {
   }
 
   listar_newest(){
-    this.productoService.listar_newest().subscribe(
+    this.productoService.getProductosDestacados().subscribe(
       response =>{
-        this.news_productos = response.data;
-        console.log(this.news_productos);
+        this.news_productos = response;
+        // console.log(this.news_productos);
       },
       error=>{
 
@@ -413,7 +421,7 @@ export class ProductoComponent implements OnInit {
       }
     )
     setTimeout(() => {  
-      // this.init_data(this.producto._id);
+      this.init_data(this.producto._id);
       this.getSelectorProducto(this.producto._id);
       this.getColorProducto(this.producto._id);
       this.getGalleryProducto(this.producto._id);
@@ -491,7 +499,26 @@ export class ProductoComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
 }
 
+onPress(carritoForm:any){debugger
+
+    const cartButtons = document.getElementsByClassName("cart-button");
+    Array.from(cartButtons).forEach(button => {
+      button.addEventListener('click', cartClick);
+    });
+
+    function cartClick(this: any) {
+      let button: HTMLButtonElement = this as HTMLButtonElement;
+      button.classList.add('clicked');
+    }
+    this.add_to_cart(carritoForm)
+  }
+
 add_to_cart(carritoForm: any){
+  if(!this.identity || !this.identity.uid){
+    this.msm_error = true;
+    this.err_stock = 'Debe iniciar sesión para agregar al carrito.';
+    return;
+  }
   if(this.cantidad_to_cart > this.producto.stock){
     this.err_stock = 'La cantidad no debe superar al stock';
   }
@@ -512,7 +539,7 @@ add_to_cart(carritoForm: any){
       this.selector_error = false;
       this._carritoService.registro(data).subscribe(
         response =>{
-          // this.socket.emit('save-carrito', {new:true});
+          this.webSocketService.emit('save-carrito', {new:true});
 
           // $('#dark-toast').removeClass('hide');
           // $('#dark-toast').addClass('show');
@@ -663,18 +690,7 @@ close_alert(){
 }
 
 
-  onPress(){
-
-    const cartButtons = document.getElementsByClassName("cart-button");
-    Array.from(cartButtons).forEach(button => {
-      button.addEventListener('click', cartClick);
-    });
-
-    function cartClick(this: any) {
-      let button: HTMLButtonElement = this as HTMLButtonElement;
-      button.classList.add('clicked');
-    }
-  }
+  
 
    openGaleryModal(product: Producto): void {
     this.selectedProduct = product;

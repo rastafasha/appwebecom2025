@@ -22,7 +22,7 @@
             <form [formGroup]="perfilForm" (ngSubmit)="actualizarPerfil()" autocomplete="off">
                 <div class="bg-secondary rounded-lg p-4 mb-4">
                     <div class="media align-items-center">
-                        <img [src]="(usuario.img ?? '') | imagenPipe: 'usuarios'" width="90" alt="user.first_name">
+                        <img [src]="(identity.img ?? '') | imagenPipe: 'usuarios'" width="90" alt="user.first_name">
                         <div class="media-body pl-3">
                             <button class="btn btn-light btn-shadow btn-sm mb-2" type="button"><i class="czi-loading mr-2"></i>Avatar</button>
                             <div class="p mb-0 font-size-ms text-muted">Sube JPG, GIF or PNG.</div>
@@ -65,7 +65,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="account-email">Correo Electrónico</label>
-                            <input class="form-control" type="email" readonly value="{{usuario.email}}">
+                            <input class="form-control" type="email" readonly value="{{identity.email}}">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -118,7 +118,7 @@
                         <div class="form-group">
                             <div class="cz-file-drop-area">
                                 <div class="cz-file-drop-preview img-thumbnail rounded">
-                                    <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" style="width: 100px;">
+                                    <img *ngIf="!imgTemp" [src]="identity.imagenUrl" style="width: 100px;">
                                     <img *ngIf="imgTemp" [src]="imgTemp" style="width: 100px;">
                                 </div>
                                 <span class="cz-file-drop-message">Suelta la imagen aquí</span>

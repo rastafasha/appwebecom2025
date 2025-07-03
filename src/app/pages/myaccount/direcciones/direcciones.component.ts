@@ -29,7 +29,7 @@ declare var $:any;
 })
 export class DireccionesComponent implements OnInit {
 
-  public usuario;
+  public identity;
   public url!:string;
   public paises:any;
   public data_paises : any = [];
@@ -52,7 +52,11 @@ export class DireccionesComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
   ) {
-    this.usuario = usuarioService.usuario;
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
     this.direccionid = _direccionService.direccionid;
    }
 
@@ -64,7 +68,7 @@ export class DireccionesComponent implements OnInit {
 
 
   listar(){
-    const uid: string = this.usuario.uid ?? '';
+    const uid: string = this.identity.uid ?? '';
     this._direccionService.listarUsuario(uid).subscribe(
       response =>{
         this.direcciones = response;

@@ -1,30 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import {environment} from 'src/environments/environment';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { VentaService } from "src/app/services/venta.service";
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { ComentarioService } from 'src/app/services/comentario.service';
+import { environment } from '../../../../../environments/environment';
+import { ComentarioService } from '../../../../services/comentario.service';
+import { UsuarioService } from '../../../../services/usuario.service';
+import { VentaService } from '../../../../services/venta.service';
+import { Usuario } from '../../../../models/usuario.model';
+import { HeaderComponent } from '../../../../shared/header/header.component';
+import { FooterComponent } from '../../../../shared/footer/footer.component';
+import { CommonModule } from '@angular/common';
+import { AsideCuentaComponent } from '../../aside-cuenta/aside-cuenta.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ImagenPipe } from '../../../../pipes/imagen-pipe.pipe';
 
 declare var jQuery:any;
 declare var $:any;
 
 @Component({
   selector: 'app-detalle-orden',
+  imports:[
+    HeaderComponent,
+    FooterComponent,
+    CommonModule,
+    AsideCuentaComponent,
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ImagenPipe
+  ],
   templateUrl: './detalle-orden.component.html',
   styleUrls: ['./detalle-orden.component.css']
 })
 export class DetalleOrdenComponent implements OnInit {
 
-  public identity;
-  public url;
+  public identity: Usuario | null;
+  public url!:string;
   public msm_error = false;
   public msm_success = false;
-  public id;
+  public id!:string;
   public detalle : any = {};
   public venta : any = {};
 
-  public id_review_producto;
+  public id_review_producto!:string;
   public review_comentario='';
   public review_pros='';
   public review_cons='';
@@ -33,7 +50,7 @@ export class DetalleOrdenComponent implements OnInit {
 
   public msm_error_review='';
   public data_comentarios : Array<any> = [];
-  public btn_cancelar;
+  public btn_cancelar!:string;
 
   public cancelacion : any = {};
   public msm_error_cancelar = '';
@@ -50,7 +67,7 @@ export class DetalleOrdenComponent implements OnInit {
     this.identity = _userService.usuario;
   }
 
-  modal_data(idproducto,id){
+  modal_data(idproducto:string,id:string){
     this.id_review_producto = idproducto;
     this.select_detalle = id;
     this.msm_error_review = '';
@@ -77,7 +94,7 @@ export class DetalleOrdenComponent implements OnInit {
 
       this.cancelacion = {
         mensaje: '',
-        user : this.identity._id,
+        user : this.identity.uid,
         venta : this.id
       };
 
@@ -126,7 +143,7 @@ export class DetalleOrdenComponent implements OnInit {
     );
   }
 
-  finalizar(id){
+  finalizar(id:string){
     this._ventaService.finalizar(id).subscribe(
       response =>{
         this._ventaService.detalle(this.id).subscribe(
@@ -149,7 +166,7 @@ export class DetalleOrdenComponent implements OnInit {
     );
   }
 
-  cancelar(cancelarForm){
+  cancelar(cancelarForm:any){
     if(cancelarForm.valid){
       this.msm_error_cancelar = '';
       this.cancelacion.mensaje = cancelarForm.value.mensaje;
@@ -175,11 +192,20 @@ export class DetalleOrdenComponent implements OnInit {
   data_reviews(){
     this._comentarioService.listar().subscribe(
       response =>{
-        response.comentarios.forEach(element => {
+        interface Comentario {
+          producto: string;
+          user: string;
+        }
+
+        interface ComentariosResponse {
+          comentarios: Array<{ producto: string; user: string }>;
+        }
+
+        (response as ComentariosResponse).comentarios.forEach((element: { producto: string; user: string }) => {
           this.data_comentarios.push({
             producto: element.producto,
-            user : element.user
-          });
+            user: element.user
+          } as Comentario);
         });
 
 
@@ -201,15 +227,19 @@ export class DetalleOrdenComponent implements OnInit {
     this._router.navigate(['/']);
   }
 
-  saveComent(reviewForm){
+  saveComent(reviewForm:any){
     if(reviewForm.valid){
 
+      if (!this.identity) {
+        this.msm_error_review = 'Usuario no autenticado.';
+        return;
+      }
       let data = {
         comentario: reviewForm.value.review_comentario,
         pros: reviewForm.value.review_pros,
         cons: reviewForm.value.review_cons,
         estrellas: reviewForm.value.review_estrellas,
-        user: this.identity._id,
+        user: this.identity.uid,
         producto: this.id_review_producto,
       }
       this._comentarioService.registro(data).subscribe(

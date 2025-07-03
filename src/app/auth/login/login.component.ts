@@ -54,18 +54,21 @@ ngOnInit(){
 
   login(){
 
-    this.usuarioService.login(this.loginForm.value).subscribe(
+this.usuarioService.login(this.loginForm.value).subscribe(
       resp =>{
+        console.log('Login response:', resp);
         if(this.loginForm.get('remember')?.value){
           localStorage.setItem('email', this.loginForm.get('email')?.value);
         }else{
           localStorage.removeItem('email');
         }
         this.usuarioService.getLocalStorage();
-         if(localStorage.getItem('user')){
+         if(localStorage.getItem('user') !== 'undefined'){
           setTimeout(()=>{
             this.router.navigateByUrl('/my-account');
           },500);
+        }else{
+          this.router.navigateByUrl('/login');
         }
         
       

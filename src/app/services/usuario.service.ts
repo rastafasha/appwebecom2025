@@ -137,7 +137,7 @@ export class UsuarioService {
       );
   }
 
-  crearUsuario(formData: RegisterForm) {
+  crearUsuario(formData: RegisterForm) {debugger
     return this.http.post(`${base_url}/usuarios/registro`, formData).pipe(
       tap((resp: any) => {
         this.guardarLocalStorage(resp.token, resp.usuario);
@@ -158,7 +158,7 @@ export class UsuarioService {
     );
   }
 
-  login(formData: LoginForm) {
+  login(formData: LoginForm) {debugger
     return this.http.post(`${base_url}/login`, formData).pipe(
       tap((resp: any) => {
         this.guardarLocalStorage(resp.token, resp.usuario);

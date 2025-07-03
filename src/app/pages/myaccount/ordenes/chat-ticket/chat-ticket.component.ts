@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, DoCheck } from '@angular/core';
-import {environment} from 'src/environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { TicketService } from "src/app/services/ticket.service";
-import * as io from "socket.io-client";
-import { UsuarioService } from 'src/app/services/usuario.service';
+import io from "socket.io-client";
+import { environment } from '../../../../../environments/environment';
+import { TicketService } from '../../../../services/ticket.service';
+import { UsuarioService } from '../../../../services/usuario.service';
 
 declare var jQuery:any;
 declare var $:any;
@@ -16,20 +16,20 @@ declare var $:any;
 })
 export class ChatTicketComponent implements OnInit, DoCheck {
 
-  @ViewChild('scrollMe', {static: false}) private myScrollContainer: ElementRef;
+  // @ViewChild('scrollMe', {static: false}) private myScrollContainer: ElementRef;
 
 
   public identity: any = {};
-  public url;
-  public id;
+  public url!:string;
+  public id!:string;
   public msm = '';
   public msm_error=false;
   public mensajes : Array<any> = [];
-  public poster_admin;
+  public poster_admin:any;
   public ticket : any = {};
   public socket = io(environment.soketServer);
   public close_ticket = false;
-  public estado_ticket;
+  public estado_ticket:any;
 
   constructor(
     private _userService: UsuarioService,
@@ -38,7 +38,11 @@ export class ChatTicketComponent implements OnInit, DoCheck {
     private http: HttpClient,
     private _ticketService : TicketService
   ) {
-    this.identity = _userService.usuario;
+     let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
   }
 
 
@@ -53,7 +57,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
         }
       );
 
-      this.socket.on('new-formmsm', function (data) {
+      this.socket.on('new-formmsm', (data: any) => {
         if(data.data){
           this._ticketService.get_ticket(this.id).subscribe(
             response =>{
@@ -67,9 +71,9 @@ export class ChatTicketComponent implements OnInit, DoCheck {
             }
           );
         }
-      }.bind(this));
+      });
 
-      this.socket.on('new-mensaje', function (data) {
+      this.socket.on('new-mensaje', function (this: ChatTicketComponent, data: any) {
         this.mensajes = [];
         this.listar_msms();
 
@@ -138,7 +142,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
     );
   }
 
-  sendMessage(msmForm){
+  sendMessage(msmForm:any){
     if(msmForm.valid){
 
       if(this.close_ticket){
@@ -193,9 +197,9 @@ export class ChatTicketComponent implements OnInit, DoCheck {
   }
 
   scrollToBottom(): void {
-    try {
-      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }
+    // try {
+    //   this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    // } catch(err) { }
   }
 
 }

@@ -1,28 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { Venta, Cancelacion } from '../../../../models/ventas.model';
 import { UsuarioService } from '../../../../services/usuario.service';
 import { VentaService } from '../../../../services/venta.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ImagenPipe } from '../../../../pipes/imagen-pipe.pipe';
+import { FooterComponent } from '../../../../shared/footer/footer.component';
+import { HeaderComponent } from '../../../../shared/header/header.component';
+import { AsideCuentaComponent } from '../../aside-cuenta/aside-cuenta.component';
 
 declare var jQuery:any;
 declare var $:any;
 
 @Component({
   selector: 'app-index-ordenes',
+  imports:[
+      HeaderComponent,
+      FooterComponent,
+      CommonModule,
+      AsideCuentaComponent,
+      RouterModule,
+      ReactiveFormsModule,
+      FormsModule,
+      
+    ],
   templateUrl: './index-ordenes.component.html',
   styleUrls: ['./index-ordenes.component.css']
 })
 export class IndexOrdenesComponent implements OnInit {
 
-  public usuario;
+  public identity;
   public url:any;
   public msm_error = false;
   public msm_success = false;
   public ordenes!:Venta;
   public cancelacion!: Cancelacion;
-  public ventas!: Venta;
+  public ventas!: Venta[]|null;
   public venta!: Venta;
   public detalle : any = {};
 
@@ -38,12 +54,17 @@ export class IndexOrdenesComponent implements OnInit {
     private http: HttpClient,
     private ventaService: VentaService
   ) {
-    this.usuario = usuarioService.usuario;
+    // this.usuario = usuarioService.usuario;
+     let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
   }
 
   ngOnInit(): void {
 
-    if(this.usuario){
+    if(this.identity){
       this.listar_ventas();
       this.listar_cancelacion();
       this.url = environment.baseUrl;
@@ -54,7 +75,7 @@ export class IndexOrdenesComponent implements OnInit {
   }
 
   listar_ventas(){
-   this.ventaService.listarporUser(this.usuario.uid!).subscribe(
+   this.ventaService.listarporUser(this.identity.uid!).subscribe(
       response=>{
         this.ventas = response.ventas;
         console.log(this.ventas);
@@ -70,7 +91,7 @@ export class IndexOrdenesComponent implements OnInit {
 
 
   listar_cancelacion(){
-    this.ventaService.listarCancelacionporUser(this.usuario.uid!).subscribe(
+    this.ventaService.listarCancelacionporUser(this.identity.uid!).subscribe(
       response=>{
         this.cancelacion = response.cancelacion;
         console.log(this.cancelacion);

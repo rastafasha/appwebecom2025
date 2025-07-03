@@ -31,7 +31,7 @@ import { AsideCuentaComponent } from '../aside-cuenta/aside-cuenta.component';
 export class DireccionEditComponent implements OnInit {
 
   public direccion!: Direccion;
-  public usuario;
+  public identity;
   public direccionForm!: FormGroup;
   pageTitle!:string;
   public url!:string;
@@ -48,13 +48,18 @@ export class DireccionEditComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
   ) {
-    this.usuario = usuarioService.usuario;
+    // this.usuario = usuarioService.usuario;
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
    }
 
   ngOnInit(): void {
-    if(this.usuario){
+    if(this.identity){
       this.direccion_data = {};
-      this.usuario;
+      this.identity;
       this.url = environment.baseUrl;
 
       this.http.get('https://restcountries.com/v2/all').subscribe(
@@ -87,7 +92,7 @@ export class DireccionEditComponent implements OnInit {
             pais: res.pais,
             ciudad: res.ciudad,
             zip: res.zip,
-            user: this.usuario.uid,
+            user: this.identity.uid,
           });
           this.direccion = res;
           console.log(this.direccion);
@@ -109,7 +114,7 @@ export class DireccionEditComponent implements OnInit {
       pais: [''],
       ciudad: [''],
       zip: [''],
-      user: [this.usuario.uid],
+      user: [this.identity.uid],
     })
   }
 
