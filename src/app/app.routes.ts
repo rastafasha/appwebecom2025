@@ -20,6 +20,7 @@ import { DireccionEditComponent } from './pages/myaccount/direccion-edit/direcci
 import { ChatTicketComponent } from './pages/myaccount/ordenes/chat-ticket/chat-ticket.component';
 import { DetalleOrdenComponent } from './pages/myaccount/ordenes/detalle-orden/detalle-orden.component';
 import { IndexOrdenesComponent } from './pages/myaccount/ordenes/index-ordenes/index-ordenes.component';
+import { FavoritesComponent } from './pages/myaccount/favorites/favorites.component';
 
 export const routes: Routes = [
 
@@ -45,6 +46,7 @@ export const routes: Routes = [
     { path: 'my-account/ordenes/detalles/:id', component: DetalleOrdenComponent},
     { path: 'my-account/ordenes/tickets/:id', component: ChatTicketComponent},
     {path: 'my-account/cart', component: CartCheckoutComponent },
+    {path: 'my-account/favoritos', component: FavoritesComponent },
     {path: 'cart', component: CarritoComponent},
     {path: '**', component: HomeComponent }
 ];

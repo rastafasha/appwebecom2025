@@ -29,6 +29,7 @@ import { NewproductsComponent } from '../../../components/newproducts/newproduct
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { Marca } from '../../../models/marca.model';
 import { Usuario } from '../../../models/usuario.model';
+import { StorageService } from '../../../services/storage.service';
 
 declare var jQuery:any;
 declare var $:any;
@@ -135,6 +136,7 @@ export class ProductoComponent implements OnInit {
     public usuarioService: UsuarioService,
     public activatedRoute: ActivatedRoute,
     private messageService: MessageService,
+    private storageService: StorageService,
     public router: Router,
     private sanitizer: DomSanitizer,
     private _galeriaService : GaleriaService,
@@ -150,7 +152,6 @@ export class ProductoComponent implements OnInit {
     let USER = localStorage.getItem('user');
     if(USER){
       this.identity = JSON.parse(USER);
-      console.log(this.identity);
     }
   }
 
@@ -211,7 +212,7 @@ export class ProductoComponent implements OnInit {
       response =>{
 
         this.comentarios = response.comentarios;
-        console.log(this.comentarios);
+        // console.log(this.comentarios);
 
 
         this.count_cat = this.comentarios.length;
@@ -236,7 +237,7 @@ export class ProductoComponent implements OnInit {
               }
             );
           });
-        console.log(this.comentarios);
+        // console.log(this.comentarios);
 
 
         this.comentarios.forEach((element: { estrellas: number; },index: any) => {
@@ -499,18 +500,25 @@ export class ProductoComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
 }
 
-onPress(carritoForm:any){debugger
-
+onPress(carritoForm:any){
     const cartButtons = document.getElementsByClassName("cart-button");
-    Array.from(cartButtons).forEach(button => {
-      button.addEventListener('click', cartClick);
-    });
-
-    function cartClick(this: any) {
-      let button: HTMLButtonElement = this as HTMLButtonElement;
+    if(cartButtons.length > 0){
+      let button = cartButtons[0] as HTMLButtonElement;
+      // Add clicked class to trigger animation
       button.classList.add('clicked');
+
+      // Listen for animation end event to call add_to_cart
+      const onAnimationEnd = () => {
+        button.classList.remove('clicked');
+        this.add_to_cart(carritoForm);
+        button.removeEventListener('animationend', onAnimationEnd);
+      };
+
+      button.addEventListener('animationend', onAnimationEnd);
+    } else {
+      // Fallback: call add_to_cart immediately if button not found
+      this.add_to_cart(carritoForm);
     }
-    this.add_to_cart(carritoForm)
   }
 
 add_to_cart(carritoForm: any){
@@ -540,6 +548,7 @@ add_to_cart(carritoForm: any){
       this._carritoService.registro(data).subscribe(
         response =>{
           this.webSocketService.emit('save-carrito', {new:true});
+          // this.saveLocalStorage();
 
           // $('#dark-toast').removeClass('hide');
           // $('#dark-toast').addClass('show');
@@ -680,6 +689,11 @@ this.productoSeleccionado = producto;
       },2500);
     
   });
+}
+
+saveLocalStorage(){
+  // Pass the cart array to setCart; replace [] with your actual cart data if available
+  this.storageService.setCart([]);
 }
 
 close_alert(){

@@ -1,10 +1,12 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PageService } from '../../services/page.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario.model';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
+import { CarritoService } from '../../services/carrito.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +24,10 @@ export class HeaderComponent {
   pages:any;
   public identity!:Usuario;
   public usuario!:any;
+  public cartItemCount: number = 0;
+
+  public carritoService = inject(CarritoService);
+  public storageService =inject(StorageService) 
 
   constructor(private pageService: PageService,
     public usuarioService: UsuarioService,
@@ -35,7 +41,29 @@ export class HeaderComponent {
     if(USER){
       this.identity = JSON.parse(USER);
       console.log(this.identity);
+      this.loadCartItemCount();
     }
+    // this.getCart();
+  }
+
+  loadCartItemCount() {
+    if(this.identity && this.identity.uid){
+      this.carritoService.preview_carrito(this.identity.uid).subscribe(cart => {
+        if(cart && cart.items){
+          this.cartItemCount = cart.items.reduce((acc: number, item: any) => acc + item.quantity, 0);
+          console.log(this.cartItemCount);
+        } else {
+          this.cartItemCount = 0;
+        }
+      }, error => {
+        console.error('Error loading cart:', error);
+        this.cartItemCount = 0;
+      });
+    }
+  }
+
+  getCart(){
+    this.storageService.getCart();
   }
 
 
