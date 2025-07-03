@@ -33,7 +33,7 @@ declare var $:any;
 })
 export class DetalleOrdenComponent implements OnInit {
 
-  public identity: Usuario | null;
+  public identity!: Usuario | null;
   public url!:string;
   public msm_error = false;
   public msm_success = false;
@@ -64,7 +64,11 @@ export class DetalleOrdenComponent implements OnInit {
     private _ventaService: VentaService,
     private _comentarioService : ComentarioService
   ) {
-    this.identity = _userService.usuario;
+     let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
   }
 
   modal_data(idproducto:string,id:string){

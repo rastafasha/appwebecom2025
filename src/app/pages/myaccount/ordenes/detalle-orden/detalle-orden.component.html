@@ -112,7 +112,7 @@
                                             </div>
                                             <!-- modal cancelacion -->
                                             <ng-container *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso' || venta.estado == 'Finalizado'">
-                                                <a [routerLink]="['/app/cuenta/ordenes/tickets/',venta._id]" type="button" class="btn btn-primary">
+                                                <a [routerLink]="['/my-account/ordenes/tickets/',venta._id]" type="button" class="btn btn-primary">
                                                     <i class="fa fa-help mr-1"></i> Tickets
                                                 </a>
                                             </ng-container>
@@ -219,7 +219,7 @@
                                                         <div class="media-body pt-2">
                                                             <div class="row">
                                                                 <div class="col-lg-12">
-                                                                    <h3 class="product-title font-size-base mb-2"><a [routerLink]="['/producto/',item.producto._id]">{{item.producto.titulo}}</a></h3>
+                                                                    <h3 class="product-title font-size-base mb-2"><a [routerLink]="['/producto/',item.producto.slug]">{{item.producto.titulo}}</a></h3>
                                                                 </div>
                                                                 <div class="col-lg-6">
                                                                     <div class="font-size-sm"><span class="text-muted mr-2">Cantidad:</span>{{item.cantidad}}</div>

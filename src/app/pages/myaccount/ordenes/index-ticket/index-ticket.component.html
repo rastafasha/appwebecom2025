@@ -6,7 +6,7 @@
                 <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
                     <li class="breadcrumb-item"><a class="text-nowrap" [routerLink]="['/']" routerLinkActive="router-link-active"><i class="czi-home"></i>Inicio</a></li>
                     <li class="breadcrumb-item text-nowrap" aria-current="page">
-                        <a class="text-nowrap" [routerLink]="['/cuenta/ordenes/detalles/',id]">
+                        <a class="text-nowrap" [routerLink]="['/my-account/ordenes/detalles/',id]">
                             <span class="czi-arrow-right text-nowrap"></span> Ordenes
                         </a>
                     </li>
@@ -101,7 +101,7 @@
                                         <span class="badge badge-primary" *ngIf="item.estado == 0">Cerrado</span>
                                     </ng-container>
                                 </td>
-                                <td class="text-center"><a [routerLink]="['/cuenta/ordenes/chat/',item._id]" routerLinkActive="router-link-active"><span class="czi-message"></span></a></td>
+                                <td class="text-center"><a [routerLink]="['/my-account/ordenes/chat/',item._id]" routerLinkActive="router-link-active"><span class="czi-message"></span></a></td>
                             </tr>
 
                         </tbody>
