@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
     RouterModule
   ],
   templateUrl: './aside-cuenta.component.html',
-  styleUrls: ['./aside-cuenta.component.css']
+  styleUrls: ['./aside-cuenta.component.scss']
 })
 export class AsideCuentaComponent implements OnInit {
 

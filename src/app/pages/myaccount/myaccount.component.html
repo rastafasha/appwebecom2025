@@ -1,10 +1,11 @@
 <app-header></app-header>
 <div class="about" id="page">
 
-    <section class="sub-header shop-layout-1">
-        <img class="rellax bg-overlay" src="./assets/images/sub-header/08.jpg" alt="">
+    <section class="sub-header d-flex justify-content-center mt-5" style="padding-top: 30px;">
+        
         <div class="overlay-call-to-action"></div>
-        <h3 class="heading-style-3">My Account</h3>
+        
+        <h3 class="heading-style-3" >Mi Perfil </h3>
     </section>
     <section class="boxed-sm" style="height: calc(100vh - 100px); margin-top: 100px;">
         <div class="container">
@@ -22,8 +23,8 @@
                 </div>
                 
             </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-3">
+            <div class="row d-flex justify-content-between gap-5">
+                <div class="d-flex align-items-center ">
                     <div class="card">
                         <div class="card-body">
                             <a [routerLink]="['/my-account/perfil', identity.uid]">
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-3">
+                <div class="d-flex align-items-center ">
                     <div class="card">
                         <div class="card-body">
                             <a [routerLink]="['/my-account/direcciones']">
@@ -44,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-3">
+                <div class="d-flex align-items-center ">
                     <div class="card">
                         <div class="card-body">
                             <a [routerLink]="['/my-account/ordenes']">
@@ -55,12 +56,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-3">
+                <div class="d-flex align-items-center ">
                     <div class="card">
                         <div class="card-body">
                             <a [routerLink]="['/cart']">
                                 <i class="fa fa-shopping-cart"></i>
                                 <p>Mi Carrito</p>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center ">
+                    <div class="card">
+                        <div class="card-body">
+                            <a [routerLink]="['/favoritos']">
+                                <i class="fa fa-shopping-cart"></i>
+                                <p>Favoritos</p>
 
                             </a>
                         </div>

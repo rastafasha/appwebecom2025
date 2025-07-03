@@ -19,7 +19,7 @@ import { AsideCuentaComponent } from './aside-cuenta/aside-cuenta.component';
 
   ],
   templateUrl: './myaccount.component.html',
-  styleUrls: ['./myaccount.component.css'],
+  styleUrls: ['./myaccount.component.scss'],
 })
 export class MyaccountComponent implements OnInit {
 
