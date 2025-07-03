@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { HttpRequest, HttpHandlerFn, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpInterceptor } from '@angular/common/http';
+import { provideServiceWorker } from '@angular/service-worker';
 
 
 export const appConfig: ApplicationConfig = {
@@ -13,7 +14,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([imageInterceptor])
     ),
-    provideRouter(routes),
+    provideRouter(routes), 
+    provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }),
    
   ]
 };
