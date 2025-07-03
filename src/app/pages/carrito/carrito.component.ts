@@ -1,57 +1,95 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CarritoService } from "src/app/services/carrito.service";
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductoService } from 'src/app/services/product.service';
-import {environment} from 'src/environments/environment';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Direccion } from '../../models/direccion.model';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import { PaymentMethod } from '../../models/paymenthmethod.model';
+import { CarritoService } from '../../services/carrito.service';
+import { CuponService } from '../../services/cupons.service';
+import { DireccionService } from '../../services/direccion.service';
+import { PostalService } from '../../services/postal.service';
+import { ProductoService } from '../../services/product.service';
+import { TransferenciasService } from '../../services/transferencias.service';
+import { UsuarioService } from '../../services/usuario.service';
+import { VentaService } from '../../services/venta.service';
+import { WebSocketService } from '../../services/web-socket.service';
+import io from "socket.io-client";
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
+import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 
-import { CuponService } from "src/app/services/cupons.service";
-import { PostalService } from "src/app/services/postal.service";
-import { DireccionService } from "src/app/services/direccion.service";
-import { VentaService } from "src/app/services/venta.service";
-
-declare var paypal;
+declare var paypal: {
+  Buttons: (arg0: {
+    createOrder: (data: any, actions: any) => any; onApprove: (data: any, actions: any) => Promise<void>;
+    // Define si el pago será con tarjeta o PayPal
+    fundingSource: any; //agregado
+    onError: (err: any) => void;
+  }) => { (): any; new(): any; render: { (arg0: any): void; new(): any; }; }; FUNDING: { CARD: any; PAYPAL: any; };
+};
 
 
 declare var jQuery:any;
 declare var $:any;
 
-import { WebSocketService } from 'src/app/services/web-socket.service';
-import * as io from "socket.io-client";
-import { Direccion } from '../../models/direccion.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TransferenciasService } from 'src/app/services/transferencias.service';
-import { PaymentMethod } from 'src/app/models/paymenthmethod.model';
+interface CuponResponse {
+    tipo: string;
+    descuento: number;
+    categoria?: string;
+    subcategoria?: string;
+    [key: string]: any;
+  }
+  
+  interface CarritoProducto {
+    producto: {
+      subcategoria?: string;
+      categoria?: string;
+      [key: string]: any;
+    };
+    precio: number;
+    cantidad: number;
+    [key: string]: any;
+  }
+
+
 
 @Component({
   selector: 'app-carrito',
+  imports:[CommonModule,
+    HeaderComponent,
+    FooterComponent,
+    RouterModule,
+    ImagenPipe,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
 
-  @ViewChild('paypal',{static:true}) paypalElement : ElementRef;
+  @ViewChild('paypal',{static:true}) paypalElement!: ElementRef;
 
   public direcciones:any =[];
   public identity;
   public carrito : Array<any> = [];
   public subtotal : any = 0;
   public url;
-  public cupon;
+  public cupon:any;
   public msm_error_cupon=false;
   public msm_success_cupon=false;
-  public new_data_descuento;
+  public new_data_descuento:any;
   public data_keyup = 0;
-  public data_save_carrito;
+  public data_save_carrito:any;
   public msm_error = '';
   public productos : any = {};
   public cursos : any = {};
 
-  public paypal;
+  public paypal:any;
 
-  public postales;
+  public postales:any;
 
-  public precio_envio;
+  public precio_envio:any;
 
   public socket = io(environment.soketServer);
 
@@ -59,9 +97,9 @@ export class CarritoComponent implements OnInit {
 
 
   //DATA
-  public radio_postal;
+  public radio_postal:any;
   public medio_postal : any = {};
-  public data_cupon;
+  public data_cupon:any;
   public id_direccion = '';
   public direccion : any;
   public data_direccion : any = {};
@@ -69,7 +107,7 @@ export class CarritoComponent implements OnInit {
   public data_venta : any = {};
   public info_cupon_string = '';
   public error_stock = false;
-  public date_string;
+  public date_string:any;
 
   selectedMethod: string = 'Selecciona un método de pago';
 
@@ -88,6 +126,8 @@ export class CarritoComponent implements OnInit {
     paymentday: new FormControl('', Validators.required)
   });
 
+  
+
   constructor(
     private _userService: UsuarioService,
     private _router : Router,
@@ -102,7 +142,12 @@ export class CarritoComponent implements OnInit {
     private _trasferencias: TransferenciasService
 
   ) {
-    this.identity = _userService.usuario;
+    // this.identity = _userService.usuario;
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
     this.url = environment.baseUrl;
   }
 
@@ -114,8 +159,8 @@ export class CarritoComponent implements OnInit {
     this.obtenerMetodosdePago();
     
     if(this.identity){
-      this.socket.on('new-stock', function (data) {
-        this.listar_carrito();
+      this.socket.on('new-stock', function (data: any) {
+        // this.listar_carrito();
 
       }.bind(this));
 
@@ -198,13 +243,20 @@ export class CarritoComponent implements OnInit {
 
       createOrder: (data,actions)=>{
         //VALIR STOCK DE PRODUCTOS
-        this.data_venta.detalles.forEach(element => {
-            if(element.producto.stock == 0){
-              this.error_stock = true;
-            }else{
-              this.error_stock = false;
-            }
+        interface DetalleVenta {
+          producto: { stock: number; _id: string };
+          cantidad: number;
+          precio: number;
+          color: string;
+          selector: any;
+        }
 
+        (this.data_venta.detalles as DetalleVenta[]).forEach((element: DetalleVenta) => {
+          if (element.producto.stock === 0) {
+            this.error_stock = true;
+          } else {
+            this.error_stock = false;
+          }
         });
 
         if(!this.error_stock){
@@ -229,29 +281,40 @@ export class CarritoComponent implements OnInit {
         this.data_venta.idtransaccion = order.purchase_units[0].payments.captures[0].id;
         this._ventaService.registro(this.data_venta).subscribe(
           response =>{
-            this.data_venta.detalles.forEach(element => {
-              console.log(element);
-              this._productoService.aumentar_ventas(element.producto._id).subscribe(
-                response =>{
-                },
-                error=>{
-                  console.log(error);
+            interface DetalleVenta {
+              producto: { _id: string };
+              cantidad: number;
+              precio: number;
+              color: string;
+              selector: any;
+            }
 
+            interface ProductoService {
+              aumentar_ventas(id: string): any;
+              reducir_stock(id: string, cantidad: number): any;
+            }
+
+            (this.data_venta.detalles as DetalleVenta[]).forEach((element: DetalleVenta) => {
+              console.log(element);
+              (this._productoService as ProductoService).aumentar_ventas(element.producto._id).subscribe(
+                (response: any) => {
+                },
+                (error: any) => {
+                  console.log(error);
                 }
               );
-                this._productoService.reducir_stock(element.producto._id,element.cantidad).subscribe(
-                  response =>{
-                    this.remove_carrito();
-                    this.listar_carrito();
-                    this.socket.emit('save-carrito', {new:true});
-                    this.socket.emit('save-stock', {new:true});
-                    this._router.navigate(['/app/cuenta/ordenes']);
-                  },
-                  error=>{
-                    console.log(error);
-
-                  }
-                );
+              (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
+                (response: any) => {
+                  this.remove_carrito();
+                  this.listar_carrito();
+                  this.socket.emit('save-carrito', { new: true });
+                  this.socket.emit('save-stock', { new: true });
+                  this._router.navigate(['/app/cuenta/ordenes']);
+                },
+                (error: any) => {
+                  console.log(error);
+                }
+              );
             });
 
           },
@@ -286,16 +349,21 @@ export class CarritoComponent implements OnInit {
  
 
   carrito_real_time(){
-    this.socket.on('new-carrito_dos', function (data) {
+    this.socket.on('new-carrito_dos',  (data:any) => {
       this.subtotal = 0;
 
-      this._carritoService.preview_carrito(this.identity.uid).subscribe(
+      this._carritoService.preview_carrito(this.identity.uid ?? '').subscribe(
         response =>{
           this.carrito = response;
 
-          this.carrito.forEach(element => {
+            interface CarritoElement {
+            precio: number;
+            cantidad: number;
+            [key: string]: any;
+            }
+            (this.carrito as CarritoElement[]).forEach((element: CarritoElement) => {
             this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
-          });
+            });
 
         },
         error=>{
@@ -304,14 +372,14 @@ export class CarritoComponent implements OnInit {
         }
       );
 
-    }.bind(this));
+    });
   }
 
   listar_postal(){
     this._postalService.listar().subscribe(
       response =>{
         this.postales = response.postales
-        this.postales.forEach((element,index) => {
+        this.postales.forEach((element: { _id: any; titulo: any; precio: any; tiempo: any; dias: any; },index: number) => {
           if(index == 0){
             this.radio_postal = element._id;
             this.medio_postal = {
@@ -330,7 +398,7 @@ export class CarritoComponent implements OnInit {
       }
     );
   }
-  select_postal(event,data){
+  select_postal(event: any,data: { titulo: any; precio: any; tiempo: any; dias: any; }){
     //RESTAR PRECIO POSTAL ANTERIOR
     this.subtotal = Math.round(this.subtotal - parseInt(this.medio_postal.precio));
 
@@ -345,7 +413,7 @@ export class CarritoComponent implements OnInit {
   }
 
   listar_direcciones(){
-    this._direccionService.listarUsuario(this.identity.uid).subscribe(
+    this._direccionService.listarUsuario(this.identity.uid ?? '').subscribe(
       response =>{
         this.direcciones = response;
         console.log(this.direcciones);
@@ -369,7 +437,7 @@ export class CarritoComponent implements OnInit {
 
 
   listar_carrito(){
-    this._carritoService.preview_carrito(this.identity.uid).subscribe(
+    this._carritoService.preview_carrito(this.identity.uid ?? '').subscribe(
       response =>{
         this.carrito = response;
         this.subtotal = 0;
@@ -397,11 +465,11 @@ export class CarritoComponent implements OnInit {
 
 
 
-  remove_producto(id){
+  remove_producto(id:string){
     this._carritoService.remove_carrito(id).subscribe(
       response=>{
         this.subtotal = Math.round(this.subtotal - (response.carrito.precio*response.carrito.cantidad));
-        this._carritoService.preview_carrito(this.identity.uid).subscribe(
+        this._carritoService.preview_carrito(this.identity.uid ?? '').subscribe(
           response =>{
             this.carrito = response;
             this.socket.emit('save-carrito', {new:true});
@@ -412,7 +480,7 @@ export class CarritoComponent implements OnInit {
 
           }
         );
-        this._carritoService.preview_carrito(this.identity.uid).subscribe(
+        this._carritoService.preview_carrito(this.identity.uid ?? '').subscribe(
           response =>{
             this.carrito = response.carrito;
             this.data_detalle = [];
@@ -444,61 +512,62 @@ export class CarritoComponent implements OnInit {
   }
 
   
-  get_data_cupon(event,cupon){
+  
+  get_data_cupon(event: Event, cupon: string): void {
     this.data_keyup = this.data_keyup + 1;
 
-    if(cupon){
-      if(cupon.length == 13){
+    if (cupon) {
+      if (cupon.length == 13) {
         console.log('siii');
 
         this._cuponService.get_cuponCode(cupon).subscribe(
-          response =>{
-            this.data_cupon = response[0];
+          (response: CuponResponse) => {
+            this.data_cupon = response;
             console.log(this.data_cupon);
 
             this.msm_error_cupon = false;
             this.msm_success_cupon = true;
 
-            this.carrito.forEach((element,indice) => {
-                if(response.tipo == 'subcategoria'){
-                  if(response.subcategoria == element.producto.subcategoria){
+            this.carrito.forEach((element: CarritoProducto, indice: number) => {
+              if (response.tipo == 'subcategoria') {
+                if (response.subcategoria == element.producto.subcategoria) {
 
-                    if(this.data_keyup == 0 || this.data_keyup == 1){
+                  if (this.data_keyup == 0 || this.data_keyup == 1) {
 
-                      let new_subtotal = element.precio - ((element.precio*response.descuento)/100);
-                      console.log(new_subtotal);
-                      element.precio = new_subtotal;
+                    let new_subtotal = element.precio - ((element.precio * response.descuento) / 100);
+                    console.log(new_subtotal);
+                    element.precio = new_subtotal;
 
-                      this.subtotal = 0;
-                      this.carrito.forEach(element => {
-                        this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
-                      });
-
-                    }
-                  }
-                }
-                if(response.tipo == 'categoria'){
-                  if(response.categoria == element.producto.categoria){
-
-                    if(this.data_keyup == 0 || this.data_keyup == 1){
-
-                      let new_subtotal = element.precio - ((element.precio*response.descuento)/100);
-                      console.log(new_subtotal);
-                      element.precio = new_subtotal;
-
-                      this.subtotal = 0;
-                      this.carrito.forEach(element => {
-                        this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
-                      });
-
-                    }
+                    this.subtotal = 0;
+                    this.carrito.forEach((element: CarritoProducto) => {
+                      this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
+                    });
 
                   }
                 }
+              }
+              if (response.tipo == 'categoria') {
+                if (response.categoria == element.producto.categoria) {
+
+                  if (this.data_keyup == 0 || this.data_keyup == 1) {
+
+                    let new_subtotal = element.precio - ((element.precio * response.descuento) / 100);
+                    console.log(new_subtotal);
+                    element.precio = new_subtotal;
+
+                    this.subtotal = 0;
+                    this.carrito.forEach((element: CarritoProducto) => {
+                      this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
+                    });
+
+                  }
+
+                }
+              }
             });
 
           },
-          error=>{
+          (error: any) => {
             this.data_keyup = 0;
             this.msm_error_cupon = true;
 
@@ -507,7 +576,7 @@ export class CarritoComponent implements OnInit {
             this.listar_postal();
           }
         );
-      }else{
+      } else {
         console.log('nooo');
 
         this.data_keyup = 0;
@@ -516,11 +585,11 @@ export class CarritoComponent implements OnInit {
         this.listar_carrito();
 
       }
-    }else{
+    } else {
       this.data_keyup = 0;
-        this.msm_error_cupon = false;
-        this.msm_success_cupon = false;
-        this.listar_carrito();
+      this.msm_error_cupon = false;
+      this.msm_success_cupon = false;
+      this.listar_carrito();
 
     }
 
@@ -648,29 +717,40 @@ export class CarritoComponent implements OnInit {
 
   saveVenta(){
     this._ventaService.registro(this.data_venta).subscribe(response =>{
-      this.data_venta.detalles.forEach(element => {
-        console.log(element);
-        this._productoService.aumentar_ventas(element.producto._id).subscribe(
-          response =>{
-          },
-          error=>{
-            console.log(error);
+      interface DetalleVenta {
+        producto: { _id: string };
+        cantidad: number;
+        precio: number;
+        color: string;
+        selector: any;
+      }
 
+      interface ProductoService {
+        aumentar_ventas(id: string): any;
+        reducir_stock(id: string, cantidad: number): any;
+      }
+
+      (this.data_venta.detalles as DetalleVenta[]).forEach((element: DetalleVenta) => {
+        console.log(element);
+        (this._productoService as ProductoService).aumentar_ventas(element.producto._id).subscribe(
+          (response: any) => {
+          },
+          (error: any) => {
+            console.log(error);
           }
         );
-          this._productoService.reducir_stock(element.producto._id,element.cantidad).subscribe(
-            response =>{
-              this.remove_carrito();
-              this.listar_carrito();
-              this.socket.emit('save-carrito', {new:true});
-              this.socket.emit('save-stock', {new:true});
-              this._router.navigate(['/app/cuenta/ordenes']);
-            },
-            error=>{
-              console.log(error);
-
-            }
-          );
+        (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
+          (response: any) => {
+            this.remove_carrito();
+            this.listar_carrito();
+            this.socket.emit('save-carrito', { new: true });
+            this.socket.emit('save-stock', { new: true });
+            this._router.navigate(['/app/cuenta/ordenes']);
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        );
       });
 
     },)

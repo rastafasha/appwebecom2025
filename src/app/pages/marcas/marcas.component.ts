@@ -20,7 +20,6 @@ import { SearchComponent } from '../../shared/search/search.component';
     ImagenPipe,
     LoadingComponent,
     NgIf,
-    SearchComponent
   ],
   templateUrl: './marcas.component.html',
   styleUrl: './marcas.component.scss'

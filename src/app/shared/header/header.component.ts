@@ -3,13 +3,16 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PageService } from '../../services/page.service';
 import { UsuarioService } from '../../services/usuario.service';
+import { Usuario } from '../../models/usuario.model';
+import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 
 @Component({
   selector: 'app-header',
   imports: [
     CommonModule,
     RouterModule,
-    NgFor
+    NgFor,
+    ImagenPipe
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -17,16 +20,22 @@ import { UsuarioService } from '../../services/usuario.service';
 export class HeaderComponent {
 
   pages:any;
-  public identity;
+  public identity!:Usuario;
+  public usuario!:any;
 
   constructor(private pageService: PageService,
     public usuarioService: UsuarioService,
   ) {
-    this.identity = usuarioService.usuario;
+    // this.identity = usuarioService.getUser();
   }
 
   ngOnInit(){
     this.getPages();
+    let USER = localStorage.getItem('user');
+    if(USER){
+      this.identity = JSON.parse(USER);
+      console.log(this.identity);
+    }
   }
 
 
@@ -42,6 +51,9 @@ export class HeaderComponent {
     for (let i = 0; i < menuLateral.length; i++) {
       menuLateral[i].classList.remove("active");
     }
+  }
+  logout(){
+    this.usuarioService.logout();
   }
 
   scrollToTop() {

@@ -29,8 +29,10 @@
                                 </div>
                             </li>
                             <li>
-                                <img class="globowhite" style="filter: invert(); cursor: pointer;" src="./assets/svg/icon-bag.png" alt="Mall Connect">
+                                <a routerLink="/cart">
+                                    <img class="globowhite" style="filter: invert(); cursor: pointer;" src="./assets/svg/icon-bag.png" alt="Mall Connect">
                                 <img class="globoblack"  src="./assets/svg/icon-bag.png" alt="Mall Connect">
+                                </a>
                             </li>
                             <li>
                                 <img class="globowhite" style=" cursor: pointer;" src="./assets/svg/globe.svg" alt="Mall Connect">
@@ -43,7 +45,8 @@
                                 <span></span>
                                 <span></span>
                             </a>
-                            <img src="./assets/svg/user-login.svg" alt="Mall Connect">
+                            <img *ngIf="!identity" src="./assets/svg/user-login.svg" alt="Mall Connect">
+                            <img *ngIf="identity && identity.img" [src]="(identity.img || '') | imagenPipe: 'usuarios'" alt="Mall Connect">
                             <div class="sidemenu">
                                 <a href="javascript:void(0)" (click)="closeMenu()" class="close"></a>
                                 <nav>
@@ -53,10 +56,10 @@
                                         <li><a routerLink="/productos">Productos</a></li>
                                         <li><a routerLink="/tiendas">Tiendas</a></li>
                                         <!-- <li><a href="homeindividual.html">Promociones</a></li> -->
-                                        <li *ngIf="identity"><a href="r">Mi perfil</a></li>
-                                        <li *ngIf="identity"><a href="r">Salir</a></li>
-                                        <li *ngIf="!identity"><a href="r">Login</a></li>
-                                        <li *ngIf="!identity"><a href="r">Registro</a></li>
+                                        <li *ngIf="identity"><a [routerLink]="['/my-account/',]">Mi perfil</a></li>
+                                        <li *ngIf="identity"><a href="javascript:void(0)" (click)="logout()">Salir</a></li>
+                                        <li *ngIf="!identity"><a routerLink="/login">Login</a></li>
+                                        <li *ngIf="!identity"><a routerLink="/registro">Registro</a></li>
                                         <!-- <li><a href="">Contacto</a></li> -->
                                     </ul>
                                 </nav>
