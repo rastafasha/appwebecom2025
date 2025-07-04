@@ -1,11 +1,11 @@
-<section class="comments">
+<section class="comments mb-5">
   <div class="container">
     <h1>What people say about us</h1>
 
     <div class="carousel">
       <div class="carousel-inner">
         <div *ngFor="let comment of comments; let i = index" class="carousel-item" [class.active]="i === currentSlide">
-          <div class="comentario">
+          <div class="comentario animated fadeIn">
             <div class="commennt">
               <i class="fa fa-quote-left"></i>
               <p>{{ comment.text }}</p>

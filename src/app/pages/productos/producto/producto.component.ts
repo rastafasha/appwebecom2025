@@ -30,6 +30,7 @@ import { ModalComponent } from '../../../components/modal/modal.component';
 import { Marca } from '../../../models/marca.model';
 import { Usuario } from '../../../models/usuario.model';
 import { StorageService } from '../../../services/storage.service';
+import { Galeria } from '../../../models/galeria.model';
 
 declare var jQuery:any;
 declare var $:any;
@@ -59,7 +60,7 @@ export class ProductoComponent implements OnInit {
 
   option_selected:number = 1;
   solicitud_selected:any = null;
-  selectedProduct!:Producto;
+  selectedProduct!:Galeria;
 
   animationClass: string = '';
 
@@ -706,8 +707,8 @@ close_alert(){
 
   
 
-   openGaleryModal(product: Producto): void {
-    this.selectedProduct = product;
+   openGaleryModal(gal: Galeria): void {
+    this.selectedProduct = gal;
   }
 
 }

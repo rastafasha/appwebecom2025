@@ -1,85 +1,104 @@
- <!-- header -->
-    <header id="header"> 
-<a href="javascript:void(0)" class="button-up" (click)="scrollToTop()">
-            <i class="fa fa-arrow-up"></i>
-        </a>
-        <div class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="logo logocenter">
-                        <a routerLink="/">
-                            <img src="./assets/logo.png" alt="logo Mall Connect">
-                        </a>
-                    </div>
-                    <div class="logo logocenter logo2">
-                        <a routerLink="/">
-                            <img src="./assets/logo.png" alt="logo Mall Connect">
-                            <!-- <img src="./assets/svg/logo-orange-brown.svg" alt="logo Mall Connect"> -->
-                        </a>
-                    </div>
+<!-- header -->
+<header id="header">
+    <a href="javascript:void(0)" class="button-up" (click)="scrollToTop()">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="logo logocenter">
+                    <a routerLink="/">
+                        <img src="./assets/logo.png" alt="logo Mall Connect">
+                    </a>
+                </div>
+                <div class="logo logocenter logo2">
+                    <a routerLink="/">
+                        <img src="./assets/logo.png" alt="logo Mall Connect">
+                        <!-- <img src="./assets/svg/logo-orange-brown.svg" alt="logo Mall Connect"> -->
+                    </a>
+                </div>
 
-                    <div class="menuright">
-                        <ul>
-                            <!-- <li class="nav-item dropdown">
+                <div class="menuright">
+                    <ul>
+                        <!-- <li class="nav-item dropdown">
                                 <a [routerLink]="['/blogs']">News</a>
                     
                             </li> -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Nosotros</a>
-                                <div class="dropdown-menu" >
-                                    <a class="dropdown-item" [routerLink]="['/blogs']">News</a>
-                                    <ng-container *ngFor="let page of pages;">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">Nosotros</a>
+                            <div class="dropdown-menu p-2">
+                                <a class="dropdown-item" [routerLink]="['/blogs']">News</a>
+                                <ng-container *ngFor="let page of pages;">
 
-                                        <a class="dropdown-item" [routerLink]="['/page',page.slug]">{{page.titulo}}</a>
-                                    </ng-container>
-                                  
+                                    <a class="dropdown-item" [routerLink]="['/page',page.slug]">{{page.titulo}}</a>
+                                </ng-container>
 
-                                </div>
-                            </li>
-                            <li>
-                                <a routerLink="/cart">
-                                    <span class="cart-count-badge" *ngIf="cartItemCount > 0 && cartItemCount <= 10">{{cartItemCount}}</span>
-                                    <span class="cart-count-badge" *ngIf="cartItemCount > 10"> <i class="fa fa-info"></i></span>
-                                    <img [class]="iconBagColorClass" style="cursor: pointer;" src="./assets/svg/icon-bag.png" alt="Mall Connect">
-                                </a>
-                            </li>
-                            <li>
-                                <img class="globowhite" style="filter: invert(); cursor: pointer;" src="./assets/svg/globe.svg" alt="Mall Connect">
-                                <img class="globoblack" src="./assets/svg/globe-black.svg" alt="Mall Connect">
-                            </li>
-                        </ul>
-                        <div class="menu">
-                            <a href="javascript:void(0)" (click)="openMenu()" class="sidemenu-toggler">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </a>
-                            <img *ngIf="!identity" src="./assets/svg/user-login.svg" alt="Mall Connect">
-                            <img *ngIf="identity && identity.img" [src]="(identity.img || '') | imagenPipe: 'usuarios'" alt="Mall Connect">
-                            <div class="sidemenu">
-                                <a href="javascript:void(0)" (click)="closeMenu()" class="close"></a>
-                                <nav>
-                                    <ul>
-                                        <li><a routerLink="/">Home</a></li>
-                                        <li><a routerLink="/marcas">Marcas</a></li>
-                                        <li><a routerLink="/productos">Productos</a></li>
-                                        <li><a routerLink="/tiendas">Tiendas</a></li>
-                                        <!-- <li><a href="homeindividual.html">Promociones</a></li> -->
-                                        <li *ngIf="identity"><a [routerLink]="['/my-account/',]">Mi perfil</a></li>
-                                        <li *ngIf="identity"><a href="javascript:void(0)" (click)="logout()">Salir</a></li>
-                                        <li *ngIf="!identity"><a routerLink="/login">Login</a></li>
-                                        <li *ngIf="!identity"><a routerLink="/registro">Registro</a></li>
-                                        <!-- <li><a href="">Contacto</a></li> -->
-                                    </ul>
-                                </nav>
 
                             </div>
+                        </li>
+                        <li>
+                            <a routerLink="/cart">
+                                <span class="cart-count-badge"
+                                    *ngIf="cartItemCount > 0 && cartItemCount <= 10">{{cartItemCount}}</span>
+                                <span class="cart-count-badge" *ngIf="cartItemCount > 10"> <i
+                                        class="fa fa-info"></i></span>
+                                <img [class]="iconBagColorClass" style="cursor: pointer;"
+                                    src="./assets/svg/icon-bag.png" alt="Mall Connect">
+                            </a>
+                        </li>
+                        <!-- <li>
+                                <img class="globowhite" style="filter: invert(); cursor: pointer;" src="./assets/svg/globe.svg" alt="Mall Connect">
+                                <img class="globoblack" src="./assets/svg/globe-black.svg" alt="Mall Connect">
+                            </li> -->
+
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link " data-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">
+                                <img class="globowhite" style="filter: invert(); cursor: pointer;"
+                                    src="./assets/svg/globe.svg" alt="Mall Connect">
+                                <img class="globoblack" src="./assets/svg/globe-black.svg" alt="Mall Connect">
+
+                            </a>
+                            <div class="dropdown-menu p-2">
+                                <a class="dropdown-item">Es</a>
+                                <a class="dropdown-item">En</a>
+                            </div>
+                        </li> -->
+                    </ul>
+                    <div class="menu">
+                        <a href="javascript:void(0)" (click)="openMenu()" class="sidemenu-toggler">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                        <img *ngIf="!identity" src="./assets/svg/user-login.svg" alt="Mall Connect">
+                        <img *ngIf="identity && identity.img" [src]="(identity.img || '') | imagenPipe: 'usuarios'"
+                            alt="Mall Connect">
+                        <div class="sidemenu">
+                            <a href="javascript:void(0)" (click)="closeMenu()" class="close"></a>
+                            <nav>
+                                <ul>
+                                    <li><a routerLink="/">Home</a></li>
+                                    <li><a routerLink="/marcas">Marcas</a></li>
+                                    <li><a routerLink="/productos">Productos</a></li>
+                                    <li><a routerLink="/tiendas">Tiendas</a></li>
+                                    <!-- <li><a href="homeindividual.html">Promociones</a></li> -->
+                                    <li *ngIf="identity"><a [routerLink]="['/my-account/',]">Mi perfil</a></li>
+                                    <li *ngIf="identity"><a href="javascript:void(0)" (click)="logout()">Salir</a></li>
+                                    <li *ngIf="!identity"><a routerLink="/login">Login</a></li>
+                                    <li *ngIf="!identity"><a routerLink="/registro">Registro</a></li>
+                                    <!-- <li><a href="">Contacto</a></li> -->
+                                </ul>
+                            </nav>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
-    </header>
-    <!-- header -->
+</header>
+<!-- header -->

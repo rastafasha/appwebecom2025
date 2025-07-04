@@ -10,7 +10,9 @@ import { SliderService } from '../../services/slider.service';
 @Component({
   selector: 'app-slider',
   imports: [
-    CommonModule,RouterModule, NgFor,
+    CommonModule,
+    RouterModule, 
+    NgFor,
     ImagenPipe
   ],
   templateUrl: './slider.component.html',

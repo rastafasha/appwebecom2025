@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Promocion } from '../../models/promocion.model';
@@ -15,7 +15,8 @@ declare var $:any;
 @Component({
   selector: 'app-promocion',
   imports:[
-    CommonModule, RouterModule, ImagenPipe
+    CommonModule, RouterModule, ImagenPipe,
+     NgFor,
   ],
   templateUrl: './promocion.component.html',
   styleUrls: ['./promocion.component.css']
@@ -23,9 +24,12 @@ declare var $:any;
 export class PromocionComponent implements OnInit {
 
   promocion!: Promocion;
-  // public promocion:any=[];
+  promociones!: Promocion[];
   imagenUrl = environment.baseUrl;
   today: Date = new Date();
+  currentSlide = 0;
+
+  countdownValues: { [key: number]: { days: number; hours: number; minutes: number; seconds: number } } = {};
 
   constructor(
     private promocionService: PromocionService
@@ -35,42 +39,61 @@ export class PromocionComponent implements OnInit {
     this.data_banner();
   }
 
-  data_countdown(fecha: string | number | Date){
+  startCountdown(index: number, fecha: string | number | Date) {
     const second = 1000,
-    minute = second * 60,
-    hour = minute * 60,
-    day = hour * 24;
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24;
 
+    let countDown = new Date(fecha).getTime();
 
-    let countDown = new Date(fecha).getTime(),
-      x = setInterval(function() {
+    const updateCountdown = () => {
+      let now = new Date().getTime();
+      let distance = countDown - now;
 
-      let now = new Date().getTime(),
-      distance = countDown - now;
+      if (distance < 0) {
+        this.countdownValues[index] = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+        return;
+      }
 
-      $('#count_dias').text(Math.floor(distance / (day))),
-        $('#count_horas').text(Math.floor((distance % (day)) / (hour))),
-        $('#count_min').text(Math.floor((distance % (hour)) / (minute))),
-        $('#count_seg').text(Math.floor((distance % (minute)) / second))
+      this.countdownValues[index] = {
+        days: Math.floor(distance / day),
+        hours: Math.floor((distance % day) / hour),
+        minutes: Math.floor((distance % hour) / minute),
+        seconds: Math.floor((distance % minute) / second)
+      };
+    };
 
-
-      }, second)
+    updateCountdown();
+    setInterval(updateCountdown, second);
   }
 
-  data_banner(){
-
+  data_banner() {
     this.promocionService.cargarPromocionsActive().subscribe(
-      (response:any) =>{
-        // console.log(response);
+      (response: any) => {
         this.promocion = response[0];
-        this.data_countdown(this.promocion.end);
+        this.promociones = response;
+        this.promociones.forEach((promo, index) => {
+          this.startCountdown(index, promo.end);
+        });
 
-        if(new Date(this.promocion.end) < this.today){
+        if (new Date(this.promocion.end) < this.today) {
           this.promocion.estado = false;
-
-      }
+        }
       }
     );
+  }
+
+  selectSlide(index: number) {
+    this.currentSlide = index;
+  }
+
+  prevSlide() {
+    this.currentSlide = (this.currentSlide === 0) ? this.promociones.length - 1 : this.currentSlide - 1;
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide === this.promociones.length - 1) ? 0 : this.currentSlide + 1;
   }
 
 }
