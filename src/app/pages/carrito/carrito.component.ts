@@ -727,30 +727,35 @@ export class CarritoComponent implements OnInit {
 
       interface ProductoService {
         aumentar_ventas(id: string): any;
-        reducir_stock(id: string, cantidad: number): any;
+        // reducir_stock(id: string, cantidad: number): any;
       }
 
       (this.data_venta.detalles as DetalleVenta[]).forEach((element: DetalleVenta) => {
         console.log(element);
         (this._productoService as ProductoService).aumentar_ventas(element.producto._id).subscribe(
           (response: any) => {
-          },
-          (error: any) => {
-            console.log(error);
-          }
-        );
-        (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
-          (response: any) => {
             this.remove_carrito();
             this.listar_carrito();
             this.socket.emit('save-carrito', { new: true });
             this.socket.emit('save-stock', { new: true });
-            this._router.navigate(['/app/cuenta/ordenes']);
+            this._router.navigate(['/my-account/ordenes']);
           },
           (error: any) => {
             console.log(error);
           }
         );
+        // (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
+        //   (response: any) => {
+        //     this.remove_carrito();
+        //     this.listar_carrito();
+        //     this.socket.emit('save-carrito', { new: true });
+        //     this.socket.emit('save-stock', { new: true });
+        //     this._router.navigate(['/my-account/ordenes']);
+        //   },
+        //   (error: any) => {
+        //     console.log(error);
+        //   }
+        // );
       });
 
     },)

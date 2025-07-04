@@ -44,15 +44,11 @@
     padding-left: 110px;
 }
 
-.header .logocenter img {
-    width: 80px;
-    transform: translate(-53px, 10px);
-    transition: all .2s ease;
-}
 
+.header .logocenter img,
 .header2 .logocenter img {
-    width: 80px;
-    transform: translate(-53px, 10px);
+    width: 90px;
+    transform: translate(45px, 35px);
     transition: all .2s ease;
 }
 
@@ -129,6 +125,7 @@
 }
 
 .header .menuright {
+    width: auto;
     height: 40px;
     display: flex;
     justify-content: left;
