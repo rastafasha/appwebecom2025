@@ -20,15 +20,31 @@
             </div>
             <!-- Profile form-->
             <form [formGroup]="perfilForm" (ngSubmit)="actualizarPerfil()" autocomplete="off">
-                <div class="bg-secondary rounded-lg p-4 mb-4">
-                    <div class="media align-items-center">
-                        <img [src]="(identity.img ?? '') | imagenPipe: 'usuarios'" width="90" alt="user.first_name">
-                        <div class="media-body pl-3">
-                            <button class="btn btn-light btn-shadow btn-sm mb-2" type="button"><i class="czi-loading mr-2"></i>Avatar</button>
-                            <div class="p mb-0 font-size-ms text-muted">Sube JPG, GIF or PNG.</div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 media">
+                        <img [src]="(identity.img ?? '') | imagenPipe: 'usuarios'"  alt="user.first_name">
+                        
+                    </div>
+                    <div class="col-xs-12 col-sm-">
+                        <div class="form-group">
+                            <div class="cz-file-drop-area">
+                                <!-- <div class="cz-file-drop-preview img-thumbnail rounded">
+                                    <img *ngIf="!imgTemp" [src]="identity.imagenUrl" style="width: 100px;">
+                                    <img *ngIf="imgTemp" [src]="imgTemp" style="width: 100px;">
+                                </div> -->
+                                <span class="cz-file-drop-message">Suelta la imagen aquí</span>
+                                <input type="file" class="cz-file-drop-input" (change)="cambiarImagen($event)">
+                                <br>
+                                <br>
+                                <button type="button" [disabled]="!imagenSubir" (click)="subirImagen()" class="btn btn-success waves-effect waves-light m-r-10 ">
+                                  <i class="fa fa-save"></i> Cambiar imagen
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-sm-12" *ngIf="msm_error">
                         <div class="form-group">
@@ -114,23 +130,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <div class="cz-file-drop-area">
-                                <div class="cz-file-drop-preview img-thumbnail rounded">
-                                    <img *ngIf="!imgTemp" [src]="identity.imagenUrl" style="width: 100px;">
-                                    <img *ngIf="imgTemp" [src]="imgTemp" style="width: 100px;">
-                                </div>
-                                <span class="cz-file-drop-message">Suelta la imagen aquí</span>
-                                <input type="file" class="cz-file-drop-input" (change)="cambiarImagen($event)">
-                                <br>
-                                <br>
-                                <button type="button" [disabled]="!imagenSubir" (click)="subirImagen()" class="btn btn-success waves-effect waves-light m-r-10 btn-block">
-                                  <i class="fa fa-save"></i> Cambiar imagen
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-12">
                         <hr class="mt-2 mb-3">
                         <div class="d-flex flex-wrap justify-content-between align-items-center">

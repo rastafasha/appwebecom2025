@@ -10,9 +10,7 @@
         </div>
     </div>
 
-    <div class="bg-secondary px-4 py-3">
-        <h3 class="font-size-sm mb-0 text-muted">Opciones</h3>
-    </div>
+    
     <ul class="list-unstyled mb-0">
         <li class="border-bottom mb-0">
             <a class="nav-link-style d-flex align-items-center px-4 py-3" [routerLink]="['/my-account/perfil/', identity.uid]" routerLinkActive="active">
@@ -27,7 +25,10 @@
         <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" [routerLink]="['/my-account/ordenes']" routerLinkActive="active"><i class="czi-bag opacity-60 mr-2"></i>Ordenes</a></li>
 
         <li class="border-bottom mb-0">
-            <a class="nav-link-style d-flex align-items-center px-4 py-3" [routerLink]="['/my-account/cart']" routerLinkActive="active">
+            <!-- <a class="nav-link-style d-flex align-items-center px-4 py-3" [routerLink]="['/my-account/cart']" routerLinkActive="active">
+                <i class="czi-cart opacity-60 mr-2"></i>Mi carrito
+            </a> -->
+            <a class="nav-link-style d-flex align-items-center px-4 py-3" [routerLink]="['/cart']" routerLinkActive="active">
                 <i class="czi-cart opacity-60 mr-2"></i>Mi carrito
             </a>
         </li>

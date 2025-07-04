@@ -34,7 +34,7 @@ interface HtmlInputEvent extends Event{
 
   ],
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
 
