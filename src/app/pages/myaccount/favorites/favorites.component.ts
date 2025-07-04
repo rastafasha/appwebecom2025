@@ -9,6 +9,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
+import { AsideCuentaComponent } from '../aside-cuenta/aside-cuenta.component';
 
 
 @Component({
@@ -18,7 +19,8 @@ import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
     RouterModule,
     HeaderComponent,
     FooterComponent,
-    ImagenPipe
+    ImagenPipe,
+    AsideCuentaComponent
   ],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']

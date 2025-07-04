@@ -1,94 +1,88 @@
 <app-header></app-header>
+
+<section class="sub-header d-flex justify-content-center mt-5" style="padding-top: 30px;">
+    
+    <!-- <img class="rellax bg-overlay" src="./assets/img/fondo-brow.jpeg" style="height: 120px; width: 100%;  filter: blur(10px);" alt=""> -->
+    <div class="overlay-call-to-action"></div>
+    <h3 class="heading-style-3">Favoritos</h3>
+</section>
 <section class="container page favorites">
-    <div class="butonBack">
-        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
-    </div>
-    <div class="titlePage animated fadeIn">
-        <h3>Favorites</h3>
-    </div>
+    
     <div class="container-fluid cuadro-modal animated fadeInUp">
         <div class="lineamedio"></div>
         <div class="container">
-        
-         <!-- mensaje -->
-         <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success_fav">
-            Artículo Eliminado de Favoritos!.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <!-- mensaje -->
-         </div>
-        <div>
+            <div class="row">
+                <aside class="col-lg-4 pt-4 pt-lg-0">
+                    <app-aside-cuenta></app-aside-cuenta>
+                </aside>
+                <section class="col-lg-8">
+                <!-- mensaje -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success_fav">
+                Artículo Eliminado de Favoritos!.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- mensaje -->
+            <h5>Productos </h5>
+            <div class="post-inner">
+                <div class="carousel-inner-data">
+                    <div class="post navTabs" *ngFor="let producto of favoritos">
 
-            <!----info-->
-            <div class="areablanc areablanc-interna animated fadeInUp">
-                <div class="div-responsive1">
+                        <div class=" itemFav">
+                            <div class="group  itemFav lastposthome">
+                                <div class="favoritesdiv1">
+                                    <a [routerLink]="['/producto', producto.producto.slug]">
+                                        <img [src]="producto.producto.img | imagenPipe: 'productos'" alt="">
+                                    </a>
+                                </div>
 
-                    <!---Slider-->
-                    
-                    <!---Slider-->
-                    <br>
-                    <br>
-                    <h5>Productos </h5>
-                    <div class="post-inner">
-
-                        <div class="carousel-inner-data">
-                            <div class="post navTabs" *ngFor="let producto of favoritos">
-
-                                <div class=" itemFav">
-                                    <div class="group  itemFav lastposthome">
-                                        <div class="favoritesdiv1">
-                                            <a [routerLink]="['/producto', producto.producto.slug]">
-                                                <img [src]="producto.producto.img | imagenPipe: 'productos'"alt="">
-                                            </a>
-                                        </div>
-
-                                        <div class="favoritesdiv2">
-                                            <p>{{producto.producto.titulo}}</p>
-                                            <div class="precio">
-                                                <p>$ {{producto.producto.precio_antes}}</p>
-                                                <p>$ {{producto.producto.precio_ahora}}</p>
-                                            </div>
-                                            <!-- <div class="stars">
-                                                <ul>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div> -->
-                                            <div class="botones">
-                                                <button class="  btn-azul" (click)="removeFavorito(producto._id)"><i class="fa fa-trash" id="myBtn "></i></button>
-                                                <button class=" btn-azul " [routerLink]="['/producto', producto.producto.slug]"><i class="fa  fa-eye " id="myBtn "></i></button>
-                                            <!-- <button class="button-add-cart" (click)="addToCart(producto)"><i class="fa fa-shopping-bag " id="myBtn "></i></button> -->
-                                            </div>
-                                        </div>
-
+                                <div class="favoritesdiv2">
+                                    <p>{{producto.producto.titulo}}</p>
+                                    <div class="precio">
+                                        <p>$ {{producto.producto.precio_antes}}</p>
+                                        <p>$ {{producto.producto.precio_ahora}}</p>
+                                    </div>
+                                    <!-- <div class="stars">
+                                               <ul>
+                                                   <li class="active"><i class="fa fa-star"></i></li>
+                                                   <li class="active"><i class="fa fa-star"></i></li>
+                                                   <li class="active"><i class="fa fa-star"></i></li>
+                                                   <li class="active"><i class="fa fa-star"></i></li>
+                                                   <li><i class="fa fa-star"></i></li>
+                                               </ul>
+                                           </div> -->
+                                    <div class="botones">
+                                        <button class="  btn-azul" (click)="removeFavorito(producto._id)"><i
+                                                class="fa fa-trash" id="myBtn "></i></button>
+                                        <button class=" btn-azul "
+                                            [routerLink]="['/producto', producto.producto.slug]"><i class="fa  fa-eye "
+                                                id="myBtn "></i></button>
+                                        <!-- <button class="button-add-cart" (click)="addToCart(producto)"><i class="fa fa-shopping-bag " id="myBtn "></i></button> -->
                                     </div>
                                 </div>
 
                             </div>
                         </div>
 
-
                     </div>
-                </div>
-                <div class="div-responsive2">
-
-                    <!-- <app-lateral></app-lateral> -->
                 </div>
 
 
             </div>
+            </section>
+            </div>
 
-            <!---info-->
+            
+            
+        </div>
+        <div>
 
 
 
 
         </div>
+
 
     </div>
 </section>
