@@ -20,11 +20,19 @@
 
                     <div class="menuright">
                         <ul>
+                            <!-- <li class="nav-item dropdown">
+                                <a [routerLink]="['/blogs']">News</a>
+                    
+                            </li> -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Nosotros</a>
-                                <div class="dropdown-menu" *ngFor="let page of pages;">
-                                    <a class="dropdown-item" [routerLink]="['/page',page.slug]">{{page.titulo}}</a>
+                                <div class="dropdown-menu" >
                                     <a class="dropdown-item" [routerLink]="['/blogs']">News</a>
+                                    <ng-container *ngFor="let page of pages;">
+
+                                        <a class="dropdown-item" [routerLink]="['/page',page.slug]">{{page.titulo}}</a>
+                                    </ng-container>
+                                  
 
                                 </div>
                             </li>

@@ -12,17 +12,20 @@
                 </div>
                 <div class="contenido">
                     <h2>Contenido</h2>
-                    <ul>
-                        <li><a [routerLink]="['/productos']">Products</a></li>
-                        <li><a [routerLink]="['/blogs']">News</a></li>
+                    <ul style="padding-left: 0 !important;">
+                        <li *ngFor="let page of pagesmenu">
+                            <a [routerLink]="['/page', page.slug]">{{page.titulo}}</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="contenido">
                     <h2>Company</h2>
-                    <ul>
-                        <li><a [routerLink]="['/page','nosotros']">Why MallConnect?</a></li>
+                    <ul style="padding-left: 0 !important;">
+                        <li><a [routerLink]="['/productos']">Products</a></li>
+                        <li><a [routerLink]="['/blogs']">News</a></li>
+                        <!-- <li><a [routerLink]="['/page','nosotros']">Why MallConnect?</a></li> -->
                         <li><a href="">Partner with us</a></li>
-                        <li><a [routerLink]="['/page','faq']">FAQ</a></li>
+                        <!-- <li><a [routerLink]="['/page','faq']">FAQ</a></li> -->
                     </ul>
                 </div>
                 <div class="contenido">
@@ -41,7 +44,7 @@
         </div>
         <div class="creditsocial">
             <p>© 2024 - {{year}} | Mall Connect.</p>
-            <ul class="politicas" *ngFor="let page of pages;" >
+            <ul  style="padding-left: 0 !important;" class="politicas" *ngFor="let page of pages;" >
                 
                 <li><a [routerLink]="['/page',page.slug]">{{page.titulo}}</a></li>
                 <!-- <li><a [routerLink]="['/page', 'polticas-de-privacidad']">Politícas de Privacidad</a></li> -->

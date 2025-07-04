@@ -48,7 +48,7 @@
 .header .logocenter img,
 .header2 .logocenter img {
     width: 90px;
-    transform: translate(45px, 35px);
+    transform: translate(40px, 35px);
     transition: all .2s ease;
 }
 
@@ -481,19 +481,13 @@
         transition: all .2s ease;
     }
 
-    .header .menuright {
-        top: 20px;
-        right: 0px;
-        transition: all .2s ease;
-    }
-
     .header2 .logocenter img {
         width: 80px;
         transform: translate(0px, 44px);
     }
-
+    .header .menuright,
     .header2 .menuright {
-        top: 60px;
+        top: 20px;
         right: 0px;
         transition: all .2s ease;
 

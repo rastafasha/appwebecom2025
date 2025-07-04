@@ -103,10 +103,13 @@ export class HeaderComponent {
   getPages() {
     this.pageService.getPages().subscribe((data: any) => {
       this.pages = data;
-      // console.log(data);
+      console.log(data);
       //filtramos los que traen el origen 'header o ambos'
-      this.pages = this.pages.filter((page: any) => page.origen === 'header' || page.origen === 'ambos');
-
+      this.pages = data.filter((page: any) => page.origen === 'header' || page.origen === 'ambos');
+      // this.pagesmenu = data.filter((page: any) => page.origen === 'ambos');
+      console.log(this.pages);
+      // this.pages = this.pages.filter((page: any) => page.origen === 'header');
+      
       // console.log(this.pages);
       //ordenamos por createdAt de forma descendente
       // this.pages.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());

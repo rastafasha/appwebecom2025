@@ -9,13 +9,11 @@
     <!-- <app-search [style.display]="display" [query]="query"  [colleccion]="'marcas'" [colleccionName]="marcas" (searchEvent)="handleSearchEvent($event)" (resetEvent)="PageSize()"></app-search> -->
 
 
-    <section class="box-sm" *ngIf="!isLoading">
-        <div class="container">
-            <div class="row main ">
+    <div class="container" *ngIf="!isLoading">
+        <div class="marca">
                 <!-- <figure class="item" *ngFor="let producto of productos |  paginate: { itemsPerPage: count, currentPage: p }"> -->
                     <figure class="item" *ngFor="let marca of marcas | slice: 0: limit">
-                        <div class="marca marca-style-1">
-                            <div class="img-wrapper">
+                        <div class="img-wrapper">
                                 <a [routerLink]="['../productos/marca/', marca.slug]">
                                     <img class="img-responsive" [src]="marca.img | imagenPipe: 'marcas'" alt="{{marca.nombre}} thumbnail" />
                                 </a>
@@ -25,11 +23,10 @@
                                     <a class="product-name" [routerLink]="['../productos/marca/', marca.slug]">{{marca.nombre}}</a>
                                 </h3>
                             </figcaption>
-                        </div>
                     </figure>
-                
+
             </div>
-        </div>
-    </section>
+            
+    </div>
 </div>
 <app-footer [style.display]="display"></app-footer>

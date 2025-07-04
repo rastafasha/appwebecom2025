@@ -4,6 +4,7 @@ const base_url = environment.mediaUrlRemoto;
 export class About {
   _id!: string;
   titulo!: string;
+  slug!: string;
   categoria!: string;
   descripcion!: string;
   origen!: string;

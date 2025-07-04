@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PageService } from '../../services/page.service';
 import { CongeneralService } from '../../services/congeneral.service';
 import { Congeneral, Redes } from '../../models/congeneral.model';
+import { About } from '../../models/page.model';
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +18,8 @@ import { Congeneral, Redes } from '../../models/congeneral.model';
 })
 export class FooterComponent {
   year = new Date().getFullYear();
-  pages:any;
+  pages: About[] = [];
+  pagesmenu: About[] = [];
   public congeneral: Congeneral;
   isLoading: boolean = false;
   congeneral_id!: string;
@@ -41,13 +43,15 @@ export class FooterComponent {
 
   getPages() {
     this.pageService.getPages().subscribe((data: any) => {
-      this.pages = data;
+      this.pages = data as About[];
       //filtramos los que traen el origen 'footer'
       this.pages = this.pages.filter((page: any) => page.origen === 'footer');
+      this.pagesmenu = data.filter((page: any) => page.origen === 'ambos');
+      // console.log(this.pagesmenu);
       //ordenamos por createdAt de forma descendente
       // this.pages.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       //tomamos los primeros
-      this.pages = this.pages.slice(0, 2);
+      // this.pages = this.pages.slice(0, 2);
     }, (error: any) => {
       console.error('Error fetching pages:', error);
       this.pages = [];
