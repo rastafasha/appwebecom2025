@@ -5,6 +5,7 @@ import { PageService } from '../../services/page.service';
 import { CongeneralService } from '../../services/congeneral.service';
 import { Congeneral, Redes } from '../../models/congeneral.model';
 import { About } from '../../models/page.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-footer',
@@ -12,6 +13,7 @@ import { About } from '../../models/page.model';
     CommonModule,
     RouterModule,
     NgFor,
+    FormsModule
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
@@ -25,11 +27,23 @@ export class FooterComponent {
   congeneral_id!: string;
   redessociales!: Redes[]|null;
 
+   public errors: any;
+    // public registerForm = this.fb.group({
+    //     id: [''],
+    //     email: [ '', [Validators.required, Validators.email] ],
+    
+    //   });
+    // email = new FormControl();
+    //   submitted = false;
+    //   error = null;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private pageService: PageService,
     private congeneralService: CongeneralService,
+    // private subcripctionService: ,
+
 
   ) {
     this.congeneral = congeneralService.congeneral;
@@ -83,5 +97,19 @@ export class FooterComponent {
     
   })
 }
+
+crearUsuario(){
+      
+        // this.subcripcionService.crearSubscripcion(this.registerForm.value).subscribe(
+        //   (resp:any) =>{
+        //     Swal.fire('Registrado!', `Gracias por Seguirnos!`, 'success');
+        //   },(error) => {
+        //     Swal.fire('Error', error.error.msg, 'error');
+        //     this.errors = error.error;
+            
+        //   }
+        // );
+    
+      }
 
 }

@@ -121,19 +121,19 @@
                             <tbody *ngFor="let item of postales">
                                 <tr>
                                     <td *ngIf="item._id == radio_postal">
-                                        <input type="radio" class="form-control" style="height: 25px;width: 15px;"
+                                        <input type="radio" class="form-control" style="height: 15px;width: 15px;"
                                             [attr.id]="'postal-'+item._id" name="radio"
                                             (change)="select_postal($event,item)" value="{{item._id}}" checked>
                                     </td>
                                     <td *ngIf="item._id != radio_postal">
-                                        <input type="radio" class="form-control" style="height: 25px;width: 15px;"
+                                        <input type="radio" class="form-control" style="height: 15px;width: 15px;"
                                             [attr.id]="'postal-'+item._id" name="radio"
                                             (change)="select_postal($event,item)" value="{{item._id}}">
                                     </td>
                                     <td>
                                         <!-- Blockquote -->
                                         <blockquote class="blockquote" style="margin-bottom: 0.4rem;">
-                                            <p style="font-size: 13px;margin-bottom: 0px !important;">{{item.titulo}}
+                                            <p style="font-size: 13px;margin-bottom: 10px !important;">{{item.titulo}}
                                             </p>
                                             <footer class="blockquote-footer">
                                                 {{item.tiempo}}
@@ -203,7 +203,7 @@
                     <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" id="btn-back-data"
                         (click)="back_data()"><i class="czi-reply font-size-lg mr-2"></i>Regresar</button>
 
-                    <div class="rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio">
+                    <div class="rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio" >
                         <div class="row">
                             <div class="col-sm-12">
                                 <h4 class="h6">Detalles de envío:</h4>

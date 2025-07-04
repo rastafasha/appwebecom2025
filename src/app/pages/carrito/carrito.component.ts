@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
+import Swal from 'sweetalert2';
 
 declare var paypal: {
   Buttons: (arg0: {
@@ -199,17 +200,34 @@ export class CarritoComponent implements OnInit {
     if(this.formTransferencia.valid){
       // llamo al servicio
       this._trasferencias.createTransfer(this.formTransferencia.value).subscribe(resultado => {
-        console.log('resultado: ',resultado);
+        // console.log('resultado: ',resultado);
         this.verify_dataComplete();
         if(resultado.ok){
           // transferencia registrada con exito
-          console.log(resultado.payment);
-          alert('Transferencia registrada con exito');
+          // console.log(resultado.payment);
+          // alert('Transferencia registrada con exito');
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Transferencia registrada con exito',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
         else{
           // error al registar la transferencia
-          alert('Error al registrar la transferencia');
-          console.log(resultado.msg);
+          // alert('Error al registrar la transferencia');
+          // console.log(resultado.msg);
+
+          
+          Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Error al registrar la transferencia' ,  
+            text: resultado.msg,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       });
     }
@@ -291,7 +309,7 @@ export class CarritoComponent implements OnInit {
 
             interface ProductoService {
               aumentar_ventas(id: string): any;
-              reducir_stock(id: string, cantidad: number): any;
+              // reducir_stock(id: string, cantidad: number): any;
             }
 
             (this.data_venta.detalles as DetalleVenta[]).forEach((element: DetalleVenta) => {
@@ -303,18 +321,18 @@ export class CarritoComponent implements OnInit {
                   console.log(error);
                 }
               );
-              (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
-                (response: any) => {
-                  this.remove_carrito();
-                  this.listar_carrito();
-                  this.socket.emit('save-carrito', { new: true });
-                  this.socket.emit('save-stock', { new: true });
-                  this._router.navigate(['/app/cuenta/ordenes']);
-                },
-                (error: any) => {
-                  console.log(error);
-                }
-              );
+              // (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
+              //   (response: any) => {
+              //     this.remove_carrito();
+              //     this.listar_carrito();
+              //     this.socket.emit('save-carrito', { new: true });
+              //     this.socket.emit('save-stock', { new: true });
+              //     this._router.navigate(['/app/cuenta/ordenes']);
+              //   },
+              //   (error: any) => {
+              //     console.log(error);
+              //   }
+              // );
             });
 
           },
@@ -416,7 +434,7 @@ export class CarritoComponent implements OnInit {
     this._direccionService.listarUsuario(this.identity.uid ?? '').subscribe(
       response =>{
         this.direcciones = response;
-        console.log(this.direcciones);
+        // console.log(this.direcciones);
       },
       error=>{
 
