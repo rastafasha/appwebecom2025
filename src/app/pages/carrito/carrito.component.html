@@ -196,16 +196,16 @@
 
                     </div>
                     <div class="invalid-feedback" style="display: block;" *ngIf="msm_error">{{msm_error}}</div>
-
+                   
                     <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" *ngIf="carrito" id="btn-verify-data"
                         (click)="verify_data()"><i class="czi-card font-size-lg mr-2"></i>Proceder a pagar</button>
-
+                    
                     <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" id="btn-back-data"
                         (click)="back_data()"><i class="czi-reply font-size-lg mr-2"></i>Regresar</button>
 
-                    <div class="rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio" >
+                     <div class="rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio" >
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" *ngIf="data_direccion">
                                 <h4 class="h6">Detalles de envío:</h4>
                                 <ul class="list-unstyled font-size-sm">
                                     <li><span class="text-muted dt-w">Destinatario:&nbsp;
@@ -239,33 +239,36 @@
                                 <!-- <option>Selecciona un método de pago</option> -->
                                 <option value="paypal">Paypal</option>
                                 <option value="card">Tarjeta de Crédito/Débito</option>
-                                <option value="transferencia">Transferencia Bancaria</option>
+                                <option value="transferencia">Pagos Bancarios</option>
+                                
                             </select>
                         </div>
                         <!-- Contenedor para el botón de PayPal -->
                         <div #paypal></div>
-                        <div *ngIf="habilitacionFormTransferencia" class="mt-5 p-3">
+                        <!-- Contenedor para el botón de transferencia-->
+                        <div *ngIf="habilitacionFormTransferencia" class="mt-2 p-3">
                             <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
 
                                 <!-- metodo de pago -->
-                                <div class="mb-3 mt-2">
+                                <div class="mb-1 mt-2">
                                     <label form="metodo_pago" class="form-label">Tipo de Transferencia</label>
 
                                     <select formControlName="metodo_pago" (change)="onChangePayment($event)"
                                         class="form-control" name="metodo_pago" id="metodo_pago">
-                                        <option [value]="metodo_pago._id" *ngFor="let metodo_pago of paymentMethods">
+                                        <option [value]="metodo_pago._id" *ngFor="let metodo_pago of paymentMethods ">
                                             {{metodo_pago.tipo}}
                                         </option>
                                     </select>
                                 </div>
                                 <div class="card">
                                     <div class="card-body p-2" *ngIf="paymentSelected">
-                                        <p>Nombre del Banco:&nbsp;{{paymentSelected.bankName}}</p>
+                                        <p *ngIf="paymentSelected.bankName">Nombre del Banco:&nbsp;{{paymentSelected.bankName}}</p>
+                                        <p *ngIf="paymentSelected.username">Cheque a nombre de:&nbsp;{{paymentSelected.username}}</p>
                                         <p *ngIf="paymentSelected.bankAccount">Numero de
                                             Cuenta:&nbsp;{{paymentSelected.bankAccount}}</p>
-                                        <!-- <p *ngIf="paymentSelected.phone">Numero de Teléfono:&nbsp;{{paymentSelected.phone}}</p> -->
+                                        <p *ngIf="paymentSelected.phone">Numero de Teléfono:&nbsp;{{paymentSelected.phone}}</p>
                                         <p *ngIf="paymentSelected.email">Email:&nbsp;{{paymentSelected.email}}</p>
-                                        <p>Ciorif:&nbsp;{{paymentSelected.ciorif}}</p>
+                                        <p *ngIf="paymentSelected.ciorif">CI o rif:&nbsp;{{paymentSelected.ciorif}}</p>
                                     </div>
                                 </div>
 
@@ -281,6 +284,11 @@
                                     <label for="referencia" class="form-label">Num. referencia</label>
                                     <input type="text" formControlName="referencia" class="form-control"
                                         name="referencia" id="referencia">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ncheque" class="form-label">Num. cheque</label>
+                                    <input type="text" formControlName="ncheque" class="form-control"
+                                        name="ncheque" id="ncheque">
                                 </div>
 
                                 <!-- monto -->
@@ -311,6 +319,55 @@
                                     <label for="paymentday" class="form-label">Fecha de Pago</label>
                                     <input type="date" formControlName="paymentday" class="form-control"
                                         name="paymentday" id="paymentday">
+                                </div>
+
+                                <!-- botones -->
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary" type="submit">
+                                        Enviar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Contenedor para el botón de cheque-->
+                        <div *ngIf="habilitacionFormCheque" class="mt-2 p-3">
+                            <div class="card">
+                                <div class="card-body p-2" >
+                                    <p *ngIf="paymentSelected.username">Cheque a nombre de:&nbsp;{{paymentSelected.username}}</p>
+                                    
+                                </div>
+                            </div>
+                            <!-- formulario -->
+                            <form [formGroup]="formCheque" (ngSubmit)="sendFormCheque()" class="mt-4">
+                                <!-- nombre de la persona que paga -->
+                                <div class="mb-3 mt-2">
+                                    <label for="name_person" class="form-label">
+                                        Nombre y Apellido
+                                    </label>
+                                    <input type="text" formControlName="name_person" class="form-control" name="name_person" id="name_person">
+                                </div>
+
+                                <!-- monto -->
+                                <div class="mb-3">
+                                    <label for="amount" class="form-label">Monto</label>
+                                    <input type="number" formControlName="amount" class="form-control" name="amount" id="amount">
+                                </div>
+                                <!-- numero de cheque -->
+                                <div class="mb-3">
+                                    <label for="ncheck" class="form-label">N. Cheque</label>
+                                    <input type="number" formControlName="ncheck" class="form-control" name="ncheck" id="ncheck">
+                                </div>
+
+                                <!-- teléfono de la persona que paga -->
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Num. teléfono</label>
+                                    <input type="number" formControlName="phone" class="form-control" name="phone" id="phone">
+                                </div>
+
+                                <!-- fecha de pago -->
+                                <div class="mb-3">
+                                    <label for="paymentday" class="form-label">Fecha de Pago</label>
+                                    <input type="date" formControlName="paymentday" class="form-control" name="paymentday" id="paymentday">
                                 </div>
 
                                 <!-- botones -->

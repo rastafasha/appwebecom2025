@@ -27,7 +27,7 @@ import { SearchComponent } from '../../shared/search/search.component';
 export class MarcasComponent {
 
   @Input() limit!:number;
-  @Input() display: string = 'block';
+  @Input() displaycomponent: string = 'block';
   public marcas:Marca[]=[];
   isLoading: boolean = true;
   query:string ='';

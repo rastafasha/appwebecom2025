@@ -19,6 +19,8 @@ import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import Swal from 'sweetalert2';
+import { PagochequeService } from '../../services/pagocheque.service';
+import { PagosFilterPipe } from '../../pipes/pagos-filter.pipe';
 
 declare var paypal: {
   Buttons: (arg0: {
@@ -62,7 +64,8 @@ interface CuponResponse {
     RouterModule,
     ImagenPipe,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    // PagosFilterPipe
   ],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
@@ -113,6 +116,7 @@ export class CarritoComponent implements OnInit {
   selectedMethod: string = 'Selecciona un método de pago';
 
   habilitacionFormTransferencia:boolean = false;
+  habilitacionFormCheque:boolean = false;
 
   paymentMethods:PaymentMethod[] = []; //array metodos de pago para transferencia (dolares, bolivares, movil)
   paymentSelected!:PaymentMethod; //metodo de pago seleccionado por el usuario para transferencia
@@ -123,6 +127,14 @@ export class CarritoComponent implements OnInit {
     amount: new FormControl('', Validators.required),
     referencia: new FormControl('',Validators.required),
     name_person: new FormControl('', Validators.required),
+    phone: new FormControl('',Validators.required),
+    paymentday: new FormControl('', Validators.required)
+  });
+
+  formCheque = new FormGroup({
+    amount: new FormControl('', Validators.required),
+    name_person: new FormControl('', Validators.required),
+    ncheck: new FormControl('', Validators.required),
     phone: new FormControl('',Validators.required),
     paymentday: new FormControl('', Validators.required)
   });
@@ -140,7 +152,8 @@ export class CarritoComponent implements OnInit {
     private _direccionService :DireccionService,
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
-    private _trasferencias: TransferenciasService
+    private _trasferencias: TransferenciasService,
+    private _pagoCheque: PagochequeService
 
   ) {
     // this.identity = _userService.usuario;
@@ -233,6 +246,45 @@ export class CarritoComponent implements OnInit {
     }
   }
 
+  sendFormCheque(){
+    if(this.formCheque.valid){
+      console.log(this.formCheque.value)
+
+      this._pagoCheque.registro(this.formCheque.value).subscribe(
+        resultado => {
+          console.log('resultado: ',resultado);
+
+          if(resultado.ok){
+            // console.log(resultado.pago_efectivo);
+            this.verify_dataComplete();
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'pago Cheque registrada con exito',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+            // eliminar carrito luego de haber realzado la compra con transferencia exitosa
+            this.remove_carrito();
+          }
+          else{
+            Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Error al registrar pago Cheque' ,  
+            text: resultado.msg,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+            console.log(resultado.msg);
+          }
+          
+        }
+      );
+    }
+  }
+
   // Método que se llama cuando cambia el select
   onPaymentMethodChange(event: any) {
     this.selectedMethod = event.target.value;
@@ -246,12 +298,20 @@ export class CarritoComponent implements OnInit {
     if(this.selectedMethod==='card' || this.selectedMethod==='paypal'){
       // deshabilitar el formulario de pago con transferencia
       this.habilitacionFormTransferencia = false;
+      this.habilitacionFormCheque = false;
       // Cargar el botón de PayPal con las opciones seleccionadas
     this.paypalBotones();
     }
     else if(this.selectedMethod==='transferencia'){
       // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
       this.habilitacionFormTransferencia = true;
+      this.habilitacionFormCheque = false;
+    }
+    else if(this.selectedMethod==='cheque'){
+      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+      this.habilitacionFormCheque = true;
+      this.habilitacionFormTransferencia = false;
+      
     }
     // 
   }

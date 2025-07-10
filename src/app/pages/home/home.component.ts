@@ -39,6 +39,6 @@ import { RouterModule } from '@angular/router';
 })
 export class HomeComponent {
   limit: number = 5;
-  display: string = 'none'
+  displaycomponent: string = 'none'
 
 }

@@ -37,7 +37,7 @@
 
                             </div>
                         </li>
-                        <li>
+                        <li *ngIf="cartItemCount > 0">
                             <a routerLink="/cart">
                                 <span class="cart-count-badge"
                                     *ngIf="cartItemCount > 0 && cartItemCount <= 10">{{cartItemCount}}</span>
