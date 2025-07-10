@@ -240,6 +240,7 @@
                                 <option value="paypal">Paypal</option>
                                 <option value="card">Tarjeta de Crédito/Débito</option>
                                 <option value="transferencia">Pagos Bancarios</option>
+                                <option value="cheque">Cheque</option>
                                 
                             </select>
                         </div>
@@ -285,11 +286,7 @@
                                     <input type="text" formControlName="referencia" class="form-control"
                                         name="referencia" id="referencia">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="ncheque" class="form-label">Num. cheque</label>
-                                    <input type="text" formControlName="ncheque" class="form-control"
-                                        name="ncheque" id="ncheque">
-                                </div>
+                                
 
                                 <!-- monto -->
                                 <div class="mb-3">
@@ -332,11 +329,10 @@
                         <!-- Contenedor para el botón de cheque-->
                         <div *ngIf="habilitacionFormCheque" class="mt-2 p-3">
                             <div class="card">
-                                <div class="card-body p-2" >
-                                    <p *ngIf="paymentSelected.username">Cheque a nombre de:&nbsp;{{paymentSelected.username}}</p>
-                                    
+                                    <div class="card-body p-2" *ngIf="paymentMethodinfo">
+                                        <p *ngIf="paymentMethodinfo.username">Cheque a nombre de:&nbsp;{{paymentMethodinfo.username}}</p>
+                                    </div>
                                 </div>
-                            </div>
                             <!-- formulario -->
                             <form [formGroup]="formCheque" (ngSubmit)="sendFormCheque()" class="mt-4">
                                 <!-- nombre de la persona que paga -->

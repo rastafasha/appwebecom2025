@@ -21,6 +21,7 @@ import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import Swal from 'sweetalert2';
 import { PagochequeService } from '../../services/pagocheque.service';
 import { PagosFilterPipe } from '../../pipes/pagos-filter.pipe';
+import { TiposdepagoService } from '../../services/tiposdepago.service';
 
 declare var paypal: {
   Buttons: (arg0: {
@@ -120,6 +121,7 @@ export class CarritoComponent implements OnInit {
 
   paymentMethods:PaymentMethod[] = []; //array metodos de pago para transferencia (dolares, bolivares, movil)
   paymentSelected!:PaymentMethod; //metodo de pago seleccionado por el usuario para transferencia
+  paymentMethodinfo!:PaymentMethod; //metodo de pago seleccionado por el usuario para transferencia
 
   formTransferencia = new FormGroup({
     metodo_pago: new FormControl('',Validators.required),
@@ -153,7 +155,8 @@ export class CarritoComponent implements OnInit {
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
     private _trasferencias: TransferenciasService,
-    private _pagoCheque: PagochequeService
+    private _pagoCheque: PagochequeService,
+    private _tipoPagosService: TiposdepagoService
 
   ) {
     // this.identity = _userService.usuario;
@@ -286,9 +289,42 @@ export class CarritoComponent implements OnInit {
   }
 
   // Método que se llama cuando cambia el select
+  
+
+  // Método que se llama cuando cambia el select
   onPaymentMethodChange(event: any) {
     this.selectedMethod = event.target.value;
-    this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
+    console.log('metodo de pago seleccionado: ',this.selectedMethod)
+    this.getPaymentMbyName(this.selectedMethod);
+    
+    if(this.selectedMethod==='paypal' || this.selectedMethod==='card'){
+      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+      this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
+      this.habilitacionFormTransferencia = false;
+      this.habilitacionFormCheque = false;
+    }
+    if(this.selectedMethod==='transferencia'){
+      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+      this.habilitacionFormTransferencia = true;
+      
+      this.habilitacionFormCheque = false;
+    }
+    else if(this.selectedMethod==='cheque'){
+      // cheque
+      this.habilitacionFormCheque = true;
+      
+      this.habilitacionFormTransferencia = false;
+      
+      
+    }
+  }
+
+  getPaymentMbyName(selectedMethod:string){
+    this.selectedMethod = selectedMethod
+    this._tipoPagosService.getPaymentMethodByName(selectedMethod).subscribe((resp:any)=>{
+      this.paymentMethodinfo = resp[0];
+      // console.log(this.paymentMethodinfo);
+    })
   }
 
   private renderPayPalButton(){

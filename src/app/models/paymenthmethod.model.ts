@@ -7,8 +7,9 @@ export class PaymentMethod{
           public bankName: string,
           public bankAccount: number,
           public ciorif: string,
-          public phone: string,
+          public telefono: string,
           public tipo: string,
+          public phone: string,
           public status: string,
           public email: string,
           public createdAt: Date,
@@ -16,6 +17,7 @@ export class PaymentMethod{
           public _id?: string
   
     ){}
+  
   }
 
   
