@@ -1,15 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { PaymentMethod } from '../models/paymenthmethod.model';
 
 @Pipe({
-  name: 'pagosFilter',
+  name: 'pagosFilter'
 })
 export class PagosFilterPipe implements PipeTransform {
-  constructor() {
-    //
+
+  transform(paymentMethods: PaymentMethod[]): PaymentMethod[] {
+    if (!paymentMethods) {
+      return [];
+    }
+    return paymentMethods.filter(method => method.tipo !== 'cheque');
   }
-  transform<T extends { tipo: string }>(metodos_pago: T[]): T[] {
-    return metodos_pago.filter((metodo_pago) => 
-        metodo_pago.tipo === 'cheque ' 
-    );
-  }
+
 }

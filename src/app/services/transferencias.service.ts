@@ -19,6 +19,10 @@ export class TransferenciasService {
   getPayments(){
     return this._http.get<any>(`${this.url}/tipopago`);
   }
+ getPaymentsActives(){
+    return this._http.get<any>(`${this.url}/tipopago/actives`);
+  }
+ 
 
   // registrar transferencia que hizo el usuario
   createTransfer(transfer:any){

@@ -66,7 +66,7 @@ interface CuponResponse {
     ImagenPipe,
     ReactiveFormsModule,
     FormsModule,
-    // PagosFilterPipe
+    PagosFilterPipe
   ],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
@@ -196,7 +196,7 @@ export class CarritoComponent implements OnInit {
   }
 
   private obtenerMetodosdePago(){
-    this._trasferencias.getPayments().subscribe(data => {
+    this._trasferencias.getPaymentsActives().subscribe(data => {
       // console.log('metodos de pago: ',data.paymentMethods)
       this.paymentMethods = data.paymentMethods;
       console.log('metodos de pago: ',this.paymentMethods)
@@ -303,10 +303,11 @@ export class CarritoComponent implements OnInit {
       this.habilitacionFormTransferencia = false;
       this.habilitacionFormCheque = false;
     }
-    if(this.selectedMethod==='transferencia'){
+    if(this.selectedMethod==='Transferencia Dólares' || this.selectedMethod==='Transferencia Bolivares'
+      || this.selectedMethod==='pagomovil' || this.selectedMethod==='zelle'
+    ){
       // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
       this.habilitacionFormTransferencia = true;
-      
       this.habilitacionFormCheque = false;
     }
     else if(this.selectedMethod==='cheque'){

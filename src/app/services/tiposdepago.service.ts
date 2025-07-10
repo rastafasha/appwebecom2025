@@ -73,6 +73,8 @@ export class TiposdepagoService {
     return this.http.post(url, paymentMethod, this.headers);
   }
 
+  
+
 
 
   actualizarPaymentMethod(paymentMethod: PaymentMethod){
