@@ -276,7 +276,7 @@
                                             Cuenta:&nbsp;{{paymentMethodinfo.bankAccount}}</p>
                                         <p *ngIf="paymentMethodinfo.phone">Numero de Teléfono:&nbsp;{{paymentMethodinfo.phone}}</p>
                                         <p *ngIf="paymentMethodinfo.email">Email:&nbsp;{{paymentMethodinfo.email}}</p>
-                                        <p *ngIf="paymentMethodinfo.ciorif">CI o rif:&nbsp;{{paymentSelected.ciorif}}</p>
+                                        <p *ngIf="paymentMethodinfo?.ciorif">CI o rif:&nbsp;{{paymentSelected.ciorif}}</p>
                                     </div>
                                 </div>
 

@@ -57,7 +57,7 @@
               "outputHashing": "all",
               "serviceWorker": "ngsw-config.json"
             },
-            "ecom": {
+           "ecom": {
               "outputPath": "dist/ecom",
               "index": {
                 "input": "src/env/ecom/index.html",
@@ -80,7 +80,7 @@
                 },
                 {
                   "glob": "**.*",
-                  "input": "src/env/admin_ecommerce/manifest.webmanifest",
+                  "input": "src/env/ecom/manifest.webmanifest",
                   "output": "src/manifest.webmanifest"
                 }
               ],
