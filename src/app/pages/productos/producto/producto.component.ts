@@ -534,6 +534,15 @@ add_to_cart(carritoForm: any){
   else if(this.cantidad_to_cart <= 0){
     this.err_stock = 'La cantidad no puede ser un valor negativo';
   }
+  if(this.producto.nombre_selector === 'unico' ){
+    this.selector_to_cart = 'unico'
+  }
+  if(this.producto.subcategoria === 'Delicateses'|| this.producto.subcategoria === 'Dulces Secos'
+    || this.producto.subcategoria === 'Sandwich'|| this.producto.subcategoria === 'Alimentos'
+    || this.producto.subcategoria === 'Comida Rápida'|| this.producto.subcategoria === 'De Lujo'
+  ){
+    this.color_to_cart = '#16537e';
+  }
   else{
     this.err_stock = '';
     let data = {

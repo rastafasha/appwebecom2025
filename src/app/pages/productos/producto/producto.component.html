@@ -158,7 +158,9 @@
 
                                         <app-loading *ngIf="isLoading"></app-loading>
                                         <div class="font-size-sm"
-                                            *ngIf="producto?.subcategoria !== 'Comida Rápida' && producto?.subcategoria !== 'Alimentos' && !isLoading">
+                                            *ngIf="producto?.subcategoria !== 'Delicateses'|| producto?.subcategoria !== 'Dulces Secos'
+                                            || producto?.subcategoria !== 'Sandwich'|| producto?.subcategoria !== 'Alimentos'
+                                            || producto?.subcategoria !== 'Comida Rápida'|| producto?.subcategoria !== 'De Lujo' && !isLoading">
                                             <span class="text-heading font-weight-medium mr-1">
                                                 Colores:</span>
                                             <br>
@@ -199,8 +201,9 @@
                                         </div>
                                         <form class="mb-grid-gutter" #carritoForm="ngForm"
                                             >
-                                            <div class="form-group" *ngIf="producto.stock > 0">
-                                                <div class="d-flex justify-content-between align-items-center pb-1">
+                                            <div class="form-group" *ngIf="producto.stock > 0 && producto.nombre_selector !== 'unico' ">
+                                                <div class="d-flex justify-content-between align-items-center pb-1"
+                                                >
                                                     <label class="font-weight-medium"
                                                         for="product-size">{{producto.nombre_selector}}:</label>
                                                     <a class="nav-link-style font-size-sm"

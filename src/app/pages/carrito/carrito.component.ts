@@ -19,8 +19,8 @@ import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import Swal from 'sweetalert2';
-import { PagochequeService } from '../../services/pagocheque.service';
 import { PagosFilterPipe } from '../../pipes/pagos-filter.pipe';
+import { PagochequeService } from '../../services/pagocheque.service';
 import { TiposdepagoService } from '../../services/tiposdepago.service';
 
 declare var paypal: {
@@ -77,8 +77,8 @@ export class CarritoComponent implements OnInit {
 
   public direcciones:any =[];
   public identity;
-  public carrito : Array<any> = [];
   public subtotal : any = 0;
+  public carrito : Array<any> = [];
   public url;
   public cupon:any;
   public msm_error_cupon=false;
