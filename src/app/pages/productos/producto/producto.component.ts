@@ -498,7 +498,11 @@ export class ProductoComponent implements OnInit {
     results = url.match('[\\?&]v=([^&#]*)');
     video   = (results === null) ? url : results[1];
 
-    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);
+    // Construct embed URL without loop or playlist parameters to prevent looping
+    // Optionally add autoplay=1 if desired, here we omit autoplay to avoid auto-restart
+    const embedUrl = 'https://www.youtube.com/embed/' + video + '?rel=0&modestbranding=1';
+
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
 }
 
 onPress(carritoForm:any){

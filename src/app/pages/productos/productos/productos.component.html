@@ -1,33 +1,35 @@
 <app-header></app-header>
 <div class="shop-layout-1 " id="page">
-<app-loading *ngIf="isLoading"></app-loading>
+    <app-loading *ngIf="isLoading"></app-loading>
 
- <section class="sub-header shop-layout-1"  *ngIf="!isLoading" style="height: 120px; background-image: url('./assets/img/fondo-brow.jpeg'); background-repeat: no-repeat; background-size: cover; filter: blur(50px);">
-        
+    <section class="sub-header shop-layout-1" *ngIf="!isLoading"
+        style="height: 120px; background-image: url('./assets/img/fondo-brow.jpeg'); background-repeat: no-repeat; background-size: cover; filter: blur(50px);">
         <div class="overlay-call-to-action"></div>
-        <div style="display: flex; " >
-                    <a href="javascript:void(0)" (click)="goBack()"  class="btn-azul  ">volver</a>
-                </div>
-                &nbsp;&nbsp;
+        <div style="display: flex; ">
+            <a href="javascript:void(0)" (click)="goBack()" class="btn-azul  ">volver</a>
+        </div>
+        &nbsp;&nbsp;
         <h3 class="heading-style-3">Products {{marca.slug}} </h3>
         <h3 class="heading-style-3"></h3>
     </section>
-    
-    
+
 
     <section class="box-sm" *ngIf="!isLoading && error">
         <div class="container">
-            <div class="row main" style="height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="row main"
+                style="height: 50vh; display: flex; flex-direction: column; 
+                align-items: center; justify-content: center; text-align: center;">
                 <p>{{ error }}</p>
-                <div style="display: flex; " >
-                    <a href="javascript:void(0)" (click)="goBack()"  class="btn-azul  ">volver</a>
+                <div style="display: flex;align-items: center; justify-content: center; ">
+                    <a href="javascript:void(0)" (click)="goBack()" class="btn-azul  ">volver</a>
                 </div>
             </div>
         </div>
 
     </section>
 
-<app-search *ngIf="!isLoading" [query]="query" [modelo]="producto" [colleccionName]="productos" [colleccion]="'productos'" (searchEvent)="handleSearchEvent($event)" (resetEvent)="PageSize()"></app-search>
+    <app-search *ngIf="!isLoading && !error" [query]="query" [modelo]="producto" [colleccionName]="productos"
+        [colleccion]="'productos'" (searchEvent)="handleSearchEvent($event)" (resetEvent)="PageSize()"></app-search>
 
     <!-- <app-marcas [limit]="limit" [display]="display"></app-marcas> -->
     <div class="container prodductos-list">
@@ -38,7 +40,8 @@
                     <div class="cardimagen"
                         [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
                         <div class="info">
-                            <div class="topfav" style="cursor: pointer;" *ngIf="identity" (click)="toggleFavorite(producto)">
+                            <div class="topfav" style="cursor: pointer;" *ngIf="identity"
+                                (click)="toggleFavorite(producto)">
                                 <i class="fa fa-heart-o"></i>
                             </div>
                         </div>
@@ -48,14 +51,15 @@
 
                                     <h2>{{producto.titulo}}</h2>
                                 </a>
-                                <!-- <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p> -->
                                 <p [innerHTML]="producto.info_short |slice:0:20"></p>
                                 <div class="precio">
-                                    <p style="text-decoration: line-through;" *ngIf="+producto.precio_ahora !== +producto.precio_antes"><b>{{producto.precio_antes|currency}}</b>
+                                    <p style="text-decoration: line-through;"
+                                        *ngIf="+producto.precio_ahora !== +producto.precio_antes">
+                                        <b>{{producto.precio_antes|currency}}</b>
                                     </p>
                                     <p><b>{{producto.precio_ahora|currency}}</b></p>
-                                    <span
-                                                class="badge badge-danger badge-shadow align-middle mt-n2" *ngIf="+producto.precio_ahora !== +producto.precio_antes">Oferta</span>
+                                    <span class="badge badge-danger badge-shadow align-middle mt-n2"
+                                        *ngIf="+producto.precio_ahora !== +producto.precio_antes">Oferta</span>
                                 </div>
                             </div>
                             <div class="rating">

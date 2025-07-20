@@ -243,9 +243,6 @@
                                         </form>
                                         <!-- Product panels-->
                                         <div >
-                                            <!-- <p class="text-justify" style="font-size: 14px;">{{producto.info_short}}
-                                                </p> -->
-                                            <!-- <p [innerHTML]="producto.info_short"></p> -->
 
                                         </div>
                                         <!-- Sharing-->
@@ -270,17 +267,17 @@
                                         <li>
                                             <a style="cursor:pointer;" onclick="return false;" 
                                                 [ngClass]="{'active': option_selected == 1}"
-                                                (click)="optionSelected(1)">Description</a>
+                                                (click)="optionSelected(1)">Descripción</a>
                                         </li>
                                         <li *ngIf="producto.video_review">
                                             <a style="cursor:pointer;" onclick="return false;"
                                                 [ngClass]="{'active': option_selected == 2}"
-                                                (click)="optionSelected(2)">Additional Information</a>
+                                                (click)="optionSelected(2)">Información Adicional</a>
                                         </li>
                                         <li>
                                             <a style="cursor:pointer;" onclick="return false;"
                                                 [ngClass]="{'active': option_selected == 3}"
-                                                (click)="optionSelected(3)">Review</a>
+                                                (click)="optionSelected(3)">Reseñas</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -296,36 +293,7 @@
                                             frameborder="0"
                                             allow="accelerometer; autoplay; encrypted-media; gyroscope; "
                                             allowfullscreen></iframe>
-                                        <!-- <table class="shop_attributes table table-striped table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <th>Creado </th>
-                                                <td>
-                                                    <p>{{producto.createdAt | date}}</p>
-                                                </td>
-                                            </tr>
-                                            <div *ngIf="producto.updatedAt">
-                                                <tr>
-                                                    <th>Ultima actualización</th>
-                                                    <td>
-                                                        <p>{{producto.updatedAt | date}}</p>
-                                                    </td>
-                                                </tr>
-                                            </div>
-
-                                            <tr>
-                                                <th>Artículo Disponible?</th>
-                                                <td>
-                                                    <div *ngIf="producto.isFeatured == true">
-                                                        <p>Si</p>
-                                                    </div>
-                                                    <div *ngIf="producto.isFeatured == false">
-                                                        <p>No</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table> -->
+                                        
                                     </div>
                                 </div>
                                 <div class="tb-cont-inside" *ngIf="option_selected == 3">
