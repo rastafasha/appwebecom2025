@@ -1,8 +1,8 @@
 <app-loading *ngIf="isLoading"></app-loading>
 <section class="topproperties" style="margin-bottom: 60px;" *ngIf="!isLoading">
         <div class="container">
-            <h1>Top Choise Recents</h1>
-            <p class="text-center mb-3">Discover our top products, selected for you.</p>
+            <h1>Productos Nuevos.</h1>
+            <p class="text-center mb-3">Descubre nuestros mejores productos, seleccionados para tí!</p>
 
             <div class="grillacard mt-5"  >
                 <ng-container class="lista-imagenes" *ngFor="let producto of productos | slice:0:10; let i = index ">
