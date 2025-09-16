@@ -18,6 +18,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
+import { Tienda } from '../../models/tienda.model';
+import { TiendaService } from '../../services/tienda.service';
 
 declare var paypal: {
   Buttons: (arg0: {
@@ -95,6 +97,10 @@ export class CarritoComponent implements OnInit {
 
   public no_direccion = 'no necesita direccion';
 
+  tiendas: Tienda[] = [];
+  tienda!:Tienda;
+  tiendaSelected!:Tienda;
+
 
   //DATA
   public radio_postal:any;
@@ -139,7 +145,8 @@ export class CarritoComponent implements OnInit {
     private _direccionService :DireccionService,
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
-    private _trasferencias: TransferenciasService
+    private _trasferencias: TransferenciasService,
+    private tiendaService: TiendaService,
 
   ) {
     // this.identity = _userService.usuario;
@@ -157,6 +164,7 @@ export class CarritoComponent implements OnInit {
     this.listar_postal();
     this.listar_carrito();
     this.obtenerMetodosdePago();
+    this.getTiendas();
     
     if(this.identity){
       this.socket.on('new-stock', function (data: any) {
@@ -176,6 +184,17 @@ export class CarritoComponent implements OnInit {
       this._router.navigate(['/']);
     }
 
+  }
+
+  getTiendas(){
+    this.tiendaService.cargarTiendas().subscribe((resp: Tienda[]) => {
+      // Asignamos el array filtrado directamente
+      this.tiendas = resp.filter((tienda: Tienda) => tienda.categoria && tienda.nombre=== 'Web');
+      this.tiendaSelected = this.tiendas[0];
+      console.log(this.tiendaSelected);
+
+    
+    })
   }
 
   private obtenerMetodosdePago(){
@@ -627,6 +646,7 @@ export class CarritoComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local: this.tiendaSelected._id,
         total_pagado : this.subtotal,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
@@ -685,6 +705,7 @@ export class CarritoComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local: this.tiendaSelected._id,
         total_pagado : this.subtotal,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
