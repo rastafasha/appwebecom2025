@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:dev": "ng serve --port 4210",
     "build": "ng build",
     "build:ecom": "ng build --configuration ecom",
     "watch": "ng build --watch --configuration development",
@@ -11,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@angular/animations": "19.2.14",
     "@angular/common": "19.2.14",
     "@angular/compiler": "19.2.14",
@@ -23,6 +25,18 @@
     "@angular/cdk": "19.2.14",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "bootstrap": "^5.3.7",
+=======
+    "@angular/animations": "^19.0.0",
+    "@angular/cdk": "^20.2.4",
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
+    "@angular/router": "^19.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^19.0.1",
+>>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
     "jquery": "^3.7.1",
     "ngx-bootstrap": "^20.0.0",
     "ngx-cookie-service": "^11.0.1",

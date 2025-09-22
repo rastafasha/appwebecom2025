@@ -8,6 +8,10 @@ export const environment = {
   soketServer : 'https://back-ecomm-mall.vercel.app/',
   mediaUrl: 'https://back-ecomm-mall.vercel.app/api/uploads/',
   mediaUrlRemoto: 'https://res.cloudinary.com/dmv6aukai/image/upload/v1741218430/mallConnect',
+<<<<<<< HEAD
+=======
+  soketServer : 'https://back-ecomm-mall.vercel.app',
+>>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
   //pluggins
   rapidapiKey: 'a7036a3222mshc2920e679cd1cafp141e56jsn81cbe707ac15',
   rapidapiHost: 'apidojo-17track-v1.p.rapidapi.com',

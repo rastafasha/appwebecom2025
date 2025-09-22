@@ -18,10 +18,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
+<<<<<<< HEAD
 import Swal from 'sweetalert2';
 import { PagosFilterPipe } from '../../pipes/pagos-filter.pipe';
 import { PagochequeService } from '../../services/pagocheque.service';
 import { TiposdepagoService } from '../../services/tiposdepago.service';
+=======
+import { Tienda } from '../../models/tienda.model';
+import { TiendaService } from '../../services/tienda.service';
+>>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
 declare var paypal: {
   Buttons: (arg0: {
@@ -100,6 +105,10 @@ export class CarritoComponent implements OnInit {
 
   public no_direccion = 'no necesita direccion';
 
+  tiendas: Tienda[] = [];
+  tienda!:Tienda;
+  tiendaSelected!:Tienda;
+
 
   //DATA
   public radio_postal:any;
@@ -155,8 +164,12 @@ export class CarritoComponent implements OnInit {
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
     private _trasferencias: TransferenciasService,
+<<<<<<< HEAD
     private _pagoCheque: PagochequeService,
     private _tipoPagosService: TiposdepagoService
+=======
+    private tiendaService: TiendaService,
+>>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
   ) {
     // this.identity = _userService.usuario;
@@ -174,6 +187,7 @@ export class CarritoComponent implements OnInit {
     this.listar_postal();
     this.listar_carrito();
     this.obtenerMetodosdePago();
+    this.getTiendas();
     
     if(this.identity){
       this.socket.on('new-stock', function (data: any) {
@@ -193,6 +207,17 @@ export class CarritoComponent implements OnInit {
       this._router.navigate(['/']);
     }
 
+  }
+
+  getTiendas(){
+    this.tiendaService.cargarTiendas().subscribe((resp: Tienda[]) => {
+      // Asignamos el array filtrado directamente
+      this.tiendas = resp.filter((tienda: Tienda) => tienda.categoria && tienda.nombre=== 'Web');
+      this.tiendaSelected = this.tiendas[0];
+      console.log(this.tiendaSelected);
+
+    
+    })
   }
 
   private obtenerMetodosdePago(){
@@ -742,6 +767,7 @@ export class CarritoComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local: this.tiendaSelected._id,
         total_pagado : this.subtotal,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
@@ -800,6 +826,7 @@ export class CarritoComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local: this.tiendaSelected._id,
         total_pagado : this.subtotal,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,

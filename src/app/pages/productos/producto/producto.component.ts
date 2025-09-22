@@ -29,8 +29,12 @@ import { NewproductsComponent } from '../../../components/newproducts/newproduct
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { Marca } from '../../../models/marca.model';
 import { Usuario } from '../../../models/usuario.model';
+<<<<<<< HEAD
 import { StorageService } from '../../../services/storage.service';
 import { Galeria } from '../../../models/galeria.model';
+=======
+import { ShareButtonComponent } from '../../../components/share-button/share-button.component';
+>>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
 declare var jQuery:any;
 declare var $:any;
@@ -47,7 +51,8 @@ declare var $:any;
     ReactiveFormsModule,
     LoadingComponent,
     NewproductsComponent,
-    ModalComponent
+    ModalComponent,
+    ShareButtonComponent
   ],
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.scss']
