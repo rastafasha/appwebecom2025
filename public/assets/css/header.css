@@ -36,23 +36,25 @@
     height: 24px;
     width: 150px;
     display: flex;
+    transition: all .2s ease;
 }
 
 .logocenter {
     margin: auto;
     display: block;
     padding-left: 110px;
+    transition: all .2s ease;
 }
 
 .header .logocenter img {
-    width: 80px;
-    transform: translate(-53px, 10px);
+    width: 120px;
+    transform: translate(-73px, -4px);
     transition: all .2s ease;
 }
 
 .header2 .logocenter img {
-    width: 80px;
-    transform: translate(-53px, 10px);
+    width: 100px;
+    transform: translate(-63px, 0px);
     transition: all .2s ease;
 }
 
