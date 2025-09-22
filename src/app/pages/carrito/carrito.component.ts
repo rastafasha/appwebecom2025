@@ -18,15 +18,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
-<<<<<<< HEAD
 import Swal from 'sweetalert2';
 import { PagosFilterPipe } from '../../pipes/pagos-filter.pipe';
 import { PagochequeService } from '../../services/pagocheque.service';
 import { TiposdepagoService } from '../../services/tiposdepago.service';
-=======
 import { Tienda } from '../../models/tienda.model';
 import { TiendaService } from '../../services/tienda.service';
->>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
 declare var paypal: {
   Buttons: (arg0: {
@@ -71,7 +68,7 @@ interface CuponResponse {
     ImagenPipe,
     ReactiveFormsModule,
     FormsModule,
-    PagosFilterPipe
+    // PagosFilterPipe
   ],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
@@ -108,6 +105,8 @@ export class CarritoComponent implements OnInit {
   tiendas: Tienda[] = [];
   tienda!:Tienda;
   tiendaSelected!:Tienda;
+
+  
 
 
   //DATA
@@ -164,19 +163,16 @@ export class CarritoComponent implements OnInit {
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
     private _trasferencias: TransferenciasService,
-<<<<<<< HEAD
     private _pagoCheque: PagochequeService,
-    private _tipoPagosService: TiposdepagoService
-=======
+    private _tipoPagosService: TiposdepagoService,
     private tiendaService: TiendaService,
->>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
   ) {
     // this.identity = _userService.usuario;
     let USER = localStorage.getItem('user');
     if(USER){
       this.identity = JSON.parse(USER);
-      console.log(this.identity);
+      // console.log(this.identity);
     }
     this.url = environment.baseUrl;
   }
@@ -214,7 +210,7 @@ export class CarritoComponent implements OnInit {
       // Asignamos el array filtrado directamente
       this.tiendas = resp.filter((tienda: Tienda) => tienda.categoria && tienda.nombre=== 'Web');
       this.tiendaSelected = this.tiendas[0];
-      console.log(this.tiendaSelected);
+      // console.log(this.tiendaSelected);
 
     
     })
@@ -224,7 +220,7 @@ export class CarritoComponent implements OnInit {
     this._trasferencias.getPaymentsActives().subscribe(data => {
       // console.log('metodos de pago: ',data.paymentMethods)
       this.paymentMethods = data.paymentMethods;
-      console.log('metodos de pago: ',this.paymentMethods)
+      // console.log('metodos de pago: ',this.paymentMethods)
     });
   }
 
@@ -319,12 +315,13 @@ export class CarritoComponent implements OnInit {
   // Método que se llama cuando cambia el select
   onPaymentMethodChange(event: any) {
     this.selectedMethod = event.target.value;
-    console.log('metodo de pago seleccionado: ',this.selectedMethod)
+    // console.log('metodo de pago seleccionado: ',this.selectedMethod)
     this.getPaymentMbyName(this.selectedMethod);
     
     if(this.selectedMethod==='paypal' || this.selectedMethod==='card'){
       // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
-      this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
+      // this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
+      this.paypalBotones();
       this.habilitacionFormTransferencia = false;
       this.habilitacionFormCheque = false;
     }
@@ -343,6 +340,13 @@ export class CarritoComponent implements OnInit {
       
       
     }
+
+    if(this.selectedMethod===null 
+    ){
+      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+      this.habilitacionFormTransferencia = false;
+      this.habilitacionFormCheque = false;
+    }
   }
 
   getPaymentMbyName(selectedMethod:string){
@@ -357,26 +361,10 @@ export class CarritoComponent implements OnInit {
     // Primero, limpiar el contenedor anterior
     this.paypalElement.nativeElement.innerHTML = '';
 
-    if(this.selectedMethod==='card' || this.selectedMethod==='paypal'){
-      // deshabilitar el formulario de pago con transferencia
-      this.habilitacionFormTransferencia = false;
-      this.habilitacionFormCheque = false;
-      // Cargar el botón de PayPal con las opciones seleccionadas
-    this.paypalBotones();
-    }
-    else if(this.selectedMethod==='transferencia'){
-      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
-      this.habilitacionFormTransferencia = true;
-      this.habilitacionFormCheque = false;
-    }
-    else if(this.selectedMethod==='cheque'){
-      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
-      this.habilitacionFormCheque = true;
-      this.habilitacionFormTransferencia = false;
-      
-    }
-    // 
+   this.paypalBotones();
   }
+
+  
 
   private paypalBotones(){
     paypal.Buttons({

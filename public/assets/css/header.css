@@ -47,24 +47,16 @@
     transition: all .2s ease;
 }
 
-<<<<<<< HEAD
-=======
 .header .logocenter img {
     width: 140px;
     transform: translate(-83px, 10px);
     transition: all .2s ease;
 }
->>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
 .header .logocenter img,
 .header2 .logocenter img {
-<<<<<<< HEAD
-    width: 90px;
-    transform: translate(40px, 35px);
-=======
     width: 140px;
     transform: translate(-83px, 10px);
->>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
     transition: all .2s ease;
 }
 
@@ -499,13 +491,8 @@
     }
 
     .header2 .logocenter img {
-<<<<<<< HEAD
-        width: 80px;
-        transform: translate(0px, 44px);
-=======
         width: 100px;
         transform: translate(0px, 53px);
->>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
     }
     .header .menuright,
     .header2 .menuright {

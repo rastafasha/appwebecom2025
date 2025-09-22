@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!-- header -->
 <header id="header">
     <a href="javascript:void(0)" class="button-up" (click)="scrollToTop()">
@@ -9,12 +8,12 @@
             <div class="row">
                 <div class="logo logocenter">
                     <a routerLink="/">
-                        <img src="./assets/logo.png" alt="logo Mall Connect">
+                        <img src="./assets/svg/logo_Mallconnect_tipo2.svg" alt="logo Mall Connect">
                     </a>
                 </div>
                 <div class="logo logocenter logo2">
                     <a routerLink="/">
-                        <img src="./assets/logo.png" alt="logo Mall Connect">
+                        <img src="./assets/svg/logo_Mallconnect_tipo2.svg" alt="logo Mall Connect">
                         <!-- <img src="./assets/svg/logo-orange-brown.svg" alt="logo Mall Connect"> -->
                     </a>
                 </div>
@@ -31,71 +30,10 @@
                             <div class="dropdown-menu p-2">
                                 <a class="dropdown-item" [routerLink]="['/blogs']">News</a>
                                 <ng-container *ngFor="let page of pages;">
-=======
- <!-- header -->
-    <header id="header"> 
-<a href="javascript:void(0)" class="button-up" (click)="scrollToTop()">
-            <i class="fa fa-arrow-up"></i>
-        </a>
-        <div class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="logo logocenter">
-                        <a routerLink="/">
-                            <img src="./assets/svg/logo_Mallconnect_tipo2.svg" alt="logo Mall Connect">
-                        </a>
-                    </div>
-                    <div class="logo logocenter logo2">
-                        <a routerLink="/">
-                            <img src="./assets/svg/logo_Mallconnect_tipo2.svg" alt="logo Mall Connect">
-                            <!-- <img src="./assets/svg/logo-orange-brown.svg" alt="logo Mall Connect"> -->
-                        </a>
-                    </div>
->>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
                                     <a class="dropdown-item" [routerLink]="['/page',page.slug]">{{page.titulo}}</a>
                                 </ng-container>
 
-<<<<<<< HEAD
-=======
-                                </div>
-                            </li>
-                            <li >
-                                <a routerLink="/cart">
-                                    <img class="globowhite" style="filter: invert(); cursor: pointer;" src="./assets/svg/icon-bag.png" alt="Mall Connect">
-                                <img class="globoblack"  src="./assets/svg/icon-bag.png" alt="Mall Connect">
-                                </a>
-                            </li>
-                            <li>
-                                <img class="globowhite" style=" cursor: pointer;" src="./assets/svg/globe.svg" alt="Mall Connect">
-                                <img class="globoblack" src="./assets/svg/globe-black.svg" alt="Mall Connect">
-                            </li>
-                        </ul>
-                        <div class="menu">
-                            <a href="javascript:void(0)" (click)="openMenu()" class="sidemenu-toggler">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </a>
-                            <img *ngIf="!identity" src="./assets/svg/user-login.svg" alt="Mall Connect">
-                            <img *ngIf="identity && identity.img" [src]="(identity.img || '') | imagenPipe: 'usuarios'" alt="Mall Connect">
-                            <div class="sidemenu">
-                                <a href="javascript:void(0)" (click)="closeMenu()" class="close"></a>
-                                <nav>
-                                    <ul>
-                                        <li><a routerLink="/">Home</a></li>
-                                        <li><a routerLink="/marcas">Marcas</a></li>
-                                        <li><a routerLink="/productos">Productos</a></li>
-                                        <li><a routerLink="/tiendas">Tiendas</a></li>
-                                        <!-- <li><a href="homeindividual.html">Promociones</a></li> -->
-                                        <li *ngIf="identity"><a [routerLink]="['/my-account/',]">Mi perfil</a></li>
-                                        <li *ngIf="identity"><a href="javascript:void(0)" (click)="logout()">Salir</a></li>
-                                        <li *ngIf="!identity"><a routerLink="/login">Login</a></li>
-                                        <li *ngIf="!identity"><a routerLink="/registro">Registro</a></li>
-                                        <!-- <li><a href="">Contacto</a></li> -->
-                                    </ul>
-                                </nav>
->>>>>>> 43feb1f0a171241ddf6284c4dccc06d03a13a6ba
 
                             </div>
                         </li>

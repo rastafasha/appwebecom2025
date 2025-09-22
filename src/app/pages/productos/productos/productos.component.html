@@ -51,7 +51,7 @@
 
                                     <h2>{{producto.titulo}}</h2>
                                 </a>
-                                <p [innerHTML]="producto.info_short |slice:0:20"></p>
+                                <p style="color: var(--black);" [innerHTML]="producto.categoria.nombre|slice:0:20"></p>
                                 <div class="precio">
                                     <p style="text-decoration: line-through;"
                                         *ngIf="+producto.precio_ahora !== +producto.precio_antes">

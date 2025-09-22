@@ -1,19 +1,22 @@
 <app-header></app-header>
 <div class="shop-cart" id="page">
-    <section class="sub-header d-flex justify-content-center mt-5" style="padding-top: 30px;">
+    <section class="sub-header d-flex justify-content-center " style="height: 100px; background-repeat: repeat; background-size: cover; background-position: -20px -130px ; filter: blur(10px);
+    background-image: url('./assets/img/pexels-asad-photo-maldives-457882.jpeg');">
     
-    <!-- <img class="rellax bg-overlay" src="./assets/img/fondo-brow.jpeg" style="height: 120px; width: 100%;  filter: blur(10px);" alt=""> -->
+    <!-- <img class="rellax bg-overlay" src="./assets/img/fondo-brow.jpeg" style="height: 120px; width: 100vw;  filter: blur(10px);" alt=""> -->
     <div class="overlay-call-to-action"></div>
     <h3 class="heading-style-3">Mi Carrito</h3>
 </section>
 
 
-    <div class="container pb-5 mb-2 mb-md-4">
+    <div class="container pb-5 mb-2 mb-md-4 mt-5">
         <div class="row">
             <!-- List of items-->
+
             <section class="col-lg-8">
                 <div class="d-flex justify-content-between align-items-center pt-3 pb-2 pb-sm-5 mt-1">
-                    <h2 class="h6 text-light mb-0">Productos</h2><a class="btn btn-outline-primary btn-sm pl-2"
+                    <!-- <h2 class="h6 text-light mb-0">Productos</h2> -->
+                    <a class="btn btn-outline-primary btn-sm pl-2"
                         [routerLink]="['../productos']" routerLinkActive="router-link-active"><i
                             class="czi-arrow-left mr-2"></i>Continuar comprando</a>
                 </div>
@@ -49,11 +52,11 @@
                                     <div class="font-size-sm"><span
                                             class="text-muted mr-2">{{item.producto.nombre_selector}}:</span>{{item.selector}}
                                     </div>
-                                    <div class="font-size-sm"><span class="text-muted mr-2">COLOR:</span>
+                                    <!-- <div class="font-size-sm"><span class="text-muted mr-2">COLOR:</span>
                                         <span [ngStyle]="{'background': item.color,'color': item.color}"
                                             style="font-weight: 900;">||||||||||||||||</span> 
 
-                                    </div>
+                                    </div> -->
                                     <div class="font-size-lg text-accent pt-2">${{item.precio}}</div>
                                 </ng-container>
 
@@ -242,9 +245,11 @@
                                 <option value="transferencia">Pagos Bancarios</option>
                                 <option value="cheque">Cheque</option> -->
 
-                                <option [value]="" >
+                                <option  >
                                             Seleccione
                                         </option>
+                                    <!-- <option value="paypal">Paypal</option>
+                                <option value="card">Tarjeta de Crédito/Débito</option> -->
                                 <option [value]="metodo_pago.tipo" *ngFor="let metodo_pago of paymentMethods ">
                                             {{metodo_pago.tipo}}
                                         </option>
@@ -252,7 +257,9 @@
                             </select>
                         </div>
                         <!-- Contenedor para el botón de PayPal -->
-                        <div #paypal></div>
+                        <div *ngIf="paypal">
+                            <h2>Hola paypal</h2>
+                        </div>
                         <!-- Contenedor para el botón de transferencia-->
                         <div *ngIf="habilitacionFormTransferencia" class="mt-1 mb-1 p-3">
                             <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
