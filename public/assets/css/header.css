@@ -36,23 +36,25 @@
     height: 24px;
     width: 150px;
     display: flex;
+    transition: all .2s ease;
 }
 
 .logocenter {
     margin: auto;
     display: block;
     padding-left: 110px;
+    transition: all .2s ease;
 }
 
 .header .logocenter img {
-    width: 80px;
-    transform: translate(-53px, 10px);
+    width: 140px;
+    transform: translate(-83px, 10px);
     transition: all .2s ease;
 }
 
 .header2 .logocenter img {
-    width: 80px;
-    transform: translate(-53px, 10px);
+    width: 140px;
+    transform: translate(-83px, 10px);
     transition: all .2s ease;
 }
 
@@ -491,7 +493,7 @@
 
     .header2 .logocenter img {
         width: 100px;
-        transform: translate(0px, 40px);
+        transform: translate(0px, 53px);
     }
 
     .header2 .menuright {
