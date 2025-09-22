@@ -47,14 +47,14 @@
 }
 
 .header .logocenter img {
-    width: 120px;
-    transform: translate(-73px, -4px);
+    width: 140px;
+    transform: translate(-83px, 10px);
     transition: all .2s ease;
 }
 
 .header2 .logocenter img {
-    width: 100px;
-    transform: translate(-63px, 0px);
+    width: 140px;
+    transform: translate(-83px, 10px);
     transition: all .2s ease;
 }
 
@@ -493,7 +493,7 @@
 
     .header2 .logocenter img {
         width: 100px;
-        transform: translate(0px, 40px);
+        transform: translate(0px, 53px);
     }
 
     .header2 .menuright {
