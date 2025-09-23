@@ -23,17 +23,17 @@
                                         <h2>{{producto.titulo}}</h2>
                                     </a>
                                     <!-- <p> <i class="fa fa-marker"></i> {{producto.info_short |slice:0:40}}... </p> -->
-                                    <p [innerHTML]="producto.info_short |slice:0:20"></p>
-                                    <div class="precio">
+                                    <!-- <p [innerHTML]="producto.info_short |slice:0:20"></p> -->
+                                    <div class="precio mt-2">
                                         <p style="text-decoration: line-through;" *ngIf="+producto.precio_ahora !== +producto.precio_antes"><b>{{producto.precio_antes|currency}}</b></p>
                                     <p><b>{{producto.precio_ahora|currency}}</b></p>
                                     <span
                                                 class="badge badge-danger badge-shadow align-middle mt-n2" *ngIf="+producto.precio_ahora !== +producto.precio_antes">Oferta</span>
                                     </div>
                                 </div>
-                                <div class="rating">
+                                <!-- <div class="rating">
                                     44.4 <i class="fa fa-star"></i>
-                                </div>
+                                </div> -->
                                 <div class="adicional">
                                     <!-- <p>{{producto.stock}}</p> -->
                                 </div>

@@ -31,8 +31,6 @@ export class TopPropertiesComponent {
   public producto : any = {};
 
   private http: HttpClient;
-  ServerUrl = environment.baseUrl;
-  imagenSerUrl = environment.mediaUrl;
 
   favoriteItem!:Favorite;
   identity: any;

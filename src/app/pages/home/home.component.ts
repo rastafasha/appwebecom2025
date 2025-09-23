@@ -14,6 +14,7 @@ import { PromocionComponent } from '../../shared/promocion/promocion.component';
 import { BlogFeaturedComponent } from "../../components/blog-featured/blog-featured.component";
 import { MarcasComponent } from '../marcas/marcas.component';
 import { RouterModule } from '@angular/router';
+import { NewproductsComponent } from "../../components/newproducts/newproducts.component";
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,8 @@ import { RouterModule } from '@angular/router';
     PromocionComponent,
     BlogFeaturedComponent,
     MarcasComponent,
-    RouterModule
+    RouterModule,
+    NewproductsComponent
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

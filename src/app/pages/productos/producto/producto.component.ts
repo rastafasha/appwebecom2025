@@ -32,6 +32,7 @@ import { Usuario } from '../../../models/usuario.model';
 import { StorageService } from '../../../services/storage.service';
 import { Galeria } from '../../../models/galeria.model';
 import { ShareButtonComponent } from '../../../components/share-button/share-button.component';
+import { TopPropertiesComponent } from '../../../components/top-properties/top-properties.component';
 
 declare var jQuery:any;
 declare var $:any;
@@ -49,7 +50,8 @@ declare var $:any;
     LoadingComponent,
     NewproductsComponent,
     ModalComponent,
-    ShareButtonComponent
+    ShareButtonComponent,
+    TopPropertiesComponent
   ],
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.scss']
