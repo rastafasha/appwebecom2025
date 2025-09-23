@@ -40,25 +40,27 @@
                                             *ngFor="let gal of galeria;let primero = first;let indice=index">
                                             <a class="cz-thumblist-item active" [attr.id]="'img_'+indice"
                                                  *ngIf="primero"
-                                                 data-bs-toggle="modal" data-bs-target="#galleryModal" (click)="openGaleryModal(gal)"
+                                                 data-toggle="modal" data-target="#galleryModal" (click)="openGaleryModal(gal)"
                                                 >
                                                 <img class="gallery__img" [src]="gal.imagen | imagenPipe: 'galerias'"
                                                     alt="Product thumb">
                                             </a>
                                             <a class="cz-thumblist-item" [attr.id]="'img_'+indice"
                                                  *ngIf="!primero"
-                                                 data-bs-toggle="modal" data-bs-target="#galleryModal" (click)="openGaleryModal(gal)"
+                                                 data-toggle="modal" data-target="#galleryModal" (click)="openGaleryModal(gal)"
                                                  >
                                                 <img class="gallery__img" [src]="gal.imagen | imagenPipe: 'galerias'"
                                                     alt="Product thumb">
                                             </a>
-                                            <app-modal [selectedProduct]="selectedProduct"></app-modal>
                                         </ng-container>
 
                                     </div>
                                 </div>
                             </div>
                             <!-- gallery -->
+
+                            <!-- Modal moved outside gallery loop -->
+                            <app-modal [selectedProduct]="selectedProduct"></app-modal>
                         </div>
                         <div class="col-md-5">
                             <!-- mensaje -->
