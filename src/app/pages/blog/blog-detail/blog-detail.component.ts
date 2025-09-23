@@ -16,6 +16,7 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { UsuarioService } from '../../../services/usuario.service';
 import { BlogFeaturedComponent } from "../../../components/blog-featured/blog-featured.component";
 import { SharedbuttonComponent } from '../../../shared/sharedbutton/sharedbutton.component';
+import { ShareButtonComponent } from "../../../components/share-button/share-button.component";
 
 @Component({
   selector: 'app-blog-detail',
@@ -26,8 +27,9 @@ import { SharedbuttonComponent } from '../../../shared/sharedbutton/sharedbutton
     ImagenPipe,
     FooterComponent,
     LoadingComponent,
-    SharedbuttonComponent
-  ],
+    SharedbuttonComponent,
+    ShareButtonComponent
+],
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss']
 })

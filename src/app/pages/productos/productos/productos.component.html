@@ -39,7 +39,7 @@
 
                     <div class="cardimagen"
                         [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
-                        <a [routerLink]="['/producto/',producto.slug]">
+                        <a [routerLink]="['./producto/',producto.slug]">
                             
                             <div class="info">
                                 <div class="topfav" style="cursor: pointer;" *ngIf="identity"
@@ -50,7 +50,7 @@
                         </a>
                         <div class="detalle">
                             <div class="basico">
-                                <a [routerLink]="['/producto/',producto.slug]">
+                                <a [routerLink]="['./producto/',producto.slug]">
 
                                     <h2>{{producto.titulo}}</h2>
                                 </a>

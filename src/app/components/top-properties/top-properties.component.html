@@ -8,7 +8,7 @@
                 <ng-container class="lista-imagenes" *ngFor="let producto of productos | slice:0:10; let i = index ">
                     <div class="cardimageninfo">
                         <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
-                            <a [routerLink]="['producto/',producto.slug]">
+                            <a [routerLink]="['./producto/',producto.slug]">
                                 <div class="info">
                                     <div class="topfav" *ngIf="identity"  style="cursor: pointer;">
                                         <i class="fa fa-heart-o"></i>
@@ -18,7 +18,7 @@
                             </a>
                             <div class="detalle">
                                 <div class="basico">
-                                    <a [routerLink]="['producto/',producto.slug]">
+                                    <a [routerLink]="['./producto/',producto.slug]">
     
                                         <h2>{{producto.titulo}}</h2>
                                     </a>

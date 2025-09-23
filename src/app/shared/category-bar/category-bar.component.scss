@@ -1,0 +1,17 @@
+.categorylist{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    & .item{
+        display: flex;
+        width: max-content;
+        & h2{
+            font-size: 1rem;
+        }
+    }
+}

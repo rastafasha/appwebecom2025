@@ -15,7 +15,7 @@
             <ng-container *ngFor="let producto of productos | slice:0:4; let i = index " >
                 <div class="cardimagen" [ngClass]="'div' + (i + 2)" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
                     
-                    <a [routerLink]="['producto/',producto.slug]">
+                    <a [routerLink]="['./producto/',producto.slug]">
                     <div class="info">
                                 <h1>{{ producto.titulo }}</h1>
                                 <div class="topoftop">
