@@ -8,11 +8,14 @@
                 <ng-container class="lista-imagenes" *ngFor="let producto of productos | slice:0:10; let i = index ">
                     <div class="cardimageninfo">
                         <div class="cardimagen" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
-                            <div class="info">
-                                <div class="topfav" *ngIf="identity"  style="cursor: pointer;">
-                                    <i class="fa fa-heart-o"></i>
+                            <a [routerLink]="['producto/',producto.slug]">
+                                <div class="info">
+                                    <div class="topfav" *ngIf="identity"  style="cursor: pointer;">
+                                        <i class="fa fa-heart-o"></i>
+                                    </div>
                                 </div>
-                            </div>
+
+                            </a>
                             <div class="detalle">
                                 <div class="basico">
                                     <a [routerLink]="['producto/',producto.slug]">

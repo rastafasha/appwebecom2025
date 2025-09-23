@@ -73,6 +73,8 @@
 .grillacard .cardimagen .info {
     display: flex;
     flex-direction: column;
+    width: 265px;
+    height: 239px;
 }
 
 .grillacard .cardimagen .detalle {
@@ -148,6 +150,13 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+@media (max-width:768px) {
+    .grillacard .cardimagen .info {
+    width: 176px;
+    height: 239px;
+}
 }
 
 

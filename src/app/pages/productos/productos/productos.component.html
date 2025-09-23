@@ -39,12 +39,15 @@
 
                     <div class="cardimagen"
                         [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
-                        <div class="info">
-                            <div class="topfav" style="cursor: pointer;" *ngIf="identity"
-                                (click)="toggleFavorite(producto)">
-                                <i class="fa fa-heart-o"></i>
+                        <a [routerLink]="['/producto/',producto.slug]">
+                            
+                            <div class="info">
+                                <div class="topfav" style="cursor: pointer;" *ngIf="identity"
+                                    (click)="toggleFavorite(producto)">
+                                    <i class="fa fa-heart-o"></i>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         <div class="detalle">
                             <div class="basico">
                                 <a [routerLink]="['/producto/',producto.slug]">

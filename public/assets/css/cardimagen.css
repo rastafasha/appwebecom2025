@@ -42,7 +42,7 @@
     padding: 5px;
     margin: 0;
     height: 100%;
-    width: 100%;
+    width: 360px;
     justify-content: space-between;
     /* background: linear-gradient(to top, var(--black), var(--black), transparent); */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.688), rgba(0 0 0 / 27%), transparent);
@@ -147,6 +147,10 @@
         height: 200px;
         margin-bottom: 0px;
     }
+
+    .cardimagen .info {
+    width: 337px;
+}
 
     
 }

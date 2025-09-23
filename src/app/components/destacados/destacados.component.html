@@ -15,14 +15,14 @@
             <ng-container *ngFor="let producto of productos | slice:0:4; let i = index " >
                 <div class="cardimagen" [ngClass]="'div' + (i + 2)" [style.background-image]="'url(' + producto.img + ')' | imagenPipe: 'productos'">
                     
+                    <a [routerLink]="['producto/',producto.slug]">
                     <div class="info">
-                                <a [routerLink]="['producto/',producto.slug]">
                                 <h1>{{ producto.titulo }}</h1>
-                            </a>
                                 <div class="topoftop">
                                     <i class="fa fa-star"></i> Lo Mejor
                                 </div>
                             </div>
+                        </a>
                 </div>
             </ng-container>
         </div>
