@@ -93,7 +93,8 @@ export class ProductosComponent implements OnInit {
       this.categoria.nombre = params.get('nombre') || '';
       if(this.marca.slug){
         this.loadProductbybranding();
-      }if(this.categoria.nombre){
+      }
+      else if(this.categoria.nombre){
         this.catname = this.categoria.nombre;
         this.loadProductbyCategory();
       }
