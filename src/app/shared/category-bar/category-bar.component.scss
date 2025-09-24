@@ -1,17 +1,50 @@
 .categorylist{
     display: flex;
-    justify-content: center;
+    justify-content: start;
     gap: 15px;
     align-items: center;
-    width: 98vw;
+    // width: 98vw;
     overflow: hidden;
     overflow-x: scroll;
-
+    // margin: 0 auto;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    
     & .item{
         display: flex;
-        width: max-content;
-        & h2{
-            font-size: .9rem;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        border: 1px solid #ccc;
+        // box-shadow: 2px 20px 3px #0000;
+        background-color: #f0efef !important;
+        padding: 10px;
+        border-radius: 14px;
+        width:max-content;
+
+        & span{
+            display: flex;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: var(--orange);
         }
+        & h2{
+            font-size: .7rem;
+            display: flex;
+             text-align: center;
+        }
+        & a:hover{
+            text-decoration: none;
+        }
+        
     }
+}
+
+.contenido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
 }

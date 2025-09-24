@@ -21,10 +21,11 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BusquedasService } from '../../../services/busquedas.service';
 import { SearchComponent } from '../../../shared/search/search.component';
 import { Categoria } from '../../../models/categoria.model';
+import { CategoryBarComponent } from "../../../shared/category-bar/category-bar.component";
 
 @Component({
   selector: 'app-productos',
-  imports:[
+  imports: [
     CommonModule,
     HeaderComponent,
     RouterModule,
@@ -33,9 +34,9 @@ import { Categoria } from '../../../models/categoria.model';
     LoadingComponent,
     FormsModule,
     ReactiveFormsModule,
-    SearchComponent
-
-  ],
+    SearchComponent,
+    CategoryBarComponent
+],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.scss']
 })
@@ -189,6 +190,7 @@ export class ProductosComponent implements OnInit {
   public PageSize(): void {
     this.query = '';
     this.ngOnInit();
+    this.router.navigateByUrl('/productos')
   }
 
   handleSearchEvent(event: any) {

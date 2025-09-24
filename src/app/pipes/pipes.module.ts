@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-// import { ImagenPipePipe } from './imagen-pipe.pipe';
-// import {DateAgoPipe} from './date-ago.pipe';
+// import { ImagenPipe } from './imagen-pipe.pipe';
+// import { DateAgoPipe } from './date-ago.pipe';
 import { EscapeHtmlPipe } from './keep-html.pipe';
 
 
 @NgModule({
   declarations: [
-    // ImagenPipePipe,
+    // ImagenPipe,
     // DateAgoPipe,
     // EscapeHtmlPipe
   ],
-  exports:[
-    // ImagenPipePipe,
+  exports: [
+    // ImagenPipe,
     // DateAgoPipe,
     // EscapeHtmlPipe
-
   ]
 })
 export class PipesModule { }

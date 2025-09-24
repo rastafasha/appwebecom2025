@@ -1,7 +1,10 @@
- <div class="categorylist">
-        <div class="item" *ngFor="let cat of categorias">
-            <a [routerLink]="['./productos/category', cat.nombre]">
+   <div class="categorylist">
+        <div class="item" *ngFor="let cat of categorias | uniqueCategories">
+            <a [routerLink]="['/productos/category', cat.nombre]">
+                <div class="contenido">
+                    <span class="{{cat.icono}}"></span>
                 <h2>{{cat.nombre}}</h2>
+                </div>
             </a>
         </div>
     </div>
