@@ -2,6 +2,10 @@
         <div class="item" *ngFor="let cat of categorias | uniqueCategories">
             <a [routerLink]="['/productos/category', cat.nombre]">
                 <div class="contenido">
+                    <span *ngIf="cat.img">
+                        <img [src]="(cat.img ?? '') | imagenPipe: 'categorias'"
+                                    alt="cat.nombre" class="w-100">
+                    </span>
                     <span class="{{cat.icono}}"></span>
                 <h2>{{cat.nombre}}</h2>
                 </div>

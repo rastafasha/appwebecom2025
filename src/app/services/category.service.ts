@@ -67,6 +67,14 @@ export class CategoryService {
       );
   }
 
+  getCategoryBySlug(slug: string): Observable<Categoria> {
+    const url = `${base_url}/categorias/by_slug/${slug}`;
+    return this.http.get<any>(url, this.headers)
+    .pipe(
+      map((resp: {ok: boolean, categoria: Categoria}) => resp.categoria)
+    );
+  }
+
 
 
   // listar(filtro):Observable<any>{

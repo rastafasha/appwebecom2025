@@ -22,6 +22,7 @@ import { BusquedasService } from '../../../services/busquedas.service';
 import { SearchComponent } from '../../../shared/search/search.component';
 import { Categoria } from '../../../models/categoria.model';
 import { CategoryBarComponent } from "../../../shared/category-bar/category-bar.component";
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-productos',
@@ -74,6 +75,7 @@ export class ProductosComponent implements OnInit {
     public usuarioService: UsuarioService,
     public tiendaService: TiendaService,
     public busquedaService: BusquedasService,
+    public categoryService: CategoryService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
@@ -90,13 +92,13 @@ export class ProductosComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.marca = new Marca('', '', '', '');
       this.marca.slug = params.get('slug') || '';
-      this.categoria = new Categoria('', '', false, '','');
+      this.categoria = new Categoria('', '', '', '', false);
       this.categoria.nombre = params.get('nombre') || '';
       if(this.marca.slug){
         this.loadProductbybranding();
       }
       else if(this.categoria.nombre){
-        this.catname = this.categoria.nombre;
+        this.catname = this.categoria.nombre
         this.loadProductbyCategory();
       }
        else {
@@ -138,17 +140,40 @@ export class ProductosComponent implements OnInit {
 
   loadProductbyCategory(){
     this.isLoading = true;
-    this.productoService.getProductoByCategoryName(this.catname).subscribe(productos=>{
-      this.productos = productos;
-    //  console.log(productos)
-      this.isLoading = false;
 
-    },
-  error => {
-        this.error = 'No hay productos para esta categoría';
-        this.isLoading = false;
-      })
+    this.productoService.getProductoByCategoryName(this.catname).subscribe(productos=>{
+          this.productos = productos;
+          this.isLoading = false;
+        },
+        error => {
+          this.error = 'No hay productos para esta categoría';
+          this.isLoading = false;
+        });
   }
+  // loadProductbyCategory(){
+  //   this.isLoading = true;
+
+  //   // First get the category object using the slug to obtain the category name
+  //   this.categoryService.getCategoryBySlug(this.categoria.slug).subscribe(
+  //     categoria => {
+  //       // Use the category name to load products
+  //       console.log(categoria)
+  //       this.catname = categoria.nombre;
+  //       this.productoService.getProductoByCategoryName(this.categoria.nombre).subscribe(productos=>{
+  //         this.productos = productos;
+  //         this.isLoading = false;
+  //       },
+  //       error => {
+  //         this.error = 'No hay productos para esta categoría';
+  //         this.isLoading = false;
+  //       });
+  //     },
+  //     error => {
+  //       this.error = 'No se encontró la categoría';
+  //       this.isLoading = false;
+  //     }
+  //   );
+  // }
   loadProductbyStore(){
     this.isLoading = true;
     this.productoService.find_by_storeId(this.tienda._id).subscribe(

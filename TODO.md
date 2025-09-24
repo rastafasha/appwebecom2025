@@ -1,27 +1,14 @@
-# Category Bar Duplicate Filter Implementation
+# Fix Slug Error in Productos Component
 
-## Completed Tasks ✅
+## Issue
+Cannot set properties of undefined (setting 'slug') at line 95 in productos.component.ts
 
-1. **Created Unique Categories Pipe** (`src/app/pipes/unique-categories.pipe.ts`)
-   - ✅ Created pipe that filters duplicates based on `nombre` field
-   - ✅ Uses Map to track seen names and maintain order
+## Root Cause
+Objects (categoria, marca, tienda) are declared but never initialized before being used in ngOnInit()
 
-2. **Updated Category Bar Component** (`src/app/shared/category-bar/category-bar.component.ts`)
-   - ✅ Added import for `UniqueCategoriesPipe`
-   - ✅ Added pipe to component imports array
-
-3. **Updated Template** (`src/app/shared/category-bar/category-bar.component.html`)
-   - ✅ Applied pipe: `*ngFor="let cat of categorias | uniqueCategories"`
-
-4. **Maintained Pipes Module** (`src/app/pipes/pipes.module.ts`)
-   - ✅ Reverted to original state (standalone pipes approach)
-
-## Testing Status
-- [ ] **Verify Implementation**: Test that duplicates are filtered correctly
-- [ ] **Check Performance**: Ensure pipe doesn't impact performance with large datasets
-- [ ] **Edge Cases**: Test with empty arrays, single items, and mixed duplicates
-
-## Next Steps
-1. Test the implementation by running the application
-2. Verify that duplicate category names are filtered out
-3. Check that the filtering maintains the correct order
+## Steps to Fix
+1. [x] Initialize categoria object with new Categoria() constructor
+2. [x] Initialize marca object with new Marca() constructor
+3. [x] Initialize tienda object with new Tienda() constructor
+4. [ ] Test the fix by running the application
+5. [ ] Verify slug property can be set without errors

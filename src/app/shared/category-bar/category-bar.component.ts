@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import { UniqueCategoriesPipe } from '../../pipes/unique-categories.pipe';
 import { CategoryService } from '../../services/category.service';
+import { Categoria } from '../../models/categoria.model';
 
 @Component({
   selector: 'app-category-bar',
@@ -12,14 +13,15 @@ import { CategoryService } from '../../services/category.service';
     CommonModule,
     RouterModule,
     NgFor,
-    UniqueCategoriesPipe
+    UniqueCategoriesPipe,
+    ImagenPipe
   ],
   templateUrl: './category-bar.component.html',
   styleUrls: ['./category-bar.component.scss']
 })
 export class CategoryBarComponent implements OnInit {
 
-  public categorias: any;
+  public categorias!: Categoria[];
 
   constructor(
     private categoriaService: CategoryService,
