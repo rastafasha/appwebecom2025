@@ -40,7 +40,7 @@ export class HeaderComponent {
     let USER = localStorage.getItem('user');
     if(USER){
       this.identity = JSON.parse(USER);
-      console.log(this.identity);
+      // console.log(this.identity);
       this.loadCartItemCount();
     }
     // this.getCart();

@@ -1,7 +1,7 @@
  <div class="categorylist">
         <div class="item" *ngFor="let cat of categorias">
-            <a [routerLink]="['./category', cat._id]">
-                <h2>{{cat.subcategorias}}</h2>
+            <a [routerLink]="['./productos/category', cat.nombre]">
+                <h2>{{cat.nombre}}</h2>
             </a>
         </div>
     </div>

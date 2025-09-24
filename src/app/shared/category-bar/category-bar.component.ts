@@ -31,6 +31,8 @@ export class CategoryBarComponent implements OnInit {
       resp => {
         this.categorias = resp;
         // console.log(this.categorias);
+
+
       }
     )
   }

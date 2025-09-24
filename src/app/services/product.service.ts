@@ -163,10 +163,10 @@ export class ProductoService {
 
   getProductoByCategoryName(nombre:any):Observable<any>{
 
-    const url = `${base_url}/productos/categoria_nombre/cat/${nombre}`;
+    const url = `${base_url}/productos/producto_by_categorynombre/${nombre}`;
     return this.http.get<any>(url, this.headers)
     .pipe(
-      map((resp:{ok: boolean, producto_data: Producto}) => resp.producto_data)
+      map((resp:{ok: boolean, productos: Producto}) => resp.productos)
       );
   }
 

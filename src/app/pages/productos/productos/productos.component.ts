@@ -20,6 +20,7 @@ import { TiendaService } from '../../../services/tienda.service';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BusquedasService } from '../../../services/busquedas.service';
 import { SearchComponent } from '../../../shared/search/search.component';
+import { Categoria } from '../../../models/categoria.model';
 
 @Component({
   selector: 'app-productos',
@@ -57,6 +58,7 @@ export class ProductosComponent implements OnInit {
   ServerUrl = environment.baseUrl;
   imagenSerUrl = environment.mediaUrl;
   marca!: Marca ;
+  categoria!: Categoria ;
   tienda!: Tienda ;
   public productosTemp: Producto[] = [];
 
@@ -64,6 +66,7 @@ export class ProductosComponent implements OnInit {
   searchForm!:FormGroup;
   currentPage = 1;
   collecion='productos';
+  catname!:string;
 
   constructor(
     public productoService: ProductoService,
@@ -86,9 +89,15 @@ export class ProductosComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.marca = new Marca('', '', '', '');
       this.marca.slug = params.get('slug') || '';
+      this.categoria = new Categoria('', '', false, '','');
+      this.categoria.nombre = params.get('nombre') || '';
       if(this.marca.slug){
         this.loadProductbybranding();
-      } else {
+      }if(this.categoria.nombre){
+        this.catname = this.categoria.nombre;
+        this.loadProductbyCategory();
+      }
+       else {
         this.tienda = new Tienda('', '', '', '', false, '');
         this.tienda._id = params.get('id') || '';
         if(this.tienda._id){
@@ -123,6 +132,20 @@ export class ProductosComponent implements OnInit {
         this.isLoading = false;
       }
     )
+  }
+
+  loadProductbyCategory(){
+    this.isLoading = true;
+    this.productoService.getProductoByCategoryName(this.catname).subscribe(productos=>{
+      this.productos = productos;
+    //  console.log(productos)
+      this.isLoading = false;
+
+    },
+  error => {
+        this.error = 'No hay productos para esta categoría';
+        this.isLoading = false;
+      })
   }
   loadProductbyStore(){
     this.isLoading = true;
