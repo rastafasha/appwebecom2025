@@ -11,6 +11,7 @@ import { ImagenPipe } from '../../../../pipes/imagen-pipe.pipe';
 import { FooterComponent } from '../../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../../shared/header/header.component';
 import { AsideCuentaComponent } from '../../aside-cuenta/aside-cuenta.component';
+import { LoadingComponent } from '../../../../shared/loading/loading.component';
 
 declare var jQuery:any;
 declare var $:any;
@@ -25,6 +26,7 @@ declare var $:any;
       RouterModule,
       ReactiveFormsModule,
       FormsModule,
+      LoadingComponent
       
     ],
   templateUrl: './index-ordenes.component.html',
@@ -36,6 +38,7 @@ export class IndexOrdenesComponent implements OnInit {
   public url:any;
   public msm_error = false;
   public msm_success = false;
+  public isLoading = false;
   public ordenes!:Venta;
   public cancelacion!: Cancelacion;
   public ventas!: Venta[]|null;
@@ -75,10 +78,11 @@ export class IndexOrdenesComponent implements OnInit {
   }
 
   listar_ventas(){
+    this.isLoading = true;
    this.ventaService.listarporUser(this.identity.uid!).subscribe(
       response=>{
         this.ventas = response.ventas;
-        console.log(this.ventas);
+        this.isLoading = false;
 
       },
       error=>{
@@ -91,10 +95,11 @@ export class IndexOrdenesComponent implements OnInit {
 
 
   listar_cancelacion(){
+    this.isLoading = true;
     this.ventaService.listarCancelacionporUser(this.identity.uid!).subscribe(
       response=>{
         this.cancelacion = response.cancelacion;
-        console.log(this.cancelacion);
+        this.isLoading = false;
       },
       error=>{
 

@@ -12,10 +12,11 @@
             <app-aside-cuenta></app-aside-cuenta>
         </aside>
         <!-- Content  -->
+         
         <section class="col-lg-8">
             <!-- Addresses list-->
-
-            <hr class="pb-4">
+            <app-loading *ngIf="isLoading"></app-loading>
+            <hr class="pb-4" *ngIf="!isLoading">
             <!-- <div *ngFor="let item_venta of ventas |  paginate: { itemsPerPage: count, currentPage: p }"> -->
             <div *ngFor="let item_venta of ventas ">
                 <div class="card mb-4">

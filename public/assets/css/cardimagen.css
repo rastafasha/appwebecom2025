@@ -46,7 +46,7 @@
     justify-content: space-between;
     /* background: linear-gradient(to top, var(--black), var(--black), transparent); */
     /* background: linear-gradient(to top, rgba(0, 0, 0, 0.688), rgba(0 0 0 / 27%), transparent); */
-    background: linear-gradient(to top, rgb(0 0 0 / 9%), rgb(211 205 205 / 27%), #ffffff66);
+    /* background: linear-gradient(to top, rgb(0 0 0 / 9%), rgb(211 205 205 / 27%), #ffffff66); */
     border-radius: 0 0 20px 20px;
 }
 

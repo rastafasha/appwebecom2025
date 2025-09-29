@@ -18,7 +18,7 @@
         align-content: center;
         border: 1px solid #ccc;
         // box-shadow: 2px 20px 3px #0000;
-        background-color: #f0efef !important;
+        
         padding: 10px;
         border-radius: 14px;
         width:max-content;
@@ -28,6 +28,10 @@
             margin-bottom: 10px;
             font-size: 24px;
             color: var(--orange);
+            & img{
+                background-color: #fff !important;
+
+            }
         }
         & h2{
             font-size: .7rem;

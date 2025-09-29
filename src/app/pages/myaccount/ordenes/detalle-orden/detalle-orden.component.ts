@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { AsideCuentaComponent } from '../../aside-cuenta/aside-cuenta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImagenPipe } from '../../../../pipes/imagen-pipe.pipe';
+import { LoadingComponent } from '../../../../shared/loading/loading.component';
 declare var jQuery:any;
 declare var $:any;
 
@@ -26,6 +27,7 @@ declare var $:any;
     ReactiveFormsModule,
     FormsModule,
     ImagenPipe,
+    LoadingComponent
 
   ],
   templateUrl: './detalle-orden.component.html',
@@ -37,6 +39,7 @@ export class DetalleOrdenComponent implements OnInit {
   public url!:string;
   public msm_error = false;
   public msm_success = false;
+  public isLoading = false;
   public id!:string;
   public detalle : any = {};
   public venta : any = {};
@@ -109,10 +112,12 @@ export class DetalleOrdenComponent implements OnInit {
   }
 
   init_data(){
+    this.isLoading = true;
     this._ventaService.detalle(this.id).subscribe(
       response =>{
         this.detalle = response.detalle;
         this.venta = response.venta;
+        this.isLoading = false;
         this.data_reviews();
         this.evaluar_cancelacion();
       },

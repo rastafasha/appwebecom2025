@@ -8,14 +8,15 @@ import { UsuarioService } from '../../services/usuario.service';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { AsideCuentaComponent } from './aside-cuenta/aside-cuenta.component';
+import { LoadingComponent } from '../../shared/loading/loading.component';
 
 @Component({
   selector: 'app-myaccount',
   imports: [
     HeaderComponent,
     FooterComponent,
-    RouterModule
-
+    RouterModule,
+    LoadingComponent
   ],
   templateUrl: './myaccount.component.html',
   styleUrls: ['./myaccount.component.scss'],
@@ -24,6 +25,7 @@ export class MyaccountComponent implements OnInit {
 
   identity!: Usuario;
   imagenSerUrl = environment.mediaUrl;
+  isLoading :boolean = false;
 
   constructor(
     public router: Router,
@@ -39,9 +41,10 @@ export class MyaccountComponent implements OnInit {
     window.scrollTo(0,0);
 
     let USER = localStorage.getItem('user');
+    this.isLoading = true;
     if(USER){
       this.identity = JSON.parse(USER);
-      console.log(this.identity);
+      this.isLoading = false;
     }
   }
 

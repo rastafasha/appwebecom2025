@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { AsideCuentaComponent } from '../aside-cuenta/aside-cuenta.component';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
 
 declare var jQuery:any;
 declare var $:any;
@@ -20,7 +21,8 @@ declare var $:any;
     HeaderComponent,
     FooterComponent,
     AsideCuentaComponent,
-    RouterModule
+    RouterModule,
+    LoadingComponent
 
 
   ],
@@ -40,6 +42,7 @@ export class DireccionesComponent implements OnInit {
   public direcciones! : Direccion[];
   public direccion_data : any = {};
   public msm_success_dos = false;
+  public isLoading = false;
 
   direccionid: Direccion;
 
@@ -69,10 +72,11 @@ export class DireccionesComponent implements OnInit {
 
   listar(){
     const uid: string = this.identity.uid ?? '';
+    this.isLoading = true;
     this._direccionService.listarUsuario(uid).subscribe(
       response =>{
         this.direcciones = response;
-        console.log(this.direcciones);
+        this.isLoading = false;
       },
       error=>{
 
@@ -81,10 +85,11 @@ export class DireccionesComponent implements OnInit {
   }
 
   get_direccion(_id:string){
+    this.isLoading = true;
     this._direccionService.get_direccion(_id).subscribe(
       response =>{
         this.direccionid = response;
-        console.log(this.direccionid);
+        this.isLoading = false;
 
       },
       error=>{

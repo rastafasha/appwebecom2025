@@ -10,6 +10,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { FooterComponent } from '../../../shared/footer/footer.component';
 import { ImagenPipe } from '../../../pipes/imagen-pipe.pipe';
 import { AsideCuentaComponent } from '../aside-cuenta/aside-cuenta.component';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
 
 
 @Component({
@@ -20,7 +21,8 @@ import { AsideCuentaComponent } from '../aside-cuenta/aside-cuenta.component';
     HeaderComponent,
     FooterComponent,
     ImagenPipe,
-    AsideCuentaComponent
+    AsideCuentaComponent,
+    LoadingComponent
   ],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
@@ -31,6 +33,7 @@ export class FavoritesComponent implements OnInit {
   public productos!: Producto;
   public favoritos: any =[];
   public msm_success_fav = false;
+  public isLoading = false;
   constructor(
     private http: HttpClient,
     private location: Location,
@@ -54,9 +57,10 @@ export class FavoritesComponent implements OnInit {
   }
 
   getFavoritos(){
+    this.isLoading = true;
     this.favoritosService.listarFaoritosporUsuario(this.identity.uid).subscribe((resp:any)=>{
       this.favoritos = resp.favoritos;
-      console.log(this.favoritos);
+      this.isLoading = false
 
     })
   }
