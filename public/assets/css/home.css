@@ -422,7 +422,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 0px;
-        left: 0%;
+        left: -3%;
         position: relative;
     }
     .prodductos-list .grillacard .cardimagen {

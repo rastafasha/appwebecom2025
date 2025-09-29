@@ -1,0 +1,14 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="categorylist" *ngIf="!isLoading">
+        <div class="item" *ngFor="let cat of marcas ">
+            <a [routerLink]="['/productos/marca', cat.nombre]">
+                <div class="contenido">
+                    <span *ngIf="cat.img">
+                        <img [src]="(cat.img ?? '') | imagenPipe: 'marcas'"
+                                    alt="cat.nombre" class="w-100">
+                    </span>
+                <h2>{{cat.nombre}}</h2>
+                </div>
+            </a>
+        </div>
+    </div>

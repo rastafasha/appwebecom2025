@@ -6,7 +6,7 @@
         style="height: 120px; background-image: url('./assets/img/fondo-brow.jpeg'); background-repeat: no-repeat; background-size: cover; filter: blur(50px);">
         <div class="overlay-call-to-action"></div>
         <div style="display: flex; ">
-            <a href="javascript:void(0)" (click)="PageSize()" class="btn-azul ">Reiniciar</a>
+            <a href="javascript:void(0)" (click)="PageSize()" class="btn-azul ">Ver Todos los Productos</a>
         </div>
         &nbsp;&nbsp;
         <h3 class="heading-style-3">Products {{marca.slug}} </h3>
@@ -21,7 +21,7 @@
                 align-items: center; justify-content: center; text-align: center;">
                 <p>{{ error }}</p>
                 <div style="display: flex;align-items: center; justify-content: center; ">
-                    <a href="javascript:void(0)" (click)="PageSize()" class="btn-azul  ">Reiniciar</a>
+                    <a href="javascript:void(0)" (click)="PageSize()" class="btn-azul  ">Ver Todos los Productos</a>
                 </div>
             </div>
         </div>
@@ -30,8 +30,12 @@
 
     <app-search *ngIf="!isLoading && !error" [query]="query" [modelo]="producto" [colleccionName]="productos"
         [colleccion]="'productos'" (searchEvent)="handleSearchEvent($event)" (resetEvent)="PageSize()"></app-search>
-<app-category-bar *ngIf="!isLoading && !error && productos"></app-category-bar>
+<app-category-bar *ngIf="!isLoading && !error && productos && !isBrand  && !isStore"></app-category-bar>
+<app-brands-bar *ngIf="isBrand && !error && productos"></app-brands-bar>
+<app-store-bar *ngIf="isStore && !error && productos"></app-store-bar>
     <!-- <app-marcas [limit]="limit" [display]="display"></app-marcas> -->
+
+
     <div class="container prodductos-list">
         <div class="grillacard" *ngIf="!isLoading && !error && productos">
             <ng-container class="lista-imagenes" *ngFor="let producto of productos ; let i = index ">

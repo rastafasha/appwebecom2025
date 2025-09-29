@@ -5,14 +5,13 @@ import { Producto } from '../../models/producto.model';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import { ProductoService } from '../../services/product.service';
 import { LoadingComponent } from '../../shared/loading/loading.component';
-
 @Component({
   selector: 'app-newproducts',
   imports: [
     CommonModule,
     RouterModule,
     ImagenPipe,
-    LoadingComponent,
+    LoadingComponent
   ],
   templateUrl: './newproducts.component.html',
   styleUrl: './newproducts.component.scss'
@@ -36,10 +35,21 @@ this.listarNewest();
    listarNewest(){
     this.isLoading = true;
     this.productoService.listar_newest().subscribe((resp:any)=>{
-      this.news_productos = resp
-      console.log(resp)
+      this.news_productos = this.shuffle(resp);
       this.isLoading = false;
     })
-   
+
+  }
+
+  private shuffle(array: any[]): any[] {
+    if (!array || array.length === 0) {
+      return [];
+    }
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
   }
 }

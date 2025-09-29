@@ -23,6 +23,8 @@ import { SearchComponent } from '../../../shared/search/search.component';
 import { Categoria } from '../../../models/categoria.model';
 import { CategoryBarComponent } from "../../../shared/category-bar/category-bar.component";
 import { CategoryService } from '../../../services/category.service';
+import { BrandsBarComponent } from "../../../components/brands-bar/brands-bar.component";
+import { StoreBarComponent } from "../../../components/store-bar/store-bar.component";
 
 @Component({
   selector: 'app-productos',
@@ -36,7 +38,9 @@ import { CategoryService } from '../../../services/category.service';
     FormsModule,
     ReactiveFormsModule,
     SearchComponent,
-    CategoryBarComponent
+    CategoryBarComponent,
+    BrandsBarComponent,
+    StoreBarComponent
 ],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.scss']
@@ -45,7 +49,9 @@ export class ProductosComponent implements OnInit {
 
   public productos: Producto[]=[];
   public product!: Producto;
-  public isLoading: boolean = true;
+  public isLoading: boolean = false;
+  public isBrand: boolean = false;
+  public isStore: boolean = false;
   limit: number = 6;
   display: string = 'none'
   error!: string;
@@ -118,6 +124,9 @@ export class ProductosComponent implements OnInit {
     this.productoService.getProductosActivos().subscribe(
       productos => {
         this.productos = productos;
+        this.isBrand = false;
+        this.isStore = false;
+
         this.isLoading = false;
         // console.log(this.productos);
       }
@@ -129,6 +138,8 @@ export class ProductosComponent implements OnInit {
     this.productoService.find_by_branding(this.marca.slug).subscribe(
       productos => {
         this.productos = productos;
+        this.isBrand = true;
+        this.isStore = false;
         this.isLoading = false;
       },
       error => {
@@ -143,6 +154,8 @@ export class ProductosComponent implements OnInit {
 
     this.productoService.getProductoByCategoryName(this.catname).subscribe(productos=>{
           this.productos = productos;
+          this.isBrand = false;
+          this.isStore = false;
           this.isLoading = false;
         },
         error => {
@@ -179,7 +192,8 @@ export class ProductosComponent implements OnInit {
     this.productoService.find_by_storeId(this.tienda._id).subscribe(
       productos => {
         this.productos = productos;
-        console.log(this.productos);
+        this.isBrand = false;
+        this.isStore = true;
         this.isLoading = false;
         if(this.productos.length === 0 ){
           this.error = 'No hay productos para esta tienda';

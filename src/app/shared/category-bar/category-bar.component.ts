@@ -6,6 +6,7 @@ import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import { UniqueCategoriesPipe } from '../../pipes/unique-categories.pipe';
 import { CategoryService } from '../../services/category.service';
 import { Categoria } from '../../models/categoria.model';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-category-bar',
@@ -14,7 +15,8 @@ import { Categoria } from '../../models/categoria.model';
     RouterModule,
     NgFor,
     UniqueCategoriesPipe,
-    ImagenPipe
+    ImagenPipe,
+    LoadingComponent
   ],
   templateUrl: './category-bar.component.html',
   styleUrls: ['./category-bar.component.scss']
@@ -22,6 +24,7 @@ import { Categoria } from '../../models/categoria.model';
 export class CategoryBarComponent implements OnInit {
 
   public categorias!: Categoria[];
+  isLoading: boolean = false;
 
   constructor(
     private categoriaService: CategoryService,
@@ -32,9 +35,11 @@ export class CategoryBarComponent implements OnInit {
 
   }
   loadCategories(){
+    this.isLoading = true;
     this.categoriaService.getCategoriesActivas().subscribe(
       resp => {
         this.categorias = resp;
+        this.isLoading = false;
         // console.log(this.categorias);
 
 

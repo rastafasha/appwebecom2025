@@ -1,13 +1,12 @@
-  <app-loading *ngIf="isLoading"></app-loading>
+   <app-loading *ngIf="isLoading"></app-loading>
    <div class="categorylist" *ngIf="!isLoading">
-        <div class="item" *ngFor="let cat of categorias | uniqueCategories">
-            <a [routerLink]="['/productos/category', cat.nombre]">
+        <div class="item" *ngFor="let cat of tiendas ">
+            <a [routerLink]="['/productos/tienda', cat._id]">
                 <div class="contenido">
                     <span *ngIf="cat.img">
-                        <img [src]="(cat.img ?? '') | imagenPipe: 'categorias'"
+                        <img [src]="(cat.img ?? '') | imagenPipe: 'marcas'"
                                     alt="cat.nombre" class="w-100">
                     </span>
-                    <span class="{{cat.icono}}"></span>
                 <h2>{{cat.nombre}}</h2>
                 </div>
             </a>
