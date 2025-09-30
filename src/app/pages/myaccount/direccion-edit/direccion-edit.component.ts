@@ -95,7 +95,6 @@ export class DireccionEditComponent implements OnInit {
             user: this.identity.uid,
           });
           this.direccion = res;
-          console.log(this.direccion);
         }
       );
 
@@ -133,7 +132,7 @@ export class DireccionEditComponent implements OnInit {
       this._direccionService.update(data).subscribe(
         resp =>{
           Swal.fire('Actualizado', `${nombres_completos}  actualizado correctamente`, 'success');
-          console.log(this.direccion);
+          
         });
 
     }else{

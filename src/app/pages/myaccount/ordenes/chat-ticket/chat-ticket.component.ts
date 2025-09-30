@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ImagenPipe } from '../../../../pipes/imagen-pipe.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DateAgoPipe } from '../../../../pipes/date-ago.pipe';
+import { Usuario } from '../../../../models/usuario.model';
 
 declare var jQuery:any;
 declare var $:any;
@@ -45,9 +46,16 @@ export class ChatTicketComponent implements OnInit, DoCheck {
   public mensajes : Array<any> = [];
   public poster_admin:any;
   public ticket : any = {};
+  public tickets : any = {};
   public socket = io(environment.soketServer);
   public close_ticket = false;
   public estado_ticket:any;
+  public usuarios!:Usuario[];
+  public usuario!:Usuario;
+  vendedorSeleccionado!: Usuario;
+  id_vendedor!: Usuario;
+  myScrollContainer: any;
+
 
   constructor(
     private _userService: UsuarioService,
@@ -59,29 +67,35 @@ export class ChatTicketComponent implements OnInit, DoCheck {
      let USER = localStorage.getItem('user');
     if(USER){
       this.identity = JSON.parse(USER);
-      console.log(this.identity);
     }
   }
 
 
   ngOnInit(): void {
-
+    // this.getUserAdmin();
     if(this.identity){
       this.url = environment.baseUrl;
       this._route.params.subscribe(
-        params=>{
-          this.id = params['id'];
-
-        }
+        params=>{this.id = params['id']; }
       );
+
+      this._ticketService.get_ticketVenta(this.id).subscribe(
+            (resp:any) =>{
+              console.log(resp)
+              this.tickets = resp.tickets;
+              this.estado_ticket = this.tickets.estado;
+    
+            }
+          );
+
 
       this.socket.on('new-formmsm', (data: any) => {
         if(data.data){
-          this._ticketService.get_ticket(this.id).subscribe(
-            response =>{
-              this.ticket = response;
+          this._ticketService.get_ticketVenta(this.id).subscribe(
+            (resp:any) =>{
+              this.ticket = resp.ticket;
               this.estado_ticket = this.ticket.estado;
-
+              console.log(resp)
 
             },
             error=>{
@@ -97,11 +111,10 @@ export class ChatTicketComponent implements OnInit, DoCheck {
 
       }.bind(this));
 
-      this.listar_msms();
+      // this.listar_msms();
 
-      this._userService.get_user('653fdd4c6ce3256e60272a06').subscribe(//hablar con admin
-        response =>{
-          console.log(response);
+      this._userService.get_user(this.identity.uid).subscribe(//hablar con admin
+        (response:any) =>{
           this.poster_admin = response.usuario.img;
         },
         error=>{
@@ -109,17 +122,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
         }
       );
 
-      this._ticketService.get_ticket(this.id).subscribe(
-        response =>{
-          this.ticket = response.ticket;
-          this.estado_ticket = this.ticket.estado;
-
-
-        },
-        error=>{
-
-        }
-      );
+      
 
     }else{
       this._router.navigate(['/']);
@@ -130,6 +133,22 @@ export class ChatTicketComponent implements OnInit, DoCheck {
 
   }
 
+  getUserAdmin(){
+    this._userService.cargarTodosUsuarios().subscribe((resp:any)=>{
+      this.usuarios = resp.filter((user: Usuario) =>  user.role === 'VENTAS' || user.role === 'TIENDA' || user.role === 'ALMACEN');
+      // this.usuarios = resp;
+      // console.log(this.usuarios)
+      
+    })
+  }
+
+  get_vendedor(id_vendedor:any){
+    id_vendedor = this.id_vendedor
+    this.listar_msms();
+  }
+
+  
+
   ngDoCheck(): void {
 
   }
@@ -138,8 +157,8 @@ export class ChatTicketComponent implements OnInit, DoCheck {
     this.scrollToBottom();
   }
 
-  listar_msms(){debugger
-    this._ticketService.data(this.identity.uid,'653fdd4c6ce3256e60272a06').subscribe(
+  listar_msms(){
+    this._ticketService.data(this.identity.uid,this.id_vendedor).subscribe(
       response=>{
 
         this.mensajes = response;
@@ -167,7 +186,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
         //  enviar y cerrar ticket
         let data={
           de:this.identity.uid,
-          para:'5ef640b75ee066601c6ed1c0',
+          para:this.id_vendedor,
           msm:msmForm.value.msm,
           ticket:this.id,
           status: 0,
@@ -175,7 +194,6 @@ export class ChatTicketComponent implements OnInit, DoCheck {
         }
         this._ticketService.send(data).subscribe(
           response =>{
-            console.log(response);
             this.msm = '';
             this.socket.emit('save-mensaje', {new:true});
             this.scrollToBottom();
@@ -190,11 +208,11 @@ export class ChatTicketComponent implements OnInit, DoCheck {
       else{
         let data={
           de:this.identity.uid,
-          para:'5ef640b75ee066601c6ed1c0',
+          para:this.id_vendedor,
           msm:msmForm.value.msm,
           ticket:this.id,
-          status: 0,
-          estado: null
+          status: 1,
+          estado: 1
         }
         this._ticketService.send(data).subscribe(
           response =>{
@@ -215,9 +233,9 @@ export class ChatTicketComponent implements OnInit, DoCheck {
   }
 
   scrollToBottom(): void {
-    // try {
-    //   this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    // } catch(err) { }
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }
   }
 
 }

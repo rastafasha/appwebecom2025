@@ -35,7 +35,7 @@ export class UsuarioService {
     return localStorage.getItem('token') || '';
   }
 
-  get role(): 'ADMIN' | 'USER' | 'VENTAS' {
+  get role(): 'ADMIN' | 'USER' | 'VENTAS' | 'TIENDA'  | 'ALMACEN'{
     return this.usuario?.role ?? 'USER';
   }
 
@@ -201,6 +201,14 @@ export class UsuarioService {
         };
       })
     );
+  }
+
+  cargarTodosUsuarios() {
+    const url = `${base_url}/usuarios/all`;
+    return this.http.get<any>(url, this.headers)
+          .pipe(
+            map((resp:{ok: boolean, usuarios: Usuario[]}) => resp.usuarios)
+          )
   }
 
   borrarUsuario(usuario: Usuario) {

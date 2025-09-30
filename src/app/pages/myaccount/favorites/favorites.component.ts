@@ -46,7 +46,6 @@ export class FavoritesComponent implements OnInit {
       let USER = localStorage.getItem('user');
     if(USER){
       this.identity = JSON.parse(USER);
-      console.log(this.identity);
     }
      }
 

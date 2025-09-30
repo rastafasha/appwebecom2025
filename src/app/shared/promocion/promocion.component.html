@@ -37,7 +37,7 @@
                                             <span class="cz-countdown-label text-muted">s</span>
                                         </div>
                                     </div>
-                                    <a class="btn btn-success" [routerLink]="['/producto/',promocion.enlace]">Ver
+<a class="btn btn-success" [routerLink]="['/producto/', sanitizeEnlace(promocion.enlace)]">Ver
                                         oferta<i class="czi-arrow-right font-size-ms ml-1"></i></a>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 <span class="cz-countdown-label text-muted">s</span>
                             </div>
                         </div>
-                        <a class="btn btn-success" [routerLink]="['/producto/',promocion.enlace]">Ver oferta<i
+<a class="btn btn-success" [routerLink]="['/producto/', sanitizeEnlace(promocion.enlace)]">Ver oferta<i
                                 class="czi-arrow-right font-size-ms ml-1"></i></a>
                     </div>
                 </div>

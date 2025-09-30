@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { environment } from '../../../environments/environment';
 import { Promocion } from '../../models/promocion.model';
 import { ImagenPipe } from '../../pipes/imagen-pipe.pipe';
 import { PromocionService } from '../../services/promocion.service';
+import { environment } from '../../../environments/environment';
 
 declare let tns: any;
 declare let countdown: any;
@@ -94,6 +94,11 @@ export class PromocionComponent implements OnInit {
 
   nextSlide() {
     this.currentSlide = (this.currentSlide === this.promociones.length - 1) ? 0 : this.currentSlide + 1;
+  }
+
+  sanitizeEnlace(enlace: string): string {
+    // Remove '../' segments to prevent router errors
+    return enlace.replace(/\.\.\//g, '');
   }
 
 }

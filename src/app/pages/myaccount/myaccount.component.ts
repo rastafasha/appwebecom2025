@@ -9,6 +9,7 @@ import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { AsideCuentaComponent } from './aside-cuenta/aside-cuenta.component';
 import { LoadingComponent } from '../../shared/loading/loading.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-myaccount',
@@ -16,7 +17,8 @@ import { LoadingComponent } from '../../shared/loading/loading.component';
     HeaderComponent,
     FooterComponent,
     RouterModule,
-    LoadingComponent
+    LoadingComponent,
+    NgIf
   ],
   templateUrl: './myaccount.component.html',
   styleUrls: ['./myaccount.component.scss'],

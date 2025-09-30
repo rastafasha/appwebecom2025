@@ -12,7 +12,7 @@ export class Usuario {
     public password?: string,
     public img?: string,
     public google?: boolean,
-    public role?: 'ADMIN' | 'USER' | 'VENTAS',
+    public role?: 'ADMIN' | 'USER' | 'VENTAS' | 'TIENDA' | 'ALMACEN', 
     public uid?: string
   ){}
 

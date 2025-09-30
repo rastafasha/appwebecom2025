@@ -41,7 +41,7 @@ export class TicketService {
 
   send(data: any):Observable<any>{
 
-    const url = `${base_url}//tickets/ticket_msm/send`;
+    const url = `${base_url}/tickets/ticket_msm/send`;
     return this._http.post(url, data, this.headers);
 
   }
@@ -68,10 +68,27 @@ export class TicketService {
 
   get_ticket(id:string):Observable<any>{
 
+    const url = `${base_url}/tickets/${id}`;
+    return this._http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean, ticket: Ticket}) => resp.ticket)
+        );
+  }
+  get_ticket2(id:string):Observable<any>{
+
     const url = `${base_url}/tickets/ticket_data/one/${id}`;
     return this._http.get<any>(url, this.headers)
       .pipe(
         map((resp:{ok: boolean, ticket: Ticket}) => resp.ticket)
+        );
+  }
+
+  get_ticketVenta(id:string):Observable<any>{
+
+    const url = `${base_url}/tickets/ticket_venta/${id}`;
+    return this._http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean, tickets: Ticket}) => resp.tickets)
         );
   }
 

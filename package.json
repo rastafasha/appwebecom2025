@@ -27,7 +27,7 @@
     "ngx-cookie-service": "^11.0.1",
     "ngx-paypal": "^10.1.0",
     "ngx-sharebuttons": "^17.0.0",
-    "ngx-socket-io": "^3.0.1",
+    "ngx-socket-io": "^4.0.1",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.22.2",
     "tslib": "^2.3.0",
@@ -38,7 +38,7 @@
     "@angular/cli": "19.2.15",
     "@angular/compiler-cli": "19.2.14",
     "@types/jasmine": "~5.1.0",
-    "@types/socket.io-client": "^1.4.36",
+
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
