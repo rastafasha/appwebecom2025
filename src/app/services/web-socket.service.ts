@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 export class WebSocketService {
 
   private socket: any;
+  private interval: any;
   events = ['new-user', 'bye-user'];
   cbEvent: EventEmitter<any> = new EventEmitter<any>();
 
@@ -17,6 +18,7 @@ export class WebSocketService {
     this.socket = io(environment.soketServer);
     this.checkStatus();
     this.listener();
+    this.startPing();
   }
 
   checkStatus(){
@@ -28,6 +30,10 @@ export class WebSocketService {
     this.socket.on('disconnect', () => {
       console.log('Desconectado del servidor');
       this.socketStatus = false;
+      if (this.interval) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
     });
   }
 
@@ -39,6 +45,14 @@ export class WebSocketService {
       }));
     });
   };
+
+  private startPing() {
+    this.interval = setInterval(() => {
+      if (this.socketStatus) {
+        this.emit('ping', { timestamp: Date.now() });
+      }
+    }, 30000);
+  }
 
   joinRoom = (data: any) => {
     this.socket.emit('join', data);
@@ -53,6 +67,10 @@ export class WebSocketService {
   }
 
   disconnect() {
+    if (this.interval) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
     this.socket.disconnect();
   }
 }

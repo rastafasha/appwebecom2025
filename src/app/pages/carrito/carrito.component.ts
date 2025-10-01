@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Direccion } from '../../models/direccion.model';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -24,7 +24,9 @@ import { PagochequeService } from '../../services/pagocheque.service';
 import { TiposdepagoService } from '../../services/tiposdepago.service';
 import { Tienda } from '../../models/tienda.model';
 import { TiendaService } from '../../services/tienda.service';
+import { NgxPayPalModule, IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
+// declare var paypal: any;
 declare var paypal: {
   Buttons: (arg0: {
     createOrder: (data: any, actions: any) => any; onApprove: (data: any, actions: any) => Promise<void>;
@@ -33,7 +35,6 @@ declare var paypal: {
     onError: (err: any) => void;
   }) => { (): any; new(): any; render: { (arg0: any): void; new(): any; }; }; FUNDING: { CARD: any; PAYPAL: any; };
 };
-
 
 declare var jQuery:any;
 declare var $:any;
@@ -68,14 +69,17 @@ interface CuponResponse {
     ImagenPipe,
     ReactiveFormsModule,
     FormsModule,
+    NgxPayPalModule,
     // PagosFilterPipe
   ],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit, AfterViewInit {
 
   @ViewChild('paypal',{static:true}) paypalElement!: ElementRef;
+
+  public payPalConfig?: IPayPalConfig;
 
   public direcciones:any =[];
   public identity;
@@ -92,7 +96,7 @@ export class CarritoComponent implements OnInit {
   public productos : any = {};
   public cursos : any = {};
 
-  public paypal:any;
+  paypal: boolean = false;
 
   public postales:any;
 
@@ -124,6 +128,7 @@ export class CarritoComponent implements OnInit {
 
   selectedMethod: string = 'Selecciona un método de pago';
 
+  habilitacionFormPaypal:boolean = false;
   habilitacionFormTransferencia:boolean = false;
   habilitacionFormCheque:boolean = false;
 
@@ -184,7 +189,7 @@ export class CarritoComponent implements OnInit {
     this.listar_carrito();
     this.obtenerMetodosdePago();
     this.getTiendas();
-    
+
     if(this.identity){
       this.socket.on('new-stock', function (data: any) {
         // this.listar_carrito();
@@ -195,14 +200,26 @@ export class CarritoComponent implements OnInit {
       $('#btn-back-data').hide();
       $('#card-data-envio').hide();
 
-      this.renderPayPalButton();
+      this.initPayPalConfig();
+
       this.url = environment.baseUrl;
+
       this.carrito_real_time();
 
     }else{
       this._router.navigate(['/']);
     }
 
+    if(!this.selectedMethod){
+      this.habilitacionFormPaypal = false;
+      this.habilitacionFormTransferencia = false;
+      this.habilitacionFormCheque = false;
+    }
+
+  }
+
+  ngAfterViewInit(): void {
+    // Implementation if needed
   }
 
   getTiendas(){
@@ -310,20 +327,20 @@ export class CarritoComponent implements OnInit {
   }
 
   // Método que se llama cuando cambia el select
-  
-
-  // Método que se llama cuando cambia el select
   onPaymentMethodChange(event: any) {
     this.selectedMethod = event.target.value;
-    // console.log('metodo de pago seleccionado: ',this.selectedMethod)
+    console.log('metodo de pago seleccionado: ',this.selectedMethod)
     this.getPaymentMbyName(this.selectedMethod);
-    
+
+
+
     if(this.selectedMethod==='paypal' || this.selectedMethod==='card'){
       // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
-      // this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
-      this.paypalBotones();
+      this.habilitacionFormPaypal = true;
       this.habilitacionFormTransferencia = false;
       this.habilitacionFormCheque = false;
+      // Defer to next tick to ensure ViewChild is available
+      setTimeout(() => this.renderPayPalButton(), 0);
     }
     if(this.selectedMethod==='Transferencia Dólares' || this.selectedMethod==='Transferencia Bolivares'
       || this.selectedMethod==='pagomovil' || this.selectedMethod==='zelle'
@@ -331,21 +348,24 @@ export class CarritoComponent implements OnInit {
       // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
       this.habilitacionFormTransferencia = true;
       this.habilitacionFormCheque = false;
+      this.habilitacionFormPaypal = false;
     }
     else if(this.selectedMethod==='cheque'){
       // cheque
       this.habilitacionFormCheque = true;
-      
+      this.habilitacionFormPaypal = false;
       this.habilitacionFormTransferencia = false;
-      
-      
+
+
     }
 
-    if(this.selectedMethod===null 
+    if(this.selectedMethod==='Seleccione'
     ){
       // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
       this.habilitacionFormTransferencia = false;
       this.habilitacionFormCheque = false;
+      this.habilitacionFormPaypal = false;
+
     }
   }
 
@@ -353,18 +373,79 @@ export class CarritoComponent implements OnInit {
     this.selectedMethod = selectedMethod
     this._tipoPagosService.getPaymentMethodByName(selectedMethod).subscribe((resp:any)=>{
       this.paymentMethodinfo = resp[0];
-      // console.log(this.paymentMethodinfo);
+      console.log(this.paymentMethodinfo);
     })
   }
 
   private renderPayPalButton(){
+    if (!this.paypalElement || !this.paypalElement.nativeElement) {
+      return;
+    }
     // Primero, limpiar el contenedor anterior
     this.paypalElement.nativeElement.innerHTML = '';
 
-   this.paypalBotones();
+    if(this.selectedMethod==='card' || this.selectedMethod==='paypal'){
+      // deshabilitar el formulario de pago con transferencia
+      this.habilitacionFormTransferencia = false;
+      this.habilitacionFormCheque = false;
+      // Cargar el botón de PayPal con las opciones seleccionadas
+      this.initPayPalConfig();
+    }
   }
 
-  
+
+
+  private initPayPalConfig(): void {
+    this.payPalConfig = {
+      currency: 'USD',
+      clientId: environment.clientIdPaypal,
+      createOrderOnClient: (data) => <ICreateOrderRequest><unknown>{
+        intent: 'CAPTURE',
+        purchase_units: [{
+          amount: {
+            currency_code: 'USD',
+            value: Math.round(this.subtotal).toString(),
+            breakdown: {
+              item_total: {
+                currency_code: 'USD',
+                value: Math.round(this.subtotal).toString(),
+              }
+            }
+          },
+          items: this.listar_carrito()
+        }]
+      },
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical'
+      },
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then((details: any) => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        this.data_venta.idtransaccion = data.id;
+        this.saveVenta();
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+      },
+      onError: err => {
+        console.log('OnError', err);
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+      },
+    };
+  }
+
+
 
   private paypalBotones(){
     paypal.Buttons({
@@ -431,18 +512,18 @@ export class CarritoComponent implements OnInit {
                   console.log(error);
                 }
               );
-              // (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
-              //   (response: any) => {
-              //     this.remove_carrito();
-              //     this.listar_carrito();
-              //     this.socket.emit('save-carrito', { new: true });
-              //     this.socket.emit('save-stock', { new: true });
-              //     this._router.navigate(['/app/cuenta/ordenes']);
-              //   },
-              //   (error: any) => {
-              //     console.log(error);
-              //   }
-              // );
+              this._productoService.reducir_stock(element.producto._id, element.cantidad).subscribe(
+                (response: any) => {
+                  this.remove_carrito();
+                  this.listar_carrito();
+                  this.socket.emit('save-carrito', { new: true });
+                  this.socket.emit('save-stock', { new: true });
+                  this._router.navigate(['/app/cuenta/ordenes']);
+                },
+                (error: any) => {
+                  console.log(error);
+                }
+              );
             });
 
           },
@@ -473,8 +554,6 @@ export class CarritoComponent implements OnInit {
         );
     });
   }
-
- 
 
   carrito_real_time(){
     this.socket.on('new-carrito_dos',  (data:any) => {
@@ -526,6 +605,7 @@ export class CarritoComponent implements OnInit {
       }
     );
   }
+
   select_postal(event: any,data: { titulo: any; precio: any; tiempo: any; dias: any; }){
     //RESTAR PRECIO POSTAL ANTERIOR
     this.subtotal = Math.round(this.subtotal - parseInt(this.medio_postal.precio));
@@ -544,7 +624,6 @@ export class CarritoComponent implements OnInit {
     this._direccionService.listarUsuario(this.identity.uid ?? '').subscribe(
       response =>{
         this.direcciones = response;
-        // console.log(this.direcciones);
       },
       error=>{
 
@@ -557,7 +636,6 @@ export class CarritoComponent implements OnInit {
     this._direccionService.get_direccion(this.data_direccion).subscribe(
       response =>{
         this.data_direccion = response;
-        console.log(this.data_direccion);
       }
     );
 
@@ -590,7 +668,6 @@ export class CarritoComponent implements OnInit {
       }
     );
   }
-
 
 
   remove_producto(id:string){
@@ -639,8 +716,6 @@ export class CarritoComponent implements OnInit {
     );
   }
 
-  
-  
   get_data_cupon(event: Event, cupon: string): void {
     this.data_keyup = this.data_keyup + 1;
 
@@ -722,8 +797,6 @@ export class CarritoComponent implements OnInit {
     }
 
   }
-
-  
 
   verify_data(){
     if(this.id_direccion){
@@ -868,24 +941,24 @@ export class CarritoComponent implements OnInit {
             this.listar_carrito();
             this.socket.emit('save-carrito', { new: true });
             this.socket.emit('save-stock', { new: true });
-            this._router.navigate(['/my-account/ordenes']);
           },
           (error: any) => {
             console.log(error);
           }
         );
-        // (this._productoService as ProductoService).reducir_stock(element.producto._id, element.cantidad).subscribe(
-        //   (response: any) => {
-        //     this.remove_carrito();
-        //     this.listar_carrito();
-        //     this.socket.emit('save-carrito', { new: true });
-        //     this.socket.emit('save-stock', { new: true });
-        //     this._router.navigate(['/my-account/ordenes']);
-        //   },
-        //   (error: any) => {
-        //     console.log(error);
-        //   }
-        // );
+        this._productoService.reducir_stock(element.producto._id, element.cantidad).subscribe(
+          (response: any) => {
+            this.remove_carrito();
+            this.listar_carrito();
+            this.socket.emit('save-carrito', { new: true });
+            this.socket.emit('save-stock', { new: true });
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        );
+
+            this._router.navigate(['/my-account/ordenes']);
       });
 
     },)

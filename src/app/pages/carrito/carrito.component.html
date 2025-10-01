@@ -2,8 +2,6 @@
 <div class="shop-cart" id="page">
     <section class="sub-header d-flex justify-content-center " style="height: 100px; background-repeat: repeat; background-size: cover; background-position: -20px -130px ; filter: blur(10px);
     background-image: url('./assets/img/pexels-asad-photo-maldives-457882.jpeg');">
-    
-    <!-- <img class="rellax bg-overlay" src="./assets/img/fondo-brow.jpeg" style="height: 120px; width: 100vw;  filter: blur(10px);" alt=""> -->
     <div class="overlay-call-to-action"></div>
     <h3 class="heading-style-3">Mi Carrito</h3>
 </section>
@@ -12,22 +10,21 @@
     <div class="container pb-5 mb-2 mb-md-4 mt-5">
         <div class="row">
             <!-- List of items-->
-
             <section class="col-lg-8">
                 <div class="d-flex justify-content-between align-items-center pt-3 pb-2 pb-sm-5 mt-1">
-                    <!-- <h2 class="h6 text-light mb-0">Productos</h2> -->
                     <a class="btn btn-outline-primary btn-sm pl-2"
                         [routerLink]="['../productos']" routerLinkActive="router-link-active"><i
                             class="czi-arrow-left mr-2"></i>Continuar comprando</a>
                 </div>
                 <!-- Item-->
+                 <!-- alert -->
                 <div class="alert alert-danger alert-with-icon" role="alert" *ngIf="error_stock">
                     <div class="alert-icon-box">
                         <i class="alert-icon czi-close-circle"></i>
                     </div>
                     Algun producto de su carrito de compras no tiene stock.
                 </div>
-
+                <!-- List of items-->
                 <ng-container *ngIf="carrito">
                     <div *ngFor="let item of carrito"
                         class="listaCart my-4 pb-3 border-bottom">
@@ -52,11 +49,11 @@
                                     <div class="font-size-sm"><span
                                             class="text-muted mr-2">{{item.producto.nombre_selector}}:</span>{{item.selector}}
                                     </div>
-                                    <!-- <div class="font-size-sm"><span class="text-muted mr-2">COLOR:</span>
+                                    <div class="font-size-sm"><span class="text-muted mr-2">COLOR:</span>
                                         <span [ngStyle]="{'background': item.color,'color': item.color}"
                                             style="font-weight: 900;">||||||||||||||||</span> 
 
-                                    </div> -->
+                                    </div>
                                     <div class="font-size-lg text-accent pt-2">${{item.precio}}</div>
                                 </ng-container>
 
@@ -106,10 +103,11 @@
             <!-- Sidebar-->
             <aside class="col-lg-4 pt-4 pt-lg-0">
                 <div class="cz-sidebar-static rounded-lg box-shadow-lg ml-lg-auto">
-                    <div class="text-center mb-4 pb-3 border-bottom">
+                    <div class="text-center mb-4 pb-3 subtotal">
                         <h2 class="h6 mb-3 pb-1">Subtotal</h2>
                         <h3 class="font-weight-normal">${{subtotal}}</h3>
                     </div>
+                    <!-- postales -->
                     <div class="card mb-4 cart-data-venta" style="padding-left: 8px;">
                         <div class="card-body">
                             <h3 style="    font-size: 1rem;
@@ -152,6 +150,7 @@
                         </table>
 
                     </div>
+                    <!-- Aplicar promoción -->
                     <div class="accordion mb-4 cart-data-venta" id="order-options" *ngIf="carrito">
                         <div class="card">
                             <div class="card-header">
@@ -173,6 +172,7 @@
                                 </form>
                             </div>
                         </div>
+                        <!-- Dirección de envío -->
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="accordion-heading"><a class="collapsed" href="#shipping-estimates"
@@ -198,14 +198,15 @@
                         </div>
 
                     </div>
+                    <!-- invalid-feedback -->
                     <div class="invalid-feedback" style="display: block;" *ngIf="msm_error">{{msm_error}}</div>
-                   
+                    <!-- butons -->
                     <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" *ngIf="carrito" id="btn-verify-data"
                         (click)="verify_data()"><i class="czi-card font-size-lg mr-2"></i>Proceder a pagar</button>
                     
                     <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" id="btn-back-data"
                         (click)="back_data()"><i class="czi-reply font-size-lg mr-2"></i>Regresar</button>
-
+                    <!-- Detalles de envío -->
                      <div class="rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio" >
                         <div class="row">
                             <div class="col-sm-12" *ngIf="data_direccion">
@@ -239,42 +240,25 @@
                         <div class="p-3">
                             <select id="paymentMethod" class="form-control" (change)="onPaymentMethodChange($event)"
                                 [(ngModel)]="selectedMethod">
-                                <!-- <option>Selecciona un método de pago</option> -->
-                                <!-- <option value="paypal">Paypal</option>
-                                <option value="card">Tarjeta de Crédito/Débito</option>
-                                <option value="transferencia">Pagos Bancarios</option>
-                                <option value="cheque">Cheque</option> -->
-
-                                <option  >
-                                            Seleccione
-                                        </option>
-                                    <!-- <option value="paypal">Paypal</option>
-                                <option value="card">Tarjeta de Crédito/Débito</option> -->
+                                <option  >Seleccione</option>
+                                <option  value="card">Tarjeta de Credito/Debito</option>
                                 <option [value]="metodo_pago.tipo" *ngFor="let metodo_pago of paymentMethods ">
                                             {{metodo_pago.tipo}}
                                         </option>
-                                
                             </select>
                         </div>
                         <!-- Contenedor para el botón de PayPal -->
-                        <div *ngIf="paypal">
-                            <h2>Hola paypal</h2>
+                        <div #paypal *ngIf="habilitacionFormPaypal" >
+                            hola paypal
+                        </div>
+                        <div *ngIf="habilitacionFormPaypal">
+                            <!-- hola paypal -->
+                            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                         </div>
                         <!-- Contenedor para el botón de transferencia-->
                         <div *ngIf="habilitacionFormTransferencia" class="mt-1 mb-1 p-3">
                             <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
 
-                                <!-- metodo de pago -->
-                                <div class="mb-1 mt-2">
-                                    <!-- <label form="metodo_pago" class="form-label">Tipo de Transferencia</label>
-
-                                    <select formControlName="metodo_pago" (change)="onChangePayment($event)"
-                                        class="form-control" name="metodo_pago" id="metodo_pago">
-                                        <option [value]="metodo_pago._id" *ngFor="let metodo_pago of paymentMethods | pagosFilter ">
-                                            {{metodo_pago.tipo}}
-                                        </option>
-                                    </select> -->
-                                </div>
                                 <div class="card">
                                     <div class="card-body alert-warning" *ngIf="paymentMethodinfo">
                                         <p *ngIf="paymentMethodinfo.bankName">Nombre del Banco:&nbsp;{{paymentMethodinfo.bankName}}</p>

@@ -79,6 +79,14 @@
                                 </button>
                             </div>
                             <!-- mensaje -->
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                *ngIf="msm_error">
+                                Error <b>{{msm_error}}</b>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!-- mensaje -->
                             <div class="summary">
                                 <div class="desc">
                                     <div class="header-desc">
@@ -159,10 +167,7 @@
                                         </div>
 
                                         <app-loading *ngIf="isLoading"></app-loading>
-                                        <div class="font-size-sm"
-                                            *ngIf="producto?.subcategoria !== 'Delicateses'|| producto?.subcategoria !== 'Dulces Secos'
-                                            || producto?.subcategoria !== 'Sandwich'|| producto?.subcategoria !== 'Alimentos'
-                                            || producto?.subcategoria !== 'Comida Rápida'|| producto?.subcategoria !== 'De Lujo' && !isLoading">
+                                        <div class="font-size-sm">
                                             <span class="text-heading font-weight-medium mr-1">
                                                 Colores:</span>
                                             <br>
@@ -215,7 +220,7 @@
                                                         de tallas
                                                     </a>
                                                 </div>
-                                                <select class="custom-select form-control" required="" id="product-size"
+                                                <select class="custom-select form-control"  id="product-size"
                                                     name="selector_to_cart" [(ngModel)]="selector_to_cart">
                                                     <option value=" " selected disabled>Selecciona</option>
                                                     <option value="{{selector.titulo}}"

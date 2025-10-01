@@ -1,5 +1,2 @@
-- [x] Revert RandomOrderPipe to pure
-- [x] Add shuffle method in NewproductsComponent to shuffle the array once after fetching
-- [x] Remove randomOrder pipe from template
-- [x] Remove RandomOrderPipe import from component
-- [ ] Test the component to verify random order works once and no infinite loop
+- [x] Agregar intervalo para transmitir ping cada 30 segundos en WebSocket service
+- [x] Limpiar intervalo al desconectar
