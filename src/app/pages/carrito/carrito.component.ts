@@ -129,6 +129,7 @@ export class CarritoComponent implements OnInit, AfterViewInit {
   selectedMethod: string = 'Selecciona un método de pago';
 
   habilitacionFormPaypal:boolean = false;
+  trasferencias:boolean = false;
   habilitacionFormTransferencia:boolean = false;
   habilitacionFormCheque:boolean = false;
 
@@ -211,6 +212,7 @@ export class CarritoComponent implements OnInit, AfterViewInit {
     }
 
     if(!this.selectedMethod){
+      this.trasferencias = false;
       this.habilitacionFormPaypal = false;
       this.habilitacionFormTransferencia = false;
       this.habilitacionFormCheque = false;

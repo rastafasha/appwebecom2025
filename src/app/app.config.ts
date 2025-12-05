@@ -14,19 +14,19 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([imageInterceptor])
     ),
-    provideRouter(routes), 
+    provideRouter(routes),
     provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }),
-   
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+
   ]
 };
 
 function imageInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
   // Check if the request is for an image
   if (req.url.endsWith('.jpg') || req.url.endsWith('.png') || req.url.endsWith('.jpeg')) {
-   
+
     const jwtToken = window.localStorage.getItem('auth_token');
     const modifiedReq = req.clone({
       setHeaders: {
@@ -34,7 +34,7 @@ function imageInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observabl
       }
     });
     return next(modifiedReq);
-    
+
   }
   // Pass through other requests unmodified
   return next(req);

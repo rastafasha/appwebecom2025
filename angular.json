@@ -77,9 +77,9 @@
                   "output": "/"
                 },
                 {
-                  "glob": "**.*",
-                  "input": "src/env/ecom/manifest.webmanifest",
-                  "output": "src/manifest.webmanifest"
+                  "glob": "manifest.webmanifest",
+                  "input": "src/env/ecom",
+                  "output": "manifest.webmanifest"
                 }
               ],
               "budgets": [
