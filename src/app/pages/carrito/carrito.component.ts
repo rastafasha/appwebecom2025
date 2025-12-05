@@ -331,51 +331,51 @@ export class CarritoComponent implements OnInit, AfterViewInit {
   // Método que se llama cuando cambia el select
   onPaymentMethodChange(event: any) {
     this.selectedMethod = event.target.value;
-    console.log('metodo de pago seleccionado: ',this.selectedMethod)
+    // console.log('metodo de pago seleccionado: ',this.selectedMethod)
     this.getPaymentMbyName(this.selectedMethod);
+this.renderPayPalButton()
 
 
+    // if(this.selectedMethod==='paypal' || this.selectedMethod==='card'){
+    //   // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+    //   this.habilitacionFormPaypal = true;
+    //   this.habilitacionFormTransferencia = false;
+    //   this.habilitacionFormCheque = false;
+    //   // Defer to next tick to ensure ViewChild is available
+    //   setTimeout(() => this.renderPayPalButton(), 0);
+    // }
+    // if(this.selectedMethod==='Transferencia Dólares' || this.selectedMethod==='Transferencia Bolivares'
+    //   || this.selectedMethod==='pagomovil' || this.selectedMethod==='zelle'
+    // ){
+    //   // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+    //   this.habilitacionFormTransferencia = true;
+    //   this.habilitacionFormCheque = false;
+    //   this.habilitacionFormPaypal = false;
+    // }
+    // else if(this.selectedMethod==='cheque'){
+    //   // cheque
+    //   this.habilitacionFormCheque = true;
+    //   this.habilitacionFormPaypal = false;
+    //   this.habilitacionFormTransferencia = false;
 
-    if(this.selectedMethod==='paypal' || this.selectedMethod==='card'){
-      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
-      this.habilitacionFormPaypal = true;
-      this.habilitacionFormTransferencia = false;
-      this.habilitacionFormCheque = false;
-      // Defer to next tick to ensure ViewChild is available
-      setTimeout(() => this.renderPayPalButton(), 0);
-    }
-    if(this.selectedMethod==='Transferencia Dólares' || this.selectedMethod==='Transferencia Bolivares'
-      || this.selectedMethod==='pagomovil' || this.selectedMethod==='zelle'
-    ){
-      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
-      this.habilitacionFormTransferencia = true;
-      this.habilitacionFormCheque = false;
-      this.habilitacionFormPaypal = false;
-    }
-    else if(this.selectedMethod==='cheque'){
-      // cheque
-      this.habilitacionFormCheque = true;
-      this.habilitacionFormPaypal = false;
-      this.habilitacionFormTransferencia = false;
 
+    // }
 
-    }
+    // if(this.selectedMethod==='Seleccione'
+    // ){
+    //   // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+    //   this.habilitacionFormTransferencia = false;
+    //   this.habilitacionFormCheque = false;
+    //   this.habilitacionFormPaypal = false;
 
-    if(this.selectedMethod==='Seleccione'
-    ){
-      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
-      this.habilitacionFormTransferencia = false;
-      this.habilitacionFormCheque = false;
-      this.habilitacionFormPaypal = false;
-
-    }
+    // }
   }
 
   getPaymentMbyName(selectedMethod:string){
     this.selectedMethod = selectedMethod
     this._tipoPagosService.getPaymentMethodByName(selectedMethod).subscribe((resp:any)=>{
       this.paymentMethodinfo = resp[0];
-      console.log(this.paymentMethodinfo);
+      // console.log(this.paymentMethodinfo);
     })
   }
 

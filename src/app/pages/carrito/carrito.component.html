@@ -247,15 +247,16 @@
                             </select>
                         </div>
                         <!-- Contenedor para el botón de PayPal -->
-                        <div #paypal *ngIf="habilitacionFormPaypal">
+                        <div #paypal *ngIf="selectedMethod === 'paypal'">
                             hola paypal
+                            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                         </div>
-                        <div *ngIf="habilitacionFormPaypal">
-                            <!-- hola paypal -->
+                        <div *ngIf="selectedMethod === 'card'">
+                            hola paypal card
                             <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                         </div>
                         <!-- Contenedor para el botón de transferencia-->
-                        <div #transfr *ngIf="selectedMethod === 'transfr'" class="mt-1 mb-1 p-3">
+                        <div  *ngIf="selectedMethod === 'transfr'" class="mt-1 mb-1 p-3">
                             <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
 
                                 <!-- Tipo de Transferencia -->
