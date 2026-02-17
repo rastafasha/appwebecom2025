@@ -82,8 +82,8 @@ export class ProductoComponent implements OnInit {
   public cantidad_to_cart = 1;
   public precio_to_cart:any;
   public color_to_cart = '#16537e';
-  public selector_to_cart = ' ';
   public err_stock ='';
+  public selector_to_cart = ' ';
   public selector_error = false;
   public identity!:Usuario;
   public isLoading:boolean = false;

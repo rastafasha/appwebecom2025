@@ -55,11 +55,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- gallery -->
-
                             <!-- Modal moved outside gallery loop -->
                             <app-modal [selectedProduct]="selectedProduct"></app-modal>
+                            <!-- gallery -->
+
                         </div>
+
+                        <!-- mensajes -->
                         <div class="col-md-5">
                             <!-- mensaje -->
                             <div class="alert alert-success alert-dismissible fade show" role="alert"
@@ -167,6 +169,7 @@
                                         </div>
 
                                         <app-loading *ngIf="isLoading"></app-loading>
+                                        <!-- colores -->
                                         <div class="font-size-sm">
                                             <span class="text-heading font-weight-medium mr-1">
                                                 Colores:</span>
@@ -182,6 +185,7 @@
                                                 </ng-container>
                                             </span>
                                         </div>
+                                        <!-- Stock -->
                                         <div class="font-size-sm ">
                                             <span class="text-heading font-weight-medium ">
                                                 Stock:</span>
@@ -189,6 +193,7 @@
                                                 {{producto.stock}}
                                             </span>
                                         </div>
+                                        <!-- marca -->
                                         <div class="font-size-sm ">
                                             <span class="text-heading font-weight-medium ">
                                                 marca:</span>
@@ -196,6 +201,7 @@
                                                 {{producto?.marca?.nombre}}
                                             </span>
                                         </div>
+                                        <!-- avisos -->
                                         <div class="position-relative mr-n4 mb-3">
                                             <div class="product-badge product-available mt-n1" *ngIf="producto.stock > 0"><i
                                                     class="fa fa-check-circle-o text-success"></i> &nbsp; Compra
@@ -206,6 +212,7 @@
                                             <div class="product-badge product-available mt-n1" ><i
                                                     class="fa fa-info-circle text-warnin"></i> &nbsp; Monto minimo para delivery $20</div>
                                         </div>
+                                        <!-- avisos -->
                                         <form class="mb-grid-gutter" #carritoForm="ngForm"
                                             >
                                             <div class="form-group" *ngIf="producto.stock > 0 && producto.nombre_selector !== 'unico' ">
@@ -229,7 +236,8 @@
 
                                                 </select>
                                                 <div class="invalid-tooltip" style="display: block;"
-                                                    *ngIf="selector_error">Selecciona alguna opción por favor.</div>
+                                                    *ngIf="selector_error">Selecciona alguna opción por favor.
+                                                </div>
                                             </div>
                                             <div class="form-group d-flex align-items-center" *ngIf="producto.stock > 0">
                                                 <input type="number" class="form-control mr-3" min="1"
